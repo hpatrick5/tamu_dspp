@@ -1,0 +1,242 @@
+Creating test database for alias 'default'...
+//anaconda3/envs/se/lib/python3.8/site-packages/whitenoise/base.py:115: UserWarning: No directory at: /Users/msheragu/Documents/fall2020/se/final_project/CSCE-606-TeamMarsshMellow/DistrictSchoolPerformancePrediction/staticfiles/
+  warnings.warn(u"No directory at: {}".format(root))
+EE
+======================================================================
+ERROR: test_login (login.tests.LogInTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/msheragu/Documents/fall2020/se/final_project/CSCE-606-TeamMarsshMellow/DistrictSchoolPerformancePrediction/login/tests.py", line 15, in test_login
+    response = self.client.post('/login/', self.credentials, follow=True)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 744, in post
+    response = self._handle_redirects(response, data=data, content_type=content_type, **extra)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 837, in _handle_redirects
+    response = request_method(path, data=data, content_type=content_type, follow=False, **extra)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 733, in get
+    response = super().get(path, data=data, secure=secure, **extra)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 393, in get
+    return self.generic('GET', path, secure=secure, **{
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 470, in generic
+    return self.request(**r)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 710, in request
+    self.check_exception(response)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 571, in check_exception
+    raise exc_value
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/msheragu/Documents/fall2020/se/final_project/CSCE-606-TeamMarsshMellow/DistrictSchoolPerformancePrediction/login/views.py", line 12, in home
+    return render(request, 'login/home.html', context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/utils.py", line 96, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/utils.py", line 96, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 147, in url
+    return self._url(self.stored_name, name, force)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 126, in _url
+    hashed_name = hashed_name_func(*args)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 417, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'login/main.css'
+-------------------- >> begin captured logging << --------------------
+asyncio: DEBUG: Using selector: KqueueSelector
+django.request: ERROR: Internal Server Error: /
+Traceback (most recent call last):
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/msheragu/Documents/fall2020/se/final_project/CSCE-606-TeamMarsshMellow/DistrictSchoolPerformancePrediction/login/views.py", line 12, in home
+    return render(request, 'login/home.html', context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/utils.py", line 96, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/utils.py", line 96, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 147, in url
+    return self._url(self.stored_name, name, force)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 126, in _url
+    hashed_name = hashed_name_func(*args)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 417, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'login/main.css'
+--------------------- >> end captured logging << ---------------------
+
+======================================================================
+ERROR: test_register (login.tests.LogInTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/msheragu/Documents/fall2020/se/final_project/CSCE-606-TeamMarsshMellow/DistrictSchoolPerformancePrediction/login/tests.py", line 29, in test_register
+    response = self.client.post(
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 742, in post
+    response = super().post(path, data=data, content_type=content_type, secure=secure, **extra)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 404, in post
+    return self.generic('POST', path, post_data, content_type,
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 470, in generic
+    return self.request(**r)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 710, in request
+    self.check_exception(response)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/client.py", line 571, in check_exception
+    raise exc_value
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/msheragu/Documents/fall2020/se/final_project/CSCE-606-TeamMarsshMellow/DistrictSchoolPerformancePrediction/login/views.py", line 49, in register
+    return render(request, 'login/register.html', {'form': form})
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/utils.py", line 96, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/utils.py", line 96, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 147, in url
+    return self._url(self.stored_name, name, force)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 126, in _url
+    hashed_name = hashed_name_func(*args)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 417, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'login/main.css'
+-------------------- >> begin captured logging << --------------------
+django.request: ERROR: Internal Server Error: /register/
+Traceback (most recent call last):
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/msheragu/Documents/fall2020/se/final_project/CSCE-606-TeamMarsshMellow/DistrictSchoolPerformancePrediction/login/views.py", line 49, in register
+    return render(request, 'login/register.html', {'form': form})
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/utils.py", line 96, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/test/utils.py", line 96, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 147, in url
+    return self._url(self.stored_name, name, force)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 126, in _url
+    hashed_name = hashed_name_func(*args)
+  File "//anaconda3/envs/se/lib/python3.8/site-packages/django/contrib/staticfiles/storage.py", line 417, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'login/main.css'
+--------------------- >> end captured logging << ---------------------
+
+Coverage.py warning: Module foo was never imported. (module-not-imported)
+Coverage.py warning: Module bar was never imported. (module-not-imported)
+Name                                              Stmts   Miss  Cover
+---------------------------------------------------------------------
+DistrictSchoolPerformancePrediction/__init__.py       0      0   100%
+DistrictSchoolPerformancePrediction/asgi.py           4      4     0%
+DistrictSchoolPerformancePrediction/settings.py      27      0   100%
+DistrictSchoolPerformancePrediction/urls.py           4      4     0%
+DistrictSchoolPerformancePrediction/wsgi.py           4      4     0%
+login/__init__.py                                     0      0   100%
+login/admin.py                                        1      0   100%
+login/apps.py                                         3      0   100%
+login/forms.py                                       11     11     0%
+login/migrations/__init__.py                          0      0   100%
+login/models.py                                       2      0   100%
+login/tests.py                                       17     17     0%
+login/urls.py                                         3      3     0%
+login/views.py                                       33     33     0%
+manage.py                                            12      2    83%
+---------------------------------------------------------------------
+TOTAL                                               121     78    36%
+----------------------------------------------------------------------
+Ran 2 tests in 0.440s
+
+FAILED (errors=2)
+Destroying test database for alias 'default'...
+nosetests --with-coverage --cover-package=foo,bar --verbosity=1

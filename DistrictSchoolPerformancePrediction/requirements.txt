@@ -1,0 +1,12 @@
+asgiref @ file:///tmp/build/80754af9/asgiref_1602513567813/work
+certifi==2020.6.20
+coverage==5.3
+Django @ file:///tmp/build/80754af9/django_1601563330930/work
+django-crispy-forms==1.8.1
+django-nose==1.4.6
+Jinja2==2.11.2
+MarkupSafe @ file:///opt/concourse/worker/volumes/live/cb778296-98db-45ad-411e-6f726e102dc3/volume/markupsafe_1594371638608/work
+nose @ file:///opt/concourse/worker/volumes/live/a029938e-1732-4cd8-5b98-0542283d158b/volume/nose_1594377915100/work
+psycopg2 @ file:///opt/concourse/worker/volumes/live/c8a4b965-959f-4e6c-7792-4aa881d63c8d/volume/psycopg2_1594305121341/work
+pytz==2020.1
+sqlparse @ file:///tmp/build/80754af9/sqlparse_1602184451250/work
