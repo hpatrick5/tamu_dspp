@@ -1,0 +1,13 @@
+{% extends "login/base.html" %}
+{% block content %}
+<div class="content-section">
+    <form method = "POST">
+    {% csrf_token %}
+      <div class="form-group">
+        {{ form.as_p }}
+        <label for="exampleFormControlFile1">Example file input</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+    </form>
+</div>
+{% endblock content %}
