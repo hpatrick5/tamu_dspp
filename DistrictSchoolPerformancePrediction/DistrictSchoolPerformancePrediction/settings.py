@@ -27,7 +27,7 @@ SECRET_KEY = '_uv_lnq5n9#)v9-!&2l-@f2%#c@wonam+-b3iprv)_@91b9-h4'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['dspp.herokuapp.com']
-ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
+ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com', '528da989e1984836ae2c19f615abaf67.vfs.cloud9.us-east-2.amazonaws.com']
 
 # Application definition
 
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'DistrictSchoolPerformancePrediction.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
@@ -138,7 +138,8 @@ LOGIN_URL = 'main-login'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-NOSE_ARGS = [
-    '--with-coverage',
-    '--cover-package=foo,bar',
-]
+
+# NOSE_ARGS = [
+#    '--with-coverage',
+#    '--cover-package=foo,bar',
+#]
