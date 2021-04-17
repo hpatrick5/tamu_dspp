@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 
+#class UploadFileForm(forms.ModelForm):
 class UploadFileForm(forms.Form):
-    title = forms.CharField(max_length=50)
+    #title = forms.CharField(max_length=50)
+    #make an instruction field to say "please upload file"
     file = forms.FileField()
 
 

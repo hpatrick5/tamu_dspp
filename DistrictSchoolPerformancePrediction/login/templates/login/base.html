@@ -37,6 +37,9 @@
                 <a class="nav-item nav-link" href="{% url 'login-upload' %}">Upload File</a>
                 <a class="nav-item nav-link" href="{% url 'main-logout' %}">Logout</a>
               {% else %}
+                <a class="nav-item nav-link" href="{% url 'login-upload' %}">Upload File</a>
+                <a class="nav-item nav-link" href="{% url 'main-logout' %}">Logout</a>
+                
                 <a class="nav-item nav-link" href="{% url 'main-login' %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
               {% endif %}

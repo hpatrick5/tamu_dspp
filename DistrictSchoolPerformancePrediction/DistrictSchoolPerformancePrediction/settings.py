@@ -27,14 +27,21 @@ SECRET_KEY = '_uv_lnq5n9#)v9-!&2l-@f2%#c@wonam+-b3iprv)_@91b9-h4'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['dspp.herokuapp.com']
-ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
-
+#ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
+ALLOWED_HOSTS = ['2b44a7e254184d5b99660ff4bb8973cf.vfs.cloud9.us-east-2.amazonaws.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'file_upload',
+    #not sure it the 'login.apps.LoginConfig' legacy code is sufficient so I added 'login'
+    #confirmed with errorlables arent unique, but theirs only permits loginConfig
+    #'login',
+        #note to self may need to redo app creation in order to better system
+    
     'login.apps.LoginConfig',
     'crispy_forms',
     'django_nose',
+    #after this line are defaults
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,7 +88,9 @@ WSGI_APPLICATION = 'DistrictSchoolPerformancePrediction.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #changed legacy code to line below to create app with manage.py
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        #'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -125,6 +134,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'media/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 

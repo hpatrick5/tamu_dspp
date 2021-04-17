@@ -6,11 +6,12 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    context = {
-        'title': 'DSPP'
-    }
-    return render(request, 'login/home.html', context)
-
+    #commented out context as it added DSPP twice in title
+    #context = {
+     #   'title': 'DSPP'
+    #}
+    #return render(request, 'login/home.html', context)
+    return render(request, 'login/home.html')
 
 def about(request):
     return render(request, 'login/about.html')
@@ -21,6 +22,8 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
 
+#accepted file types for upload
+#IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg','csv']
 
 @login_required
 def upload_file(request):
@@ -33,6 +36,25 @@ def upload_file(request):
     else:
         form = UploadFileForm()
     return render(request, 'login/upload.html', {'form': form})
+
+#def upload_file(request):
+    #corresponding form name
+ #   form = UploadFileForm()
+ #   if request.method == 'POST':
+#        form = UploadFileForm(request.POST, request.FILES)
+#        if form.is_valid():
+#            user_pr = form.save(commit=False)
+ #           user_pr.display_picture = request.FILES['display_picture']
+#            file_type = user_pr.display_picture.url.split('.')[-1]
+ #           file_type = file_type.lower()
+ #           if file_type not in IMAGE_FILE_TYPES:
+#                return render(request, 'login/error.html')
+#            user_pr.save()
+#            return render(request, 'login/details.html', {'user_pr': user_pr})
+#    context = {"form": form,}
+#    return render(request, 'login/create.html', context)
+    
+    
 
 
 def register(request):
