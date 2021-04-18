@@ -4,9 +4,10 @@ from .forms import UploadFileForm, UserRegisterForm
     #to do file upload - incomplete
     ##
     #
-    #
-    #
 from .forms import Profile_Form
+from django.contrib.auth.models import User
+
+##end of file upload
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -48,7 +49,13 @@ IMAGE_FILE_TYPES = ['csv']
 
 
 def upload_file(request):
-    form = Profile_Form()
+
+    username = request.user.username
+    initial_data = {
+        'fname' : username,
+        'grade' :5
+    }
+    form = Profile_Form(initial=initial_data, instance = User)
     if request.method == 'POST':
         form = Profile_Form(request.POST, request.FILES)
         if form.is_valid():

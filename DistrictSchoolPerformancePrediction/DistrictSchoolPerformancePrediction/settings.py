@@ -92,7 +92,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         #changed legacy code to line below to create app with manage.py
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        #'NAME': os.path.join(BASE_DIR, 'db2.sqlite3')
+        #'NAME': os.path.join(BASE_DIR, 'db3.sqlite3')
+        'NAME': os.path.join(BASE_DIR, 'db4.sqlite3')
         #'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
