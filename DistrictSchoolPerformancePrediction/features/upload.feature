@@ -3,7 +3,7 @@ Feature: Upload
   Background: Register and Login
 
   Scenario: Upload a CSV file
-      Given I am on the Upload File page
+      Given I am on the "Upload" page
        When I click Choose File
        And I select a CSV to upload
        And I click Upload
