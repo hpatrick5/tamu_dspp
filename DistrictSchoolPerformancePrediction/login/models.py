@@ -10,3 +10,20 @@ from django.contrib.auth.models import User
 
 #A file object is mainly to associate a file with an object or profile. We will learn more about file object in the upcoming section
 #note to self: address user to file identification
+
+
+###
+# added for file upload
+
+class User_Profile(models.Model):
+    
+    fname = models.CharField(max_length=200)
+   # username = user.get_username()
+    #lname = models.CharField(max_length = 200)
+    #technologies = models.CharField(max_length=500)
+    #email = models.EmailField(default = None)
+    display_picture = models.FileField()
+    def __str__(self):
+        return self.fname
+
+###

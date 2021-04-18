@@ -1,9 +1,18 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UploadFileForm, UserRegisterForm
+    #to do file upload - incomplete
+    ##
+    #
+    #
+    #
+from .forms import Profile_Form
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+#to do add model to legacy code - incomplete
+from .models import User_Profile
 
 def home(request):
     #commented out context as it added DSPP twice in title
@@ -17,25 +26,43 @@ def about(request):
     return render(request, 'login/about.html')
 
 
-def handle_uploaded_file(f):
-    with open('random_name.txt', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
+#def handle_uploaded_file(f):
+#    with open('random_name.txt', 'wb+') as destination:
+#        for chunk in f.chunks():
+#            destination.write(chunk)
 
 #accepted file types for upload
-#IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg','csv']
+IMAGE_FILE_TYPES = ['csv']
 
 @login_required
+#def upload_file(request):
+#    if request.method == 'POST':
+#        form = UploadFileForm(request.POST, request.FILES)
+#        if form.is_valid():
+#            handle_uploaded_file(request.FILES['file'])
+#            # return HttpResponseRedirect('/success/url/')
+#            return render(request, 'login/home.html')
+#    else:
+#        form = UploadFileForm()
+#    return render(request, 'login/upload.html', {'form': form})
+
+
 def upload_file(request):
+    form = Profile_Form()
     if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
+        form = Profile_Form(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(request.FILES['file'])
-            # return HttpResponseRedirect('/success/url/')
-            return render(request, 'login/home.html')
-    else:
-        form = UploadFileForm()
-    return render(request, 'login/upload.html', {'form': form})
+            user_pr = form.save(commit=False)
+            user_pr.display_picture = request.FILES['display_picture']
+            file_type = user_pr.display_picture.url.split('.')[-1]
+            file_type = file_type.lower()
+            if file_type not in IMAGE_FILE_TYPES:
+                return render(request, 'file_upload/error.html')
+            user_pr.save()
+            return render(request, 'file_upload/details.html', {'user_pr': user_pr})
+    context = {"form": form,}
+    return render(request, 'login/upload.html', context)
+
 
 #def upload_file(request):
     #corresponding form name

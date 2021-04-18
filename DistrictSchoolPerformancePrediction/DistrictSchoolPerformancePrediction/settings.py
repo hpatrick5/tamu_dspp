@@ -59,6 +59,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    
+    #added for file upload
+    #'django.core.context_processors.request',
 ]
 
 ROOT_URLCONF = 'DistrictSchoolPerformancePrediction.urls'
