@@ -1,17 +1,7 @@
 from behave import *
 from django.urls import reverse
-from factories.user import UserFactory
 
 use_step_matcher("re")
-
-@given(u'I am registered')
-def register(context):
-	# Creates a dummy user for our tests (user is not authenticated at this point)
-    u = UserFactory(username=context.table[0]['username'])
-    u.set_password(context.table[0]['password'])
-	# Don't omit to call save() to insert object in database
-    u.save()
-
 
 @given(u'I am on the "(?P<page>.*)" page')
 def on_page(context, page):
@@ -21,8 +11,10 @@ def on_page(context, page):
 
 @when(u'I enter my <(?P<username>.*)>, <(?P<password>.*)>')
 def enter_login(context, username, password):
-    user = context.browser.find_element_by_name('username').send_keys(username)
-    pw = context.browser.find_element_by_name('password').send_keys(password)
+    user = context.browser.find_element_by_name('username')
+    user.send_keys(context.table[0][username])
+    pw = context.browser.find_element_by_name('password')
+    pw.send_keys(context.table[0][password])
 
 @when(u'I click Login')
 def step_impl(context):
@@ -37,6 +29,7 @@ def step_impl(context):
 
 @then(u'I should not see "Register"')
 def step_impl(context):
+    html = context.browser.find_element_by_xpath(".//html")
     assert "Register" not in html.text
 
 
