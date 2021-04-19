@@ -1,9 +1,9 @@
 Feature: Login
 
   Background: Register
-    Given: My account information
-    | username | password |
-    | test123  | pw123    |
+    Given I am registered
+      | username | password |
+      | test123  | pw123    |
 
   Scenario: Log in to website
       Given I am on the "Login" page

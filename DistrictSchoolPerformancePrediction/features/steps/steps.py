@@ -2,6 +2,17 @@ from behave import *
 from django.urls import reverse
 use_step_matcher("re")
 
+@given(u'I am registered')
+def register(context):
+	from django.contrib.auth.models import User
+
+	# Creates a dummy user for our tests (user is not authenticated at this point)
+	u = UserFactory(username='foo', email='foo@example.com')
+	u.set_password('bar')
+
+	# Don't omit to call save() to insert object in database
+	u.save()
+
 
 @given(u'I am on the "(?P<page>.*)" page')
 def on_page(context, page):
@@ -9,7 +20,6 @@ def on_page(context, page):
     page_name = str('login/' + page.lower() + '.html')
     response = context.client.get(reverse(page_mappings[page]))
     assert response.templates[0].name == page_name
-
 
 @when(u'I enter my Username, Password')
 def step_impl(context):
