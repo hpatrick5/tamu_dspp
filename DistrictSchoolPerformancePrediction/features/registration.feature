@@ -1,3 +1,4 @@
+@in_progress
 Feature: Registration
 
   Scenario: Account Creation

@@ -16,7 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+AUTH_USER_MODEL = 'auth.User'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -27,7 +27,7 @@ SECRET_KEY = '_uv_lnq5n9#)v9-!&2l-@f2%#c@wonam+-b3iprv)_@91b9-h4'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['dspp.herokuapp.com']
-ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com', '528da989e1984836ae2c19f615abaf67.vfs.cloud9.us-east-2.amazonaws.com']
+ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com', '528da989e1984836ae2c19f615abaf67.vfs.cloud9.us-east-2.amazonaws.com', 'd8ec943f80644b70b7506e130747dc62.vfs.cloud9.us-east-2.amazonaws.com', '127.0.0.1']
 
 # Application definition
 

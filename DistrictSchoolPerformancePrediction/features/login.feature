@@ -2,11 +2,11 @@ Feature: Login
 
   Background: Register
     Given I am registered
-      | username | password |
-      | test123  | pw123    |
+     | username | password    |
+     | test123  | password123 |
+    Given I am on the "Login" page
 
   Scenario: Log in to website
-      Given I am on the "Login" page
        When I enter my <username>, <password>
        And I click Login
        Then I should see "Upload File"

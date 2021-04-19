@@ -1,44 +1,43 @@
 from behave import *
 from django.urls import reverse
+from factories.user import UserFactory
+
 use_step_matcher("re")
 
 @given(u'I am registered')
 def register(context):
-	from django.contrib.auth.models import User
-
 	# Creates a dummy user for our tests (user is not authenticated at this point)
-	u = UserFactory(username='foo', email='foo@example.com')
-	u.set_password('bar')
-
+    u = UserFactory(username=context.table[0]['username'])
+    u.set_password(context.table[0]['password'])
 	# Don't omit to call save() to insert object in database
-	u.save()
+    u.save()
 
 
 @given(u'I am on the "(?P<page>.*)" page')
 def on_page(context, page):
-    page_mappings = {'Home' : 'login-home', 'About' : 'login-about', 'Upload': 'login-upload', 'Register' : 'register', 'Login' : 'main-login' } 
-    page_name = str('login/' + page.lower() + '.html')
-    response = context.client.get(reverse(page_mappings[page]))
-    assert response.templates[0].name == page_name
+    url = context.server_url + page.lower() +'/'
+    context.browser.get(url)
+    assert context.browser.current_url == url
 
-@when(u'I enter my Username, Password')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When I enter my Username, Password')
-
+@when(u'I enter my <(?P<username>.*)>, <(?P<password>.*)>')
+def enter_login(context, username, password):
+    user = context.browser.find_element_by_name('username').send_keys(username)
+    pw = context.browser.find_element_by_name('password').send_keys(password)
 
 @when(u'I click Login')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I click Login')
+     context.browser.find_element_by_class_name('form-group').submit()
 
 
-@then(u'I should see Upload File')
+@then(u'I should see "Upload File"')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then I should see Upload File')
+    html = context.browser.find_element_by_xpath(".//html")
+    assert "Upload File" in html.text
 
 
-@then(u'I should not see Register')
+@then(u'I should not see "Register"')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then I should not see Register')
+    assert "Register" not in html.text
 
 
 @when(u'I provide a Username, Email, Password, and Confirmation')
