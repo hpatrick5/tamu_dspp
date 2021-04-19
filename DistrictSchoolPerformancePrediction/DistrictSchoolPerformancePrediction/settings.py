@@ -141,8 +141,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
+#code added in order for file upload 04/18/21
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+##
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
