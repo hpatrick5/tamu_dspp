@@ -11,6 +11,5 @@ psycopg2
 pytz==2020.1
 sqlparse
 selenium
-behave_django
+behave-django
 chromedriver
-factory_boy
