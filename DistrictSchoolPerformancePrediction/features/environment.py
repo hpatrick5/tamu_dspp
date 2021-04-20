@@ -10,7 +10,7 @@ def before_all(context):
     options.headless = True
 
     context.browser = webdriver.Chrome(options=options)
-    context.server_url = 'http://127.0.0.1:8080/'
+    context.server_url = 'https://sp21-606-school-district-data.herokuapp.com/'
     context.browser.implicitly_wait(1)
     context.browser.get(context.server_url)
     assert "DSPP" in context.browser.title

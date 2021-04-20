@@ -45,7 +45,7 @@ def register(request):
             auth_login(request, user)
             messages.success(
                 request, f'Your account has been created! You can now Login')
-            return redirect('main-login')
+            return redirect('login-home')
     else:
         form = UserRegisterForm()
     return render(request, 'login/register.html', {'form': form})
