@@ -1,29 +1,21 @@
-# %%
 import pandas as pd
 
-# %%
 '''
 ## Data Reading
 
 Two different dataframes for both, maths and reading data is created below.
 '''
 
-# %%
 df_maths = pd.read_excel("Grade5_AI_Predictions_Final.xlsx")
 df_reading = pd.read_excel("Grade5_AI_Predictions_Final.xlsx")
 
-# %%
-df_maths.head()
+# df_maths.head()
+# df_reading.head()
 
-# %%
-df_reading.head()
-
-# %%
 '''
 ## Class that implements the functions to pull academic achievement metrics
 '''
 
-# %%
 class academic_achievement:
     def __init__(self, df, course):
         self.df = df
@@ -144,14 +136,9 @@ class academic_achievement:
         self.academic_data[chr(index) + ". " + "Non-Continuously Enrolled"] = continuously_not_enrolled_academic_data
 
         return self.academic_data
-
-
-# %%
 '''
 ## Class that implements the functions to pull growth metrics
 '''
-
-# %%
 class growth_status:
     def __init__(self, df, course):
         self.df = df
@@ -269,8 +256,6 @@ class growth_status:
 
         return self.growth_data
 
-
-# %%
 '''
 ## Class that implements the functions to pull success metrics
 '''
@@ -437,13 +422,10 @@ class success_status:
 
         return self.success_data
 
-
-# %%
 '''
 ## Metric Extraction
 '''
 
-# %%
 ## Academic Data for reading and maths
 academic_data_reading = academic_achievement(df_reading, "ELA/Reading").get_academic_data()
 academic_data_maths = academic_achievement(df_maths, "Maths").get_academic_data()
@@ -455,12 +437,9 @@ growth_data_maths = growth_status(df_maths, "Maths").get_growth_data()
 ## Overall Success Data
 success_data = success_status(df_reading, df_maths).get_success_data()
 
-# %%
 '''
 ### Consolidating the entire data into a single dataframe
 '''
-
-# %%
 certificate_df = pd.DataFrame(index =['Academic Achievement Status'])
 certificate_df = certificate_df.append(pd.DataFrame.from_dict(academic_data_reading))
 certificate_df = certificate_df.append(pd.DataFrame.from_dict(academic_data_maths))
@@ -472,15 +451,9 @@ certificate_df = certificate_df.append(pd.DataFrame.from_dict(growth_data_maths)
 certificate_df = certificate_df.append(pd.DataFrame(index =['Student Success Status']))
 certificate_df = certificate_df.append(pd.DataFrame.from_dict(success_data))
 
-# %%
-certificate_df.head()
-
-# %%
+# certificate_df.head()
 certificate_df.to_csv("certificate.csv")
 
-# %%
 '''
 ### STAAR Performance Certificate
 '''
-
-# %%
