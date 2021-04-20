@@ -28,15 +28,15 @@ class academic_achievement:
     def __init__(self, df, course):
         self.df = df
         self.course = course
-        self.races = ["All Students", 
-                      'African American', 
-                      'Hispanic', 
-                      "White", 
-                      "American Indian", 
-                      "Asian", 
-                      "Pacific Islander", 
+        self.races = ["All Students",
+                      'African American',
+                      'Hispanic',
+                      "White",
+                      "American Indian",
+                      "Asian",
+                      "Pacific Islander",
                       "Two or More"]
-        
+
         self.target = {
             "All Students": (44, 46),
             "African American": (32, 31),
@@ -53,9 +53,9 @@ class academic_achievement:
             "Continuously Enrolled": (46, 47),
             "Non-Continuously Enrolled": (42, 45)
         }
-        
+
         self.academic_data = {}
-        
+
     def get_academic_achievement_dict(self, group, data):
         target = 0
         if self.course == "ELA/Reading":
@@ -74,7 +74,7 @@ class academic_achievement:
             data_dict["2." + "Target Met"] = "Y"
 
         return data_dict
-    
+
     def get_data_on_race(self, race):
         total_count = 0
         meet_count = 0
@@ -82,7 +82,7 @@ class academic_achievement:
             row_race = row['Ethnicity']
             row_meet = row['AI Meets']
             row_master = row['AI Masters']
-            if race == "All Students" or race == row_race:
+            if race in ('All Students', row_race):
                 total_count += 1
                 if row_meet or row_master:
                     meet_count += 1
@@ -91,7 +91,7 @@ class academic_achievement:
             percent = (meet_count/total_count)*100
         data = {"Percent": percent, "Meets": meet_count, "Total": total_count}
         return self.get_academic_achievement_dict(race, data)
-    
+
     def get_col_stat(self, col_name, no_tag, group):
         total_count = 0
         meet_count = 0
@@ -110,7 +110,7 @@ class academic_achievement:
             percent = (meet_count/total_count)*100
         data = {"Percent": percent, "Meets": meet_count, "Total": total_count}
         return self.get_academic_achievement_dict(group, data)
-    
+
     def get_academic_data(self):
         index = 97
         for race in self.races:
@@ -119,22 +119,22 @@ class academic_achievement:
             race_academic_data = self.get_data_on_race(race)
             self.academic_data[chr(index) + ". " + race] = race_academic_data
             index += 1
-        
+
         econ_disadv_academic_data = self.get_col_stat("ED", "No", "Econ Disadv")
         self.academic_data[chr(index) + ". " + "Econ Disadv"] = econ_disadv_academic_data
-        
+
         index += 1
         lep_academic_data = self.get_col_stat("LEP", "Other Non-LEP Student", "EL (Current & Monitored)+")
         self.academic_data[chr(index) + ". " + "EL (Current & Monitored)+"] = lep_academic_data
-        
+
         index += 1
         special_ed_current_academic_data = self.get_col_stat("Special Ed Indicator", "No", "Special Ed (Current)")
         self.academic_data[chr(index) + ". " + "Special Ed (Current)"] = special_ed_current_academic_data
-        
+
         index += 1
         special_ed_former_academic_data = self.get_col_stat("Special Ed Indicator (Former)", "No", "Special Ed (Former)")
         self.academic_data[chr(index) + ". " + "Special Ed (Former)"] = special_ed_former_academic_data
-        
+
         continuously_enrolled_academic_data = self.get_col_stat("Continuously Enrolled", "No", "Continuously Enrolled")
         continuously_not_enrolled_academic_data = self.get_col_stat("Continuously Enrolled", "Yes", "Non-Continuously Enrolled")
 
@@ -142,9 +142,9 @@ class academic_achievement:
         self.academic_data[chr(index) + ". " + "Continuously Enrolled"] = continuously_enrolled_academic_data
         index += 1
         self.academic_data[chr(index) + ". " + "Non-Continuously Enrolled"] = continuously_not_enrolled_academic_data
-        
+
         return self.academic_data
-        
+
 
 # %%
 '''
@@ -156,15 +156,15 @@ class growth_status:
     def __init__(self, df, course):
         self.df = df
         self.course = course
-        self.races = ["All Students", 
-                      'African American', 
-                      'Hispanic', 
-                      "White", 
-                      "American Indian", 
-                      "Asian", 
-                      "Pacific Islander", 
+        self.races = ["All Students",
+                      'African American',
+                      'Hispanic',
+                      "White",
+                      "American Indian",
+                      "Asian",
+                      "Pacific Islander",
                       "Two or More"]
-        
+
         self.target = {
             "All Students": (66, 71),
             "African American": (62, 67),
@@ -181,9 +181,9 @@ class growth_status:
             "Continuously Enrolled": (66, 71),
             "Non-Continuously Enrolled": (67, 70)
         }
-        
+
         self.growth_data = {}
-    
+
     def get_growth_status_dict(self, group, data):
         target = 0
         if self.course == "ELA/Reading":
@@ -202,7 +202,7 @@ class growth_status:
             data_dict["2." + "Target Met"] = "Y"
 
         return data_dict
-    
+
     def get_data_on_race(self, race):
         total_count = 0
         growth_sum = 0
@@ -217,7 +217,7 @@ class growth_status:
             percent = (growth_sum/total_count)*100
         data = {"Score": percent, "Sum": growth_sum, "Total": total_count}
         return self.get_growth_status_dict(race, data)
-    
+
     def get_col_stat(self, col_name, no_tag, group):
         total_count = 0
         growth_sum = 0
@@ -234,7 +234,7 @@ class growth_status:
             percent = (growth_sum/total_count)*100
         data = {"Score": percent, "Sum": growth_sum, "Total": total_count}
         return self.get_growth_status_dict(race, data)
-    
+
     def get_growth_data(self):
         index = 97
         for race in self.races:
@@ -243,22 +243,22 @@ class growth_status:
             race_growth_data = self.get_data_on_race(race)
             self.growth_data[chr(index) + ". " + race] = race_growth_data
             index += 1
-        
+
         econ_disadv_growth_data = self.get_col_stat("ED", "No", "Econ Disadv")
         self.growth_data[chr(index) + ". " + "Econ Disadv"] = econ_disadv_growth_data
-        
+
         index += 1
         lep_growth_data = self.get_col_stat("LEP", "Other Non-LEP Student", "EL (Current & Monitored)+")
         self.growth_data[chr(index) + ". " + "EL (Current & Monitored)+"] = lep_growth_data
-        
+
         index += 1
         special_ed_current_growth_data = self.get_col_stat("Special Ed Indicator", "No", "Special Ed (Current)")
         self.growth_data[chr(index) + ". " + "Special Ed (Current)"] = special_ed_current_growth_data
-        
+
         index += 1
         special_ed_former_growth_data = self.get_col_stat("Special Ed Indicator (Former)", "No", "Special Ed (Former)")
         self.growth_data[chr(index) + ". " + "Special Ed (Former)"] = special_ed_former_growth_data
-        
+
         continuously_enrolled_growth_data = self.get_col_stat("Continuously Enrolled", "No", "Continuously Enrolled")
         continuously_not_enrolled_growth_data = self.get_col_stat("Continuously Enrolled", "Yes", "Non-Continuously Enrolled")
 
@@ -266,9 +266,9 @@ class growth_status:
         self.growth_data[chr(index) + ". " + "Continuously Enrolled"] = continuously_enrolled_growth_data
         index += 1
         self.growth_data[chr(index) + ". " + "Non-Continuously Enrolled"] = continuously_not_enrolled_growth_data
-        
+
         return self.growth_data
-        
+
 
 # %%
 '''
@@ -278,15 +278,15 @@ class success_status:
     def __init__(self, df1, df2):
         self.df = df1
         self.df = self.df.append(df2)
-        self.races = ["All Students", 
-                      'African American', 
-                      'Hispanic', 
-                      "White", 
-                      "American Indian", 
-                      "Asian", 
-                      "Pacific Islander", 
+        self.races = ["All Students",
+                      'African American',
+                      'Hispanic',
+                      "White",
+                      "American Indian",
+                      "Asian",
+                      "Pacific Islander",
                       "Two or More"]
-        
+
         self.target = {
             "All Students": 47,
             "African American": 36,
@@ -305,7 +305,7 @@ class success_status:
         }
 
         self.success_data = {}
-    
+
     def get_student_success_status_dict(self, group, data):
         target = self.target[group]
         data_dict = {
@@ -321,7 +321,7 @@ class success_status:
             data_dict["2." + "Target Met"] = "Y"
 
         return data_dict
-    
+
     def get_data_on_race(self, race):
         total_count = 0
         meet_count = 0
@@ -350,17 +350,17 @@ class success_status:
             master_percent = (master_count/total_count)*100
             meet_percent = (meet_count/total_count)*100
             approach_percent = (approach_count/total_count)*100
-            
+
         average = (master_percent + meet_percent + approach_percent)/3
-        
-        data = {"Total": total_count, 
-                "Masters Percent": master_percent, 
-                "Meets Percent": meet_percent, 
-                "Approaches Percent": approach_percent, 
+
+        data = {"Total": total_count,
+                "Masters Percent": master_percent,
+                "Meets Percent": meet_percent,
+                "Approaches Percent": approach_percent,
                 "Average": average}
-        
+
         return self.get_student_success_status_dict(race, data)
-    
+
     def get_col_stat(self, col_name, no_tag, group):
         total_count = 0
         meet_count = 0
@@ -384,7 +384,7 @@ class success_status:
                     approach_count += 1
                     meet_count += 1
                     master_count += 1
-                    
+
         master_percent = 0
         meet_percent = 0
         approach_percent = 0
@@ -392,17 +392,17 @@ class success_status:
             master_percent = (master_count/total_count)*100
             meet_percent = (meet_count/total_count)*100
             approach_percent = (approach_count/total_count)*100
-            
+
         average = (master_percent + meet_percent + approach_percent)/3
-        
-        data = {"Total": total_count, 
-                "Masters Percent": master_percent, 
-                "Meets Percent": meet_percent, 
-                "Approaches Percent": approach_percent, 
+
+        data = {"Total": total_count,
+                "Masters Percent": master_percent,
+                "Meets Percent": meet_percent,
+                "Approaches Percent": approach_percent,
                 "Average": average}
-        
+
         return self.get_student_success_status_dict(race, data)
-    
+
     def get_success_data(self):
         index = 97
         for race in self.races:
@@ -411,22 +411,22 @@ class success_status:
             race_success_data = self.get_data_on_race(race)
             self.success_data[chr(index) + ". " + race] = race_success_data
             index += 1
-        
+
         econ_disadv_success_data = self.get_col_stat("ED", "No", "Econ Disadv")
         self.success_data[chr(index) + ". " + "Econ Disadv"] = econ_disadv_success_data
-        
+
         index += 1
         lep_success_data = self.get_col_stat("LEP", "Other Non-LEP Student", "EL (Current & Monitored)+")
         self.success_data[chr(index) + ". " + "EL (Current & Monitored)+"] = lep_success_data
-        
+
         index += 1
         special_ed_current_success_data = self.get_col_stat("Special Ed Indicator", "No", "Special Ed (Current)")
         self.success_data[chr(index) + ". " + "Special Ed (Current)"] = special_ed_current_success_data
-        
+
         index += 1
         special_ed_former_success_data = self.get_col_stat("Special Ed Indicator (Former)", "No", "Special Ed (Former)")
         self.success_data[chr(index) + ". " + "Special Ed (Former)"] = special_ed_former_success_data
-        
+
         continuously_enrolled_success_data = self.get_col_stat("Continuously Enrolled", "No", "Continuously Enrolled")
         continuously_not_enrolled_success_data = self.get_col_stat("Continuously Enrolled", "Yes", "Non-Continuously Enrolled")
 
@@ -434,9 +434,9 @@ class success_status:
         self.success_data[chr(index) + ". " + "Continuously Enrolled"] = continuously_enrolled_success_data
         index += 1
         self.success_data[chr(index) + ". " + "Non-Continuously Enrolled"] = continuously_not_enrolled_success_data
-        
+
         return self.success_data
-        
+
 
 # %%
 '''
