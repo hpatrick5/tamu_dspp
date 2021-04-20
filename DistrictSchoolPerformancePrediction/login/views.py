@@ -42,9 +42,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            auth_login(request, user)
-            messages.success(
-                request, f'Your account has been created! You can now Login')
+            login(request)
             return redirect('login-home')
     else:
         form = UserRegisterForm()
