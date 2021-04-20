@@ -13,8 +13,8 @@ class Profile_Form(forms.ModelForm):
         'grade',
         #save_file is another way to save a file to django
         #'save_file',
-        
-        
+
+
         #'lname',
         #'technologies',
         #'email',
@@ -37,7 +37,7 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
     def save(self, commit=True):
-        user = super(UserCreationForm, self).save(commit=False)
+        user = super(UserRegisterForm, self).save(commit=False)
         user.email = self.cleaned_data['email']
         if commit:
             user.save()
