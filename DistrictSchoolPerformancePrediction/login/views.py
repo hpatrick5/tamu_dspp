@@ -24,7 +24,6 @@ def home(request):
 def about(request):
     return render(request, 'login/about.html')
 
-
 #def handle_uploaded_file(f):
 #    with open('random_name.txt', 'wb+') as destination:
 #        for chunk in f.chunks():
@@ -47,7 +46,6 @@ IMAGE_FILE_TYPES = ['csv']
 
 
 def upload_file(request):
-
     username = request.user.username
     initial_data = {
         'fname' : username,
