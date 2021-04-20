@@ -209,7 +209,7 @@ class growth_status:
         for index, row in self.df.iterrows():
             row_race = row['Ethnicity']
             row_growth = row['Growth']
-            if race == None or race == row_race:
+            if race is None or race == row_race:
                 total_count += 1
                 growth_sum += row_growth
         percent = 0
@@ -332,7 +332,7 @@ class success_status:
             row_approaches = row['AI Approaches']
             row_meet = row['AI Meets']
             row_master = row['AI Masters']
-            if race == None or race == row_race:
+            if race is None or race == row_race:
                 total_count += 1
                 if row_approaches:
                     approach_count += 1
