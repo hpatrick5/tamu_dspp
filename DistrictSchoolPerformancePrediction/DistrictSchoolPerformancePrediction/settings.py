@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     #confirmed with errorlables arent unique, but theirs only permits loginConfig
     #'login',
         #note to self may need to redo app creation in order to better system
-    
+
     'login.apps.LoginConfig',
     'crispy_forms',
     'django_nose',
@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    
+
     #added for file upload
     #'django.core.context_processors.request',
 ]
@@ -95,8 +95,9 @@ DATABASES = {
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
         #'NAME': os.path.join(BASE_DIR, 'db2.sqlite3')
         #'NAME': os.path.join(BASE_DIR, 'db3.sqlite3')
-        # 'NAME': os.path.join(BASE_DIR, 'db4.sqlite3')
-        'NAME': str(BASE_DIR / 'db.sqlite3'),
+        #'NAME': os.path.join(BASE_DIR, 'db4.sqlite3')
+        'NAME': os.path.join(BASE_DIR, 'db5.sqlite3')
+        #'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
