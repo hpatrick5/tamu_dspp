@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .forms import UploadFileForm, UserRegisterForm
+from .forms import UserRegisterForm
     #to do file upload - incomplete
     ##
     #
@@ -13,9 +12,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
-
-#to do add model to legacy code - incomplete
-from .models import User_Profile
 
 def home(request):
     #commented out context as it added DSPP twice in title

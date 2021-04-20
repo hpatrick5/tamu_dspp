@@ -1,6 +1,5 @@
 # %%
 import pandas as pd 
-import numpy as np
 
 # %%
 #math grade 4

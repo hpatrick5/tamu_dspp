@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .forms import Profile_Form
-from .models import User_Profile
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg', 'csv']
 def create_profile(request):
     form = Profile_Form()

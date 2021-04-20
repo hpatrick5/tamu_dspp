@@ -1,6 +1,5 @@
 # %%
 import pandas as pd 
-import numpy as np
 
 # %%
 df_present = pd.read_csv("Carmichael_grade3_reading_meanImpute_ED_CE.csv")

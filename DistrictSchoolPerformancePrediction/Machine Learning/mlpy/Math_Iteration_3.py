@@ -1,6 +1,5 @@
 # %%
 import pandas as pd 
-import numpy as np
 
 # %%
 df_present = pd.read_csv("pre_model_format_math.csv")
