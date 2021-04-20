@@ -15,14 +15,14 @@ from django.conf import settings
 ###
 # added for file upload
 
-class User(models.Model):
-    user_name = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#class User(models.Model):
+#    user_name = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     #user_name = models.OneToOneField(User, on_delete=models.CASCADE)
     #last_name = models.CharField(max_length=30)
     #email = models.EmailField()
 
-    def __str__(self):
-        return (self.user_name)
+#   def __str__(self):
+#       return (self.user_name)
 
 
     #currently this model only allows one upload per user!
