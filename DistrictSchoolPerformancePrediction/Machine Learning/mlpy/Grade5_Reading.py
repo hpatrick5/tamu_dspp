@@ -92,9 +92,6 @@ y = df_rf['percent_score_f']
 df_rf
 
 # %%
-from sklearn.model_selection import train_test_split
-
-# %%
 X_train, X_valid, y_train, y_valid = train_test_split(X,y, test_size = 10, random_state = 10)
 
 # %%
