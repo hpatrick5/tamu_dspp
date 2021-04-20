@@ -86,9 +86,6 @@ def upload_file(request):
 #    context = {"form": form,}
 #    return render(request, 'login/create.html', context)
 
-
-
-
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -102,7 +99,7 @@ def register(request):
     return render(request, 'login/register.html', {'form': form})
 
 def login(request):
-	if request.method == "POST":
+    if request.method == "POST":
 		form = AuthenticationForm(request, data=request.POST)
 		if form.is_valid():
 			username = form.cleaned_data.get('username')
