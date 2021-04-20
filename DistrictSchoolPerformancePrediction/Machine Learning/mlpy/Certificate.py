@@ -54,7 +54,7 @@ class academic_achievement:
             "Non-Continuously Enrolled": (42, 45)
         }
         
-        self.academic_data = dict()
+        self.academic_data = {}
         
     def get_academic_achievement_dict(self, group, data):
         target = 0
@@ -182,7 +182,7 @@ class growth_status:
             "Non-Continuously Enrolled": (67, 70)
         }
         
-        self.growth_data = dict()
+        self.growth_data = {}
     
     def get_growth_status_dict(self, group, data):
         target = 0
@@ -304,7 +304,7 @@ class success_status:
             "Non-Continuously Enrolled": 45
         }
 
-        self.success_data = dict()
+        self.success_data = {}
     
     def get_student_success_status_dict(self, group, data):
         target = self.target[group]
