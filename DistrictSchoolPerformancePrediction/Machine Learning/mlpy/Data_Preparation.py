@@ -12,10 +12,7 @@ We will be standardazing each grade file format which will be the format that we
 # %%
 import pandas as pd
 import numpy as np
-import os
-
-from os import listdir
-from os.path import isfile, join
+from os.path import join
 
 # %%
 '''

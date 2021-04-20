@@ -73,7 +73,6 @@ from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestRegressor
 from numpy import mean
 from numpy import std
-from sklearn import metrics
 
 
 # %%

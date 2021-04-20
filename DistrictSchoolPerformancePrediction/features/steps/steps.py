@@ -1,5 +1,4 @@
 from behave import *
-from django.urls import reverse
 
 use_step_matcher("re")
 

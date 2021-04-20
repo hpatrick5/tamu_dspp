@@ -274,9 +274,6 @@ class growth_status:
 '''
 ## Class that implements the functions to pull success metrics
 '''
-
-# %%
-from collections import OrderedDict
 class success_status:
     def __init__(self, df1, df2):
         self.df = df1
