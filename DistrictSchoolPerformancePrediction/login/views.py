@@ -89,8 +89,8 @@ def upload_file(request):
 #            return render(request, 'login/details.html', {'user_pr': user_pr})
 #    context = {"form": form,}
 #    return render(request, 'login/create.html', context)
-    
-    
+
+
 
 
 def register(request):
@@ -98,7 +98,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request)
+            auth_login(request, user)
             return redirect('login-home')
     else:
         form = UserRegisterForm()
