@@ -1,6 +1,12 @@
 from django.urls import path
 from . import views
 
+#added this for upload files
+#from myproject import settings
+#from django.conf.urls.static import static
+
+
+
 urlpatterns = [
     path('', views.home, name='login-home'),
     path('about/', views.about, name='login-about'),

@@ -27,14 +27,21 @@ SECRET_KEY = '_uv_lnq5n9#)v9-!&2l-@f2%#c@wonam+-b3iprv)_@91b9-h4'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['dspp.herokuapp.com']
-ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com', '528da989e1984836ae2c19f615abaf67.vfs.cloud9.us-east-2.amazonaws.com', 'd8ec943f80644b70b7506e130747dc62.vfs.cloud9.us-east-2.amazonaws.com', '127.0.0.1', 'test-sp21-606-school-district.herokuapp.com']
+ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com', '528da989e1984836ae2c19f615abaf67.vfs.cloud9.us-east-2.amazonaws.com', 'd8ec943f80644b70b7506e130747dc62.vfs.cloud9.us-east-2.amazonaws.com', '127.0.0.1', 'test-sp21-606-school-district.herokuapp.com' , '2b44a7e254184d5b99660ff4bb8973cf.vfs.cloud9.us-east-2.amazonaws.com']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'file_upload',
+    #not sure it the 'login.apps.LoginConfig' legacy code is sufficient so I added 'login'
+    #confirmed with errorlables arent unique, but theirs only permits loginConfig
+    #'login',
+        #note to self may need to redo app creation in order to better system
+    
     'login.apps.LoginConfig',
     'crispy_forms',
     'django_nose',
+    #after this line are defaults
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +59,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    
+    #added for file upload
+    #'django.core.context_processors.request',
 ]
 
 ROOT_URLCONF = 'DistrictSchoolPerformancePrediction.urls'
@@ -81,6 +91,11 @@ WSGI_APPLICATION = 'DistrictSchoolPerformancePrediction.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        #changed legacy code to line below to create app with manage.py
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        #'NAME': os.path.join(BASE_DIR, 'db2.sqlite3')
+        #'NAME': os.path.join(BASE_DIR, 'db3.sqlite3')
+        # 'NAME': os.path.join(BASE_DIR, 'db4.sqlite3')
         'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
@@ -125,6 +140,11 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
+
+#code added in order for file upload 04/18/21
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'media/'
+##
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
