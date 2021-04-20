@@ -97,9 +97,10 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            auth_login(request, user)
-            return redirect('login-home')
+            form.save()
+            messages.success(
+                request, f'Your account has been created! You can now Login')
+            return redirect('main-login')
     else:
         form = UserRegisterForm()
     return render(request, 'login/register.html', {'form': form})
