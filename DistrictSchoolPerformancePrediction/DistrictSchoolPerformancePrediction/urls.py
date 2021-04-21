@@ -26,9 +26,9 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login/login.html'), name='main-login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='login/logout.html'), name='main-logout'),
     
-    
+    # path('home/', views.home, name='home')
     #added in attempt to upload file
-    path('filecreate/', views.create_profile, name='home')
+     path('filecreate/', views.create_profile, name='home')
     #path('', include('file_upload.urls'))
     #path('', Home.as_view(), name='home')
     

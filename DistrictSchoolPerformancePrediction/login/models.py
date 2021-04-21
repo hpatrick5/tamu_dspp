@@ -30,10 +30,10 @@ class User_Profile(models.Model):
     #fname = models.CharField(max_length=200)\
 
     #not a one to one field rather many to one
-    fname = models.ForeignKey(User, on_delete=models.CASCADE)
+    Name = models.ForeignKey(User, on_delete=models.CASCADE)
 
     #grade = models.PositiveIntegerField(max_digits=2,decimal_places=2, default=1)
-    grade = models.PositiveIntegerField(default=1)
+    Grade = models.PositiveIntegerField(default=1)
 
    # class subject(models.TextChoices):
    #     Math = 'Math', _('Math')
@@ -45,13 +45,13 @@ class User_Profile(models.Model):
     #    default=subject.Null,
     #)
 
-    save_file = models.FileField(upload_to='uploads/%Y/%m/%d/', default=None)
+    # save_file = models.FileField(upload_to='uploads/%Y/%m/%d/', default=None)
 
    # username = user.get_username()
     #lname = models.CharField(max_length = 200)
     #technologies = models.CharField(max_length=500)
     #email = models.EmailField(default = None)
-    display_picture = models.FileField()
+    File = models.FileField()
 
 
 
