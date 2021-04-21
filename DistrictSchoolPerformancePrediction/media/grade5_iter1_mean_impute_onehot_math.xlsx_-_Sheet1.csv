@@ -1,0 +1,6 @@
+,ID,special_ed_indicator,lep_First Year of Monitoring,lep_LEP,lep_Other Non-LEP Student,lep_Second Year of Monitoring,ethnicity_Asian,ethnicity_Black/African American,ethnicity_Hispanic,percent_score_p,percent_score_m1,percent_score_m2,percent_score_f,
+0,0,0,1,0,1,0,0,0,0,1,0.53,0.53,0.39,0.61
+1,1,1,0,0,0,1,0,0,1,0,0.68,0.42,0.47,0.69
+2,2,2,0,0,0,1,0,0,0,1,0.5,0.58,0.69,0.75
+3,3,3,0,0,0,1,0,0,1,0,0.35,0.33,0.42,0.72
+4,4,4,0,0,0,1,0,0,1,0,0.65,0.47,0.64,0.75
