@@ -1,0 +1,55 @@
+Feature: Login # features/login.feature:1
+
+  Background: Register  # features/login.feature:3
+
+  Scenario: Log in to website              # features/login.feature:6
+    Given I am on the "Login" page         # features/steps/steps.py:6
+    When I enter my <username>, <password> # features/steps/steps.py:12
+      | username | password  |
+      | testuser | TestPW123 |
+    And I click Login                      # features/steps/steps.py:19
+    Then I should see "Upload File"        # features/steps/steps.py:24
+    And I should not see "Register"        # features/steps/steps.py:30
+
+@in_progress
+Feature: Registration # features/registration.feature:2
+
+  Scenario: Account Creation                                             # features/registration.feature:4
+    Given I am on the "Register" page                                    # None
+    And I have my registration information                               # None
+      | username | email            | password1 | password |
+      | test123  | test123@test.com | pw123     | pw12     |
+    When I provide a <username>, <email>, <password1>, and <password2>   # None
+    And I click Sign Up                                                  # None
+    Then I should see "Your account has been created! You can now Login" # None
+
+@in_progress
+Feature: Results # features/results.feature:2
+
+  Background: Register, Login, Upload  # features/results.feature:4
+
+  Scenario: See results from ML predictions  # features/results.feature:6
+    Given I am on the Results page           # None
+    Then I should see the processed CSV data # None
+
+  Scenario: Download ML predictions                # features/results.feature:10
+    Given I am on the Results page                 # None
+    When I click the Download CSV button           # None
+    Then I should download a CSV of ML predictions # None
+
+@in_progress
+Feature: Upload # features/upload.feature:2
+
+  Background: Register and Login  # features/upload.feature:4
+
+  Scenario: Upload a CSV file                                               # features/upload.feature:6
+    Given I am on the "Upload" page                                         # None
+    When I click Choose File                                                # None
+    And I select a CSV to upload                                            # None
+    And I click Upload                                                      # None
+    Then I should see a confirmation message that the upload was successful # None
+
+1 feature passed, 0 failed, 3 skipped
+1 scenario passed, 0 failed, 4 skipped
+5 steps passed, 0 failed, 15 skipped, 0 undefined
+Took 0m0.910s

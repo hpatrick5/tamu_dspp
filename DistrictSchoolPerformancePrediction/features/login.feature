@@ -5,8 +5,8 @@ Feature: Login
 
   Scenario: Log in to website
        When I enter my <username>, <password>
-       | username | password    |
-       | testuser | password123 |
+       | username | password |
+       | testuser | TestPW123|
        And I click Login
        Then I should see "Upload File"
        And I should not see "Register"
