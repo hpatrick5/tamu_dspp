@@ -24,23 +24,44 @@ from django.core.validators import RegexValidator
 #       return (self.user_name)
 
 class School(models.Model):
-    name    = models.CharField(max_length=300)
-    phone   = models.CharField(validators=[RegexValidator(regex=r'^\+?1?\d{10,11}$', message="Phone number must be entered in the format: '+123456789'. Up to 11 digits allowed.")], max_length=17, blank=True) # validators should be a list
-    zipcode = models.IntegerField(max_length=5)
+    name    = models.CharField(max_length=300, blank=True)
+    phone   = models.CharField(validators=[RegexValidator(regex=r'^\+?1?\d{10,11}$', message="Phone number must be entered in the format: '+123456789'. Up to 11 digits allowed.")], max_length=17, blank=True)
+    city    = models.CharField(max_length=50, blank=True)
+    zipcode = models.CharField(max_length=5, blank=True)
+
+    def __str__(self):
+        return self.name
+
 
 class User_Profile(models.Model):
-    school          = models.ForeignKey(School, on_delete=models.CASCADE)
-    name            = models.CharField(max_length=300)
+    school          = models.ForeignKey(School, on_delete=models.CASCADE, blank=True)
+    name            = models.CharField(max_length=300, blank=True)
+    email           = models.CharField(max_length=300, blank=True)
+    phone           = models.CharField(validators=[RegexValidator(regex=r'^\+?1?\d{10,11}$', message="Phone number must be entered in the format: '+123456789'. Up to 11 digits allowed.")], max_length=17, blank=True)
+    # course          = models.CharField(max_length=300)
     grade           = models.PositiveIntegerField(default=1)
-    save_file       = models.FileField(upload_to='uploads/%Y/%m/%d/', default=None)
+    # save_file       = models.FileField(upload_to='uploads/%Y/%m/%d/', default=None)
     upload_file     = models.FileField()
-    
-    # ROLE =(
-    #     ('t', 'Teacher'),
-    #     ('m', 'Manager')
-    # )
-    # responsibility  = models.CharField(max_lenght=50, choices=ROLE, default='t', blank=True)
 
+    GENDER = (
+        ('m', 'male'),
+        ('f', 'female'),
+        ('n', 'not applicable')
+    )
+    gender  = models.CharField(max_length=1, choices=GENDER, default='n', blank=True)
+
+    ROLE =(
+        ('t', 'Teacher'),
+        ('m', 'Manager'),
+        ('o', 'other')
+    )
+    responsibility  = models.CharField(max_length=1, choices=ROLE, default='t', blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        pass
 
 
 # class User_Profile(models.Model):
@@ -48,7 +69,6 @@ class User_Profile(models.Model):
 #     grade = models.PositiveIntegerField(default=1)
 #     save_file = models.FileField(upload_to='uploads/%Y/%m/%d/', default=None)
 #     display_picture = models.FileField()
-
 
     #currently this model only allows one upload per user!
 # class User_Profile(models.Model):
@@ -77,10 +97,5 @@ class User_Profile(models.Model):
     #technologies = models.CharField(max_length=500)
     #email = models.EmailField(default = None)
     # display_picture = models.FileField()
-
-
-
-    def __str__(self):
-        return self.fname
 
 ### end of file upload

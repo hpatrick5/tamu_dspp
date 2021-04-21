@@ -8,10 +8,12 @@
                     {% csrf_token %}
                     <table>
                       <p>LOGIN AS: {{request.user.get_username}}</p>
-                      
                         {{ form.as_table }}
                     </table>
                     <input type="submit" class="btn btn-primary btn-lg" name="register">
+                    {% for msg in messages %}
+                {{msg}}
+            {% endfor %} 
             </div>
         <!-- </center> -->
       
