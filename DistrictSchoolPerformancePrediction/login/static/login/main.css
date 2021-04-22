@@ -72,6 +72,13 @@ a.article-title:hover {
   vertical-align: middle;
 }
 
+.navbar{
+    /*background-color: #F6F5D7;*/
+    margin:0%;
+    padding: 0%;
+    border: 1px solid rgb(0, 0, 0);
+}
+
 .account-img {
   height: 125px;
   width: 125px;
@@ -81,4 +88,12 @@ a.article-title:hover {
 
 .account-heading {
   font-size: 2.5rem;
+}
+
+.logo{
+    max-height: 30px;
+    max-width: 20px ;
+    overflow: visible;
+    padding-top: 0;
+    padding-bottom: 0;
 }
