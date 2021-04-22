@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from .forms import Profile_Form
-from .models import User_Profile
+
+
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg', 'csv']
+
+
 def create_profile(request):
     form = Profile_Form()
     if request.method == 'POST':
@@ -16,6 +18,5 @@ def create_profile(request):
                 return render(request, 'file_upload/error.html')
             user_pr.save()
             return render(request, 'file_upload/details.html', {'user_pr': user_pr})
-    context = {"form": form,}
+    context = {"form": form}
     return render(request, 'file_upload/create.html', context)
-# Create your views here.
