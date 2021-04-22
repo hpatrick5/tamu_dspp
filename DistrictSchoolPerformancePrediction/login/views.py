@@ -26,7 +26,7 @@ def upload_file(request):
         'fname' : username,
         'grade' :5
     }
-    form = Profile_Form(initial=initial_data, instance = User)
+    form = Profile_Form(initial=initial_data, instance=User)
     if request.method == 'POST':
         form = Profile_Form(request.POST, request.FILES)
         if form.is_valid():
@@ -70,7 +70,8 @@ def login(request):
         else:
             messages.error(request,"Invalid username or password.")
     form = AuthenticationForm()
-    return render(request=request, template_name="login/login.html", context={"form":form})
+    return render(
+        request=request, template_name="login/login.html", context={"form":form})
 
 
 """

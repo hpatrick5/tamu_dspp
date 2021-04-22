@@ -5,7 +5,7 @@ use_step_matcher("re")
 
 @given(u'I am on the "(?P<page>.*)" page')
 def on_page(context, page):
-    url = context.server_url + page.lower() +'/'
+    url = context.server_url + page.lower() + '/'
     context.browser.get(url)
     assert context.browser.current_url == url
 
@@ -20,7 +20,7 @@ def enter_login(context, username, password):
 
 @when(u'I click "(?P<submit>.*)"')
 def submit_form(context, submit):
-     context.browser.find_element_by_class_name('form-group').submit()
+    context.browser.find_element_by_class_name('form-group').submit()
 
 
 @then(u'I should see "(?P<content>.*)"')

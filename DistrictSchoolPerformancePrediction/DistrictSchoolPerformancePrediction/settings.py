@@ -69,7 +69,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     # added for file upload
-    #'django.core.context_processors.request',
+    # 'django.core.context_processors.request',
 ]
 
 ROOT_URLCONF = 'DistrictSchoolPerformancePrediction.urls'
