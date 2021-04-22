@@ -24,16 +24,24 @@ AUTH_USER_MODEL = 'auth.User'
 SECRET_KEY = '_uv_lnq5n9#)v9-!&2l-@f2%#c@wonam+-b3iprv)_@91b9-h4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['dspp.herokuapp.com']
-ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com', '528da989e1984836ae2c19f615abaf67.vfs.cloud9.us-east-2.amazonaws.com', 'd8ec943f80644b70b7506e130747dc62.vfs.cloud9.us-east-2.amazonaws.com', '127.0.0.1', 'test-sp21-606-school-district.herokuapp.com' , '2b44a7e254184d5b99660ff4bb8973cf.vfs.cloud9.us-east-2.amazonaws.com']
+ALLOWED_HOSTS = [
+    'sp21-606-school-district-data.herokuapp.com',
+    '528da989e1984836ae2c19f615abaf67.vfs.cloud9.us-east-2.amazonaws.com',
+    'd8ec943f80644b70b7506e130747dc62.vfs.cloud9.us-east-2.amazonaws.com',
+    '127.0.0.1',
+    'test-sp21-606-school-district.herokuapp.com',
+    '2b44a7e254184d5b99660ff4bb8973cf.vfs.cloud9.us-east-2.amazonaws.com',
+    ]
 
 # Application definition
 
 INSTALLED_APPS = [
     'file_upload',
-    #not sure it the 'login.apps.LoginConfig' legacy code is sufficient so I added 'login'
+    # Note: not sure it the 'login.apps.LoginConfig' legacy code is sufficieny
+    # so I added 'login'
     #confirmed with errorlables arent unique, but theirs only permits loginConfig
     #'login',
         #note to self may need to redo app creation in order to better system

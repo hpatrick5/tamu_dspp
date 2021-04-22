@@ -17,22 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
-#added code for upload files
 from file_upload import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('login.urls')),
-    path('login/', auth_views.LoginView.as_view(template_name='login/login.html'), name='main-login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='login/logout.html'), name='main-logout'),
-    
-    
-    #added in attempt to upload file
+    path('login/', auth_views.LoginView.as_view(
+        template_name='login/login.html'), name='main-login'),
+    path('logout/', auth_views.LogoutView.as_view(
+        template_name='login/logout.html'), name='main-logout'),
+
+    # added in attempt to upload file
     path('filecreate/', views.create_profile, name='home')
-    #path('', include('file_upload.urls'))
-    #path('', Home.as_view(), name='home')
-    
-    #path('file_upload/', include('file_upload.urls')),
-    #path('upload/', file_upload.views.create_profile, include('login.urls'))
-    
+
 ]

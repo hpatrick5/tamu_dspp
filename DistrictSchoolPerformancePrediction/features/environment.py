@@ -18,5 +18,5 @@ def after_all(context):
     context.browser.quit()
 
 def before_step(context, step):
-    WebDriverWait(context.browser, 10)
-        .until(EC.presence_of_all_elements_located((By.XPATH, '//*')))
+    WebDriverWait(context.browser, 10).until(
+        EC.presence_of_all_elements_located((By.XPATH, '//*')))
