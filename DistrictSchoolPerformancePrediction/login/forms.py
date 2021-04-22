@@ -3,18 +3,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 #added for upload file
-from .models import User_Profile
+from .models import User_Profile, SavedFile
 
 class Profile_Form(forms.ModelForm):
     class Meta:
-        model = User_Profile
+        model = SavedFile
+        # model = User_Profile
         fields = [
-        'name',
-        'grade',
+        # 'first_name',
+        # 'grade',
         #save_file is another way to save a file to django
         #'save_file',
-
-
         #'lname',
         #'technologies',
         #'email',
@@ -28,13 +27,12 @@ class UploadFileForm(forms.Form):
     #make an instruction field to say "please upload file"
     file = forms.FileField()
 
-
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
     def save(self, commit=True):
         user = super(UserRegisterForm, self).save(commit=False)

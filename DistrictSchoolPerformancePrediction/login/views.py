@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UploadFileForm, UserRegisterForm
+
+from django.core.files.storage import FileSystemStorage
+
     #to do file upload - incomplete
     ##
     #
@@ -15,7 +18,7 @@ from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
 #to do add model to legacy code - incomplete
-from .models import User_Profile
+from .models import SavedFile, User_Profile
 
 def home(request):
     #commented out context as it added DSPP twice in title
@@ -37,7 +40,7 @@ def about(request):
 #accepted file types for upload
 IMAGE_FILE_TYPES = ['csv']
 
-@login_required
+# @login_required
 #def upload_file(request):
 #    if request.method == 'POST':
 #        form = UploadFileForm(request.POST, request.FILES)
@@ -50,8 +53,8 @@ IMAGE_FILE_TYPES = ['csv']
 #    return render(request, 'login/upload.html', {'form': form})
 
 
+@login_required
 def upload_file(request):
-
     username = request.user.username
     initial_data = {
         'name' : username,
@@ -70,8 +73,7 @@ def upload_file(request):
             user_pr.save()
             # messages.success(request, "Data inserted successfully")
             return render(request, 'file_upload/details.html', {'user_pr': user_pr})
-    context = {"form": form,}
-    return render(request, 'login/upload.html', context)
+    return render(request, 'login/upload.html', {"form": form,})
 
 
 #def upload_file(request):
