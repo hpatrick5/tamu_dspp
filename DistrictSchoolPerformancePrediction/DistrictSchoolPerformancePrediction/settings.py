@@ -24,7 +24,7 @@ AUTH_USER_MODEL = 'auth.User'
 SECRET_KEY = '_uv_lnq5n9#)v9-!&2l-@f2%#c@wonam+-b3iprv)_@91b9-h4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['dspp.herokuapp.com']
 ALLOWED_HOSTS = [
