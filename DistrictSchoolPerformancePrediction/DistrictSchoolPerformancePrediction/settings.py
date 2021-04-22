@@ -27,7 +27,7 @@ SECRET_KEY = '_uv_lnq5n9#)v9-!&2l-@f2%#c@wonam+-b3iprv)_@91b9-h4'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['dspp.herokuapp.com']
-ALLOWED_HOSTS = ['127.0.0.1', 'sp21-606-school-district-data.herokuapp.com', '528da989e1984836ae2c19f615abaf67.vfs.cloud9.us-east-2.amazonaws.com', 'd8ec943f80644b70b7506e130747dc62.vfs.cloud9.us-east-2.amazonaws.com', '127.0.0.1', 'test-sp21-606-school-district.herokuapp.com' , '2b44a7e254184d5b99660ff4bb8973cf.vfs.cloud9.us-east-2.amazonaws.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'sp21-606-school-district-data.herokuapp.com', '528da989e1984836ae2c19f615abaf67.vfs.cloud9.us-east-2.amazonaws.com', 'd8ec943f80644b70b7506e130747dc62.vfs.cloud9.us-east-2.amazonaws.com', 'test-sp21-606-school-district.herokuapp.com' , '2b44a7e254184d5b99660ff4bb8973cf.vfs.cloud9.us-east-2.amazonaws.com', '596dd12caa054f2ea481dc9d0dd4dba3.vfs.cloud9.us-east-2.amazonaws.com']
 
 # Application definition
 

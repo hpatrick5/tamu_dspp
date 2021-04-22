@@ -10,14 +10,14 @@ class Profile_Form(forms.ModelForm):
         model = SavedFile
         # model = User_Profile
         fields = [
-        # 'first_name',
-        # 'grade',
+        'Name',
+        'Grade',
         #save_file is another way to save a file to django
         #'save_file',
         #'lname',
         #'technologies',
         #'email',
-        'upload_file'
+        'File'
         ]
 ###
 

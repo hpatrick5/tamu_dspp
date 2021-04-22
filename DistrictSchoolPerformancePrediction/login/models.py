@@ -29,6 +29,8 @@ class User_Profile(models.Model):
     # upload_file     = models.FileField()
     # upload_file     = models.ManyToManyField('SavedFile', help_text='select *.csv file')
 
+    Name = first_name
+    Grade = grade
     GENDER = (
         ('m', 'male'),
         ('f', 'female'),
@@ -53,23 +55,10 @@ class SavedFile(models.Model):
     user_profile   = models.ForeignKey(User_Profile, on_delete=models.CASCADE)
     upload_file    = models.FileField()
     # save_file      = models.FileField(upload_to='uploads/%Y/%m/%d/', default=None)
+    File = upload_file
 
     def __str__(self):
         return 'saved file'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # class upload_file_model(models.Model):
@@ -102,10 +91,10 @@ class SavedFile(models.Model):
     #fname = models.CharField(max_length=200)\
 
     #not a one to one field rather many to one
-    # fname = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Name = models.ForeignKey(User, on_delete=models.CASCADE)
 
     #grade = models.PositiveIntegerField(max_digits=2,decimal_places=2, default=1)
-    # grade = models.PositiveIntegerField(default=1)
+    # Grade = models.PositiveIntegerField(default=1)
 
    # class subject(models.TextChoices):
    #     Math = 'Math', _('Math')

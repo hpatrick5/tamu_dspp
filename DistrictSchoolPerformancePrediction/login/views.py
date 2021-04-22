@@ -67,6 +67,8 @@ def upload_file(request):
             user_pr = form.save(commit=False)
             user_pr.upload_file = request.FILES['upload_file']
             file_type = user_pr.upload_file.url.split('.')[-1]
+            user_pr.File = request.FILES['File']
+            file_type = user_pr.File.url.split('.')[-1]
             file_type = file_type.lower()
             if file_type not in IMAGE_FILE_TYPES:
                 return render(request, 'file_upload/error.html')
