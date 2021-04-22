@@ -20,7 +20,7 @@ from .models import User_Profile
 def home(request):
     #commented out context as it added DSPP twice in title
     #context = {
-    #   'title': 'DSPP'
+     #   'title': 'DSPP'
     #}
     #return render(request, 'login/home.html', context)
     return render(request, 'login/home.html')
@@ -54,7 +54,7 @@ def upload_file(request):
 
     username = request.user.username
     initial_data = {
-        'name' : username,
+        'fname' : username,
         'grade' :5
     }
     form = Profile_Form(initial=initial_data, instance = User)
@@ -62,13 +62,12 @@ def upload_file(request):
         form = Profile_Form(request.POST, request.FILES)
         if form.is_valid():
             user_pr = form.save(commit=False)
-            user_pr.file_type = request.FILES['upload_file']
-            file_type = user_pr.upload_file.url.split('.')[-1]
+            user_pr.display_picture = request.FILES['display_picture']
+            file_type = user_pr.display_picture.url.split('.')[-1]
             file_type = file_type.lower()
             if file_type not in IMAGE_FILE_TYPES:
                 return render(request, 'file_upload/error.html')
             user_pr.save()
-            # messages.success(request, "Data inserted successfully")
             return render(request, 'file_upload/details.html', {'user_pr': user_pr})
     context = {"form": form,}
     return render(request, 'login/upload.html', context)
