@@ -2,11 +2,13 @@ from behave import *
 
 use_step_matcher("re")
 
+
 @given(u'I am on the "(?P<page>.*)" page')
 def on_page(context, page):
     url = context.server_url + page.lower() +'/'
     context.browser.get(url)
     assert context.browser.current_url == url
+
 
 @when(u'I enter my <(?P<username>.*)>, <(?P<password>.*)>')
 def enter_login(context, username, password):
@@ -14,6 +16,7 @@ def enter_login(context, username, password):
     user.send_keys(context.table[0]['username'])
     pw = context.browser.find_element_by_name('password')
     pw.send_keys(context.table[0]['password'])
+
 
 @when(u'I click "(?P<submit>.*)"')
 def submit_form(context, submit):

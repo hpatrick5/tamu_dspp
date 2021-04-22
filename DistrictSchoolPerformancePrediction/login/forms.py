@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 # added for upload file
 from .models import User_Profile
 
+
 class Profile_Form(forms.ModelForm):
     class Meta:
         model = User_Profile
@@ -12,12 +13,13 @@ class Profile_Form(forms.ModelForm):
         'fname',
         'grade',
         # save_file is another way to save a file to django
-        #'save_file',
-        #'lname',
-        #'technologies',
-        #'email',
+        # 'save_file',
+        # 'lname',
+        # 'technologies',
+        # 'email',
         'display_picture'
         ]
+
 
 # class UploadFileForm(forms.ModelForm):
 class UploadFileForm(forms.Form):

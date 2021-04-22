@@ -6,14 +6,18 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
+
 def home(request):
     return render(request, 'login/home.html')
+
 
 def about(request):
     return render(request, 'login/about.html')
 
+
 # accepted file types for upload
 IMAGE_FILE_TYPES = ['csv']
+
 
 @login_required
 def upload_file(request):
@@ -50,25 +54,26 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'login/register.html', {'form': form})
 
+
 def login(request):
     if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				auth_login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect('login-home')
-			messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request=request, template_name="login/login.html", context={"form":form})
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect('login-home')
+            messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request=request, template_name="login/login.html", context={"form":form})
 
 
-'''
+"""
 Old Views Code
 
 def handle_uploaded_file(f):
@@ -104,4 +109,4 @@ def upload_file(request):
     context = {"form": form,}
     return render(request, 'login/create.html', context)
 
-'''
+"""

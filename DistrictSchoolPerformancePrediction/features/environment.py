@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
+
 def before_all(context):
     options = Options()
     options.headless = True
@@ -14,8 +15,10 @@ def before_all(context):
     context.browser.get(context.server_url)
     assert "DSPP" in context.browser.title
 
+
 def after_all(context):
     context.browser.quit()
+
 
 def before_step(context, step):
     WebDriverWait(context.browser, 10).until(

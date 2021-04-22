@@ -37,7 +37,7 @@ class User_Profile(models.Model):
 
 ### end of file upload
 
-'''
+"""
 Old Models Code
 
 class upload_file_model(models.Model):
@@ -55,4 +55,4 @@ class User(models.Model):
     def __str__(self):
         return (self.user_name)
 
-'''
+"""
