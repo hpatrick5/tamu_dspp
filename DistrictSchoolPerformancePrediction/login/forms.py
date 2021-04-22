@@ -9,7 +9,7 @@ class Profile_Form(forms.ModelForm):
     class Meta:
         model = User_Profile
         fields = [
-        'name',
+        'fname',
         'grade',
         #save_file is another way to save a file to django
         #'save_file',
@@ -18,7 +18,7 @@ class Profile_Form(forms.ModelForm):
         #'lname',
         #'technologies',
         #'email',
-        'upload_file'
+        'display_picture'
         ]
 ###
 
