@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UploadFileForm, UserRegisterForm
-
-from django.core.files.storage import FileSystemStorage
-
     #to do file upload - incomplete
     ##
     #
@@ -18,7 +15,7 @@ from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
 #to do add model to legacy code - incomplete
-from .models import SavedFile, User_Profile
+from .models import User_Profile
 
 def home(request):
     #commented out context as it added DSPP twice in title
@@ -40,7 +37,7 @@ def about(request):
 #accepted file types for upload
 IMAGE_FILE_TYPES = ['csv']
 
-# @login_required
+@login_required
 #def upload_file(request):
 #    if request.method == 'POST':
 #        form = UploadFileForm(request.POST, request.FILES)
@@ -53,8 +50,8 @@ IMAGE_FILE_TYPES = ['csv']
 #    return render(request, 'login/upload.html', {'form': form})
 
 
-@login_required
 def upload_file(request):
+
     username = request.user.username
     initial_data = {
         'name' : username,
@@ -65,7 +62,7 @@ def upload_file(request):
         form = Profile_Form(request.POST, request.FILES)
         if form.is_valid():
             user_pr = form.save(commit=False)
-            user_pr.upload_file = request.FILES['upload_file']
+            user_pr.file_type = request.FILES['upload_file']
             file_type = user_pr.upload_file.url.split('.')[-1]
             file_type = file_type.lower()
             if file_type not in IMAGE_FILE_TYPES:
@@ -73,7 +70,8 @@ def upload_file(request):
             user_pr.save()
             # messages.success(request, "Data inserted successfully")
             return render(request, 'file_upload/details.html', {'user_pr': user_pr})
-    return render(request, 'login/upload.html', {"form": form,})
+    context = {"form": form,}
+    return render(request, 'login/upload.html', context)
 
 
 #def upload_file(request):
