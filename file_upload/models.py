@@ -7,6 +7,7 @@ import logging
 from django.core.files.base import ContentFile
 from placeholder_pics.placeholder import PlaceholderPic
 from django_thumbs.fields import ImageThumbsField
+from django.forms import ModelForm
 
 import os
 from django.utils import timezone
@@ -28,6 +29,15 @@ class File(models.Model):
     grade = models.PositiveIntegerField()
     #upload_file = models.FileField(default=None, verbose_name="file_name",
     #                         upload_to=upload_file_to, null=True, blank=True)
-                             
+    
+    #look at blank = true or not in django documentation 
     upload_file = models.FileField(default=None, verbose_name="file_name", upload_to=u'uploads/%Y/%m/%d/', null=True, blank=True)
     #save_file       = models.FileField(upload_to='uploads/%Y/%m/%d/', default=None)
+    
+    def __str__(self):
+        return str(self.upload_file)
+
+class FileForm(ModelForm):
+    class Meta:
+        model = File
+        fields = ['owner','grade','upload_file']

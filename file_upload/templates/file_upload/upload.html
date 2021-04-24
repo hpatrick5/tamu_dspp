@@ -1,21 +1,35 @@
 {% extends "base.html" %} 
 
+
+{% load i18n %}
+{% load bootstrap4 %}
+
 {% block content %}
 
-<p class="lead">
-  <h5>To make a user profile and upload the files fill this form</h5>
-</p>
-<div>
-  <hr class="my-4">
-  <form method="POST" enctype="multipart/form-data">
-    <!-- Very Important csrf Token -->
-    {% csrf_token %}
-    <table>
-           <p>LOGIN AS: {{request.user.get_username}}</p>
-           <!-- update with bootstrap by looking at over view -->
-           {{ upload_file_form.as_table }}
-    </table>
-    <input type="submit" class="btn btn-primary btn-lg" name="register">
+<div class="container">
+            <div class="mt-5 "></div>
+
+    <div class="row">
+
+        <div class="col col-5  mx-auto">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h1 class="h4">{% trans "Upload File" %}</h1>
+                    <hr>
+
+                    <form method="POST" enctype = "multipart/form-data">
+                        {% csrf_token %}
+                        <p>LOGIN AS: {{request.user.get_username}}</p>
+                        <!-- update with bootstrap by looking at over view -->
+                        {% bootstrap_form upload_file_form %}
+                         <input type="submit" class="btn btn-primary btn-block" >
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- </center> -->
 {% endblock content %}

@@ -19,3 +19,4 @@ class UploadFileModelForm(forms.ModelForm):
         model = File
         #need a user field, title field?
         fields = ('owner', 'grade', 'upload_file')
+        exclude = ['owner']
