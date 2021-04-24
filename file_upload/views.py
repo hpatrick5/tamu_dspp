@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect, reverse
 from user_profile.forms import UserProfileModelForm, UserDetailModelForm
+from django.contrib import messages
 
 from file_upload.forms import UploadFileModelForm
 
@@ -33,48 +34,18 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
         upload_file_form = UploadFileModelForm(request.POST, request.FILES)
         
         if upload_file_form.is_valid():
-            #need to save to database rather just to file
-            #owner = request.FILES["owner"]
-            #grade = request.FILES["grade"]
-            #upload_file = request.FILES["upload_file"]
-            #temp_file = request.FILES["upload_file"]
-            #temp = File.objects.create(owner = owner, grade =grade, upload_file=temp_file)
-            #temp.save()
-            
-            #file (name of model) = request.FILES[""]
-            
-            #need this area fixed to only allow csv
-                #line below says create but done save upload_file_form instance
-                #upload_file_form.save(commit=False)
-                
             temp = upload_file_form.save(commit=False)
             
             temp.grade = request.POST["grade"]
             temp.upload_file = request.FILES["upload_file"]
             temp.owner = request.user
-            
-            #document = File.objects.create(grade=temp.grade, owner =temp.owner, upload_file_form = temp.upload_file)
-            #document = File.objects.create(grade=temp.grade, owner =temp.owner, upload_file_form=temp.upload_file)
-            #document.save()
-           # upload_file_form.upload_file = request.FILES['upload_file']
-            
-            #file_type = upload_file_form.upload_file.upload_file.split('.')[-1]
-           # file_type = file_type.lower()
-            #if file_type not in ACCEPTED_FILE_TYPES:
-                
-           #     return render(request, 'file_upload/error.html')
-            #    print(upload_file_form.errors, "++++++")
-            ##end of area for only csvs
-            
-            #upload_file_form.save()
-            
             temp.save()
             
             #trying to save foreign key (?)
             
             return render(request, 'file_upload/success.html')
-        #what is context
-        print(upload_file_form.errors, "++++++")
+        else:
+            messages.error(request, upload_file_form.errors)
         
         return render(request, self.template_name, context=context)
     
