@@ -167,6 +167,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 'data' is my media folder
@@ -196,6 +197,9 @@ ACCOUNT_LOGOUT_ON_GET = True
 ANYMAIL = {
     "SENDGRID_API_KEY": os.environ.get('SENDGRID_API_KEY'),
 }
+
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
 
 #legacy code below
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
