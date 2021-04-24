@@ -11,7 +11,9 @@
     <!-- Very Important csrf Token -->
     {% csrf_token %}
     <table>
-     
+           <p>LOGIN AS: {{request.user.get_username}}</p>
+           <!-- update with bootstrap by looking at over view -->
+           {{ upload_file_form.as_table }}
     </table>
     <input type="submit" class="btn btn-primary btn-lg" name="register">
 </div>
