@@ -65,11 +65,11 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    # 'allauth.socialaccount',
 
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.twitter',
+    # 'allauth.socialaccount.providers.github',
 
     'user_profile',
     'webpages',
@@ -189,9 +189,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # use this in 
 # EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend" # TODO - use this for a valid email backend (production/staging only)
 
 EMAIL_SUBJECT_PREFIX = '[Test mail]'
-APPEND_SLASH = False
+# APPEND_SLASH = False
+# ACCOUNT_EMAIL_REQUIRED = False
+# enable to use email instead of username
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "none"
+# enable for email verification
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGOUT_ON_GET = True
 
 ANYMAIL = {
