@@ -23,7 +23,6 @@ class UploadViewTestCase(TestCase):
         self.upload_failure_empty_file_message = b'The submitted file is empty.'
         self.upload_success_message = b'Successful Upload to DSSP'
 
-
     def test_upload_returns_upload_template_for_get(self):
         response = self.client.get(self.url)
         self.assertTemplateUsed("file_upload/upload.html")

@@ -17,12 +17,12 @@ class UserProfileView(TemplateView, LoginRequiredMixin):
             request.POST, request.FILES, instance=request.user.user_profile)
         context['user_detail_form'] = user_detail_form = UserDetailModelForm(
             request.POST, instance=request.user)
-            
+
         if user_profile_form.is_valid() and user_detail_form.is_valid():
             user_profile_form.save()
             user_detail_form.save()
             return redirect(reverse('profile'))
-            
+
         print(user_profile_form.errors, "++++++")
         return render(request, self.template_name, context=context)
 
