@@ -4,6 +4,7 @@ from file_upload.models import File
 from django.contrib.auth.models import User
 import os
 
+
 class UploadViewTestCase(TestCase):
     def setUp(self):
         self.url = reverse("upload")
@@ -65,6 +66,7 @@ class ErrorViewTestCase(TestCase):
     def test_error_returns_error_template_for_get(self):
         response = self.client.get(self.url)
         self.assertTemplateUsed("file_upload/error.html")
+        
         
 class SuccessViewTestCase(TestCase):
     def setUp(self):

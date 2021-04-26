@@ -2,6 +2,7 @@ from django.apps import apps
 from django.test import TestCase
 from file_upload.apps import FileUploadConfig
 
+
 class FileUploadConfigTestCase(TestCase):
     def test_file_upload_config_settings(self):
         self.assertEqual(FileUploadConfig.name, 'file_upload')
