@@ -13,10 +13,10 @@ class UserProfileView(TemplateView, LoginRequiredMixin):
 
     def post(self, request, *args, **kwargs):
         context = super(UserProfileView, self).get_context_data(**kwargs)
-        context['user_profile_form'] = user_profile_form = UserProfileModelForm(request.POST, request.FILES,
-                                                                                instance=request.user.user_profile)
-        context['user_detail_form'] = user_detail_form = UserDetailModelForm(request.POST,
-                                                                             instance=request.user)
+        context['user_profile_form'] = user_profile_form = UserProfileModelForm(
+            request.POST, request.FILES, instance=request.user.user_profile)
+        context['user_detail_form'] = user_detail_form = UserDetailModelForm(
+            request.POST, instance=request.user)
         if user_profile_form.is_valid() and user_detail_form.is_valid():
             user_profile_form.save()
             user_detail_form.save()
