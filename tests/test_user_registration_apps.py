@@ -1,5 +1,6 @@
 from django.apps import apps
 from django.test import TestCase
+
 from user_registration.apps import UserRegistrationBs4Config
 
 

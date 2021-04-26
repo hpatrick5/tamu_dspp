@@ -1,15 +1,19 @@
-from django.db import models
+import logging
+import os
+
 from django.contrib.auth.models import User
+from django.core.files.base import ContentFile
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from io import BytesIO
-import logging
-from django.core.files.base import ContentFile
-from placeholder_pics.placeholder import PlaceholderPic
+from django.utils import timezone
+
 from django_thumbs.fields import ImageThumbsField
 
-import os
-from django.utils import timezone
+from io import BytesIO
+
+from placeholder_pics.placeholder import PlaceholderPic
+
 
 logger = logging.getLogger(__name__)
 
