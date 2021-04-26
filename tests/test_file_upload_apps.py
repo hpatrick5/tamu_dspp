@@ -1,5 +1,6 @@
 from django.apps import apps
 from django.test import TestCase
+
 from file_upload.apps import FileUploadConfig
 
 
