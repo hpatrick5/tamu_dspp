@@ -18,22 +18,19 @@ def upload_file_to(instance, filename):
         timezone.now().strftime("%Y%m%d%H%M%S"),
         filename_ext.lower(),
     )
-    
-    
 
 class File(models.Model):
     
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="file_owner")
     grade = models.PositiveIntegerField()
-    #upload_file = models.FileField(default=None, verbose_name="file_name",
-    #                         upload_to=upload_file_to, null=True, blank=True)
-    
     #look at blank = true or not in django documentation 
-    upload_file = models.FileField(default=None, verbose_name="file_name", upload_to=u'uploads/%Y/%m/%d/', null=True, blank=True)
+    upload_file = models.FileField(
+        default=None, verbose_name="file_name", upload_to=u'uploads/%Y/%m/%d/', null=True, blank=True)
     #save_file       = models.FileField(upload_to='uploads/%Y/%m/%d/', default=None)
     
     def __str__(self):
         return str(self.upload_file)
+
 
 class FileForm(ModelForm):
     class Meta:

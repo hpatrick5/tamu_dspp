@@ -9,6 +9,7 @@ from file_upload.forms import UploadFileModelForm
 # accepted file types for upload
 ACCEPTED_FILE_TYPES = ['csv']
 
+
 # uncomment this for login required
 class UploadFileView(TemplateView, LoginRequiredMixin):
     template_name = "file_upload/upload.html"
@@ -35,9 +36,8 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             #trying to save foreign key (?)
             
             return render(request, 'file_upload/success.html')
-        else:
-            messages.error(request, upload_file_form.errors)
-        
+            
+        messages.error(request, upload_file_form.errors)
         return render(request, self.template_name, context=context)
     
     # get will be when form is empty, just going to that page
