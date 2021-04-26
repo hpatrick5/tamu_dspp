@@ -29,3 +29,11 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test tests --verbosity=2
+    - name: Output Tests
+      run: |
+        python manage.py test tests --verbosity=2 > test_output.txt
+    - name: Generate Test Coverage HTML
+      run: |
+        coverage run --source=file_upload,user_profile,user_registration,webpages manage.py test tests
+        coverage html
+
