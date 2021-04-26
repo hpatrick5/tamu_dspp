@@ -95,9 +95,7 @@ a.article-title:hover {
 }
 
 .logo {
-    height: 100px;
-    width: 80px ;
-    overflow: visible;
     padding-top: 0;
     padding-bottom: 0;
+    margin-right: 20px;
 }
