@@ -43,10 +43,3 @@ jobs:
       with:
         name: test_coverage.html
         path: htmlcov/index.html
-    - name: Push Artifacts to Repo
-      run: |
-        git add test_output.txt
-        git add test_coverage.html
-        git commit -m "CI: Add test output and coverage"
-        git push
-
