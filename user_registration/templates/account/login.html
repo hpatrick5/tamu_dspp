@@ -1,7 +1,6 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
-{% load account socialaccount %}
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 {% load bootstrap4 %}
 
@@ -21,33 +20,7 @@
                     <h1 class="h4">{% trans "Sign In" %}</h1>
                     <hr>
                     <div class="row">
-                        <div class="col-6">
-                            {% get_providers as socialaccount_providers %}
-
-                            {% if socialaccount_providers %}
-
-                            <div class="socialaccount_ballot">
-
-                                <ul class="socialaccount_providers mt-4 list-unstyled">
-                                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-                                </ul>
-
-                                <!--<div class="login-or">{% trans 'or' %}</div>-->
-
-                            </div>
-                                <p>{% blocktrans with site.name as site_name %}Please sign in with one
-                                of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-                                for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
-
-                            {% include "socialaccount/snippets/login_extra.html" %}
-                            {% else %}
-                            <p>{% blocktrans %}If you have not created an account yet, then please
-                                <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-                            {% endif %}
-
-                        </div>
-                        <div class="col col-6">
+                        <div class="col">
 
 
                             <form class="login" method="POST" action="{% url 'account_login' %}">
