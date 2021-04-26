@@ -28,12 +28,19 @@ jobs:
         python -m pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test tests --verbosity=2
-    - name: Output Tests
-      run: |
         python manage.py test tests --verbosity=2 > test_output.txt
+    - name: Save test output
+      uses: actions/upload-artifact@v2
+      with:
+        name: test_output.txt
+        path: test_output.txt
     - name: Generate Test Coverage HTML
       run: |
         coverage run --source=file_upload,user_profile,user_registration,webpages manage.py test tests
         coverage html
+    - name: Save test coverage output
+      uses: actions/upload-artifact@v2
+      with:
+        name: test_coverage.html
+        path: htmlcov/index.html
 
