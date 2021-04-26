@@ -1,14 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import FormView
-from django.shortcuts import redirect, reverse
-from user_profile.forms import UserProfileModelForm, UserDetailModelForm
 from django.contrib import messages
-
 from file_upload.forms import UploadFileModelForm
-
-from .models import File
 
 # Create your views here.
 
