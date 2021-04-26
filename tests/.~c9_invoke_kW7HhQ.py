@@ -5,3 +5,20 @@ class UserProfileModelTestCase(TestCase):
     def setUp(self):
         pass
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
