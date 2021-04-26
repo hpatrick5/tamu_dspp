@@ -1,8 +1,10 @@
+import os
+
+from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from django.urls import reverse
+
 from file_upload.models import File
-from django.contrib.auth.models import User
-import os
 
 
 class UploadViewTestCase(TestCase):
@@ -50,7 +52,7 @@ class UploadViewTestCase(TestCase):
     
     def test_upload_creates_file_object_for_valid_post(self):
         with open('tests/files/TESTING-content.csv') as fp:
-            response = self.client.post(
+            self.client.post(
                 self.url, {'owner': self.user, 'grade': 5, 'upload_file': fp})
         self.assertEqual(File.objects.count(), 1)
         

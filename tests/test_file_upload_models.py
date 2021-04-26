@@ -19,7 +19,7 @@ class FileModelTestCase(TestCase):
         self.assertEqual(self.client.get(self.url).status_code, 200)
         
         with open('tests/files/TESTING-content.csv') as fp:
-            response = self.client.post(
+            self.client.post(
                 self.url, {'owner': self.user, 'grade': 5, 'upload_file': fp})
         
         self.assertEqual(File.objects.count(), 1)

@@ -20,8 +20,8 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
         # context['upload_file_form'] = upload_file_form = UploadFileModelForm(
         #           request.POST, request.FILES, instance=request.user.user_profile)
         
-        context = {"upload_file_form": UploadFileModelForm(instance=request.user.user_profile)}
-        # context = {"upload_file_form": UploadFileModelForm()}
+        context = {"upload_file_form": UploadFileModelForm(
+            instance=request.user.user_profile)}
 
         upload_file_form = UploadFileModelForm(request.POST, request.FILES)
         
@@ -65,6 +65,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
 
 class ErrorView(TemplateView):
     template_name = "file_upload/error.html"
+
 
 class SuccessView(TemplateView):
     template_name = "file_upload/success.html"
