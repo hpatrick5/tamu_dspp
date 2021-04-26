@@ -47,8 +47,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Application definition
-
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -166,17 +164,13 @@ AUTHENTICATION_BACKENDS = (
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 SITE_ID = 1
 
+# TODO - use this for a valid email backend (production/staging only)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # use this in dev
-# EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend" # TODO - use this for a valid email backend (production/staging only)
+# EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 
 EMAIL_SUBJECT_PREFIX = '[Test mail]'
-# APPEND_SLASH = False
-# ACCOUNT_EMAIL_REQUIRED = False
-# enable to use email instead of username
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
-# enable for email verification
-# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGOUT_ON_GET = True
 
 ANYMAIL = {
