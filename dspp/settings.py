@@ -57,34 +57,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
     'user_registration',
     'bootstrap4',
     'django_thumbs',
     'anymail',
-
     'allauth',
     'allauth.account',
-    # 'allauth.socialaccount',
-
-    # 'allauth.socialaccount.providers.google',
-    # 'allauth.socialaccount.providers.twitter',
-    # 'allauth.socialaccount.providers.github',
-
     'user_profile',
     'webpages',
-    # 'django_rename_app'
-    
-    #legacy apps
     'file_upload'
-    #'file_upload,
-    #'login',
-    #'crispy_forms',
-    #'django_nose',
-    ##end legacy apps
-    
-    
-
 ]
 
 MIDDLEWARE = [
