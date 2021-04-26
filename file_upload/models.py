@@ -22,11 +22,16 @@ class File(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="file_owner")
     grade = models.PositiveIntegerField()
     upload_path = u'uploads/%Y/%m/%d/'
-    
-    #look at blank = true or not in django documentation 
+
+    # look at blank = true or not in django documentation
     upload_file = models.FileField(
-        default=None, verbose_name="file_name", upload_to=upload_path, null=True, blank=True)
-    
+        default=None,
+        verbose_name="file_name",
+        upload_to=upload_path,
+        null=True,
+        blank=True
+    )
+
     def __str__(self):
         return str(self.upload_file)
 
@@ -34,4 +39,4 @@ class File(models.Model):
 class FileForm(ModelForm):
     class Meta:
         model = File
-        fields = ['owner','grade','upload_file']
+        fields = ['owner', 'grade', 'upload_file']

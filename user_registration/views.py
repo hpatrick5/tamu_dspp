@@ -1,4 +1,3 @@
-from django.shortcuts import render
+import allauth
 
-# Create your views here.
-import  allauth
+from django.shortcuts import render
