@@ -7,3 +7,4 @@ django-thumbs-v2==0.4.1
 git+https://github.com/rrmerugu/placeholder-pics
 gunicorn==20.1.0
 coverage
+whitenoise
