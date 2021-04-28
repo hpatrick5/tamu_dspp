@@ -1,35 +1,41 @@
 {% extends "base.html" %} 
-
-
+{% load static %}
 {% load i18n %}
 {% load bootstrap4 %}
 
+{% block head_title %}DSPP{% endblock %}
+
 {% block content %}
-
-<div class="container">
-            <div class="mt-5 "></div>
-
-    <div class="row">
-
-        <div class="col col-5  mx-auto">
-
-            <div class="card">
-                <div class="card-body">
-
-                    <h1 class="h4">{% trans "Upload File" %}</h1>
-                    <hr>
-
-                    <form method="POST" enctype = "multipart/form-data">
-                        {% csrf_token %}
-                        <p>LOGIN AS: {{request.user.get_username}}</p>
-                        <!-- update with bootstrap by looking at over view -->
-                        {% bootstrap_form upload_file_form %}
-                         <input type="submit" class="btn btn-primary btn-block" >
-                    </form>
-                </div>
-            </div>
-        </div>
+<style type="text/css">
+        body {
+         background: url('{% static "img/bg.jpg" %}') no-repeat center center fixed;
+         -webkit-background-size: cover;
+         /*-moz-background-size: cover;*/
+         /*-o-background-size: cover;*/
+         /*background-size: cover;*/
+        }
+</style>
+<div class="content-section">
+    <!--<div class="row">-->
+    <!--     <p class='text-muted'>Logged in as: {{request.user.get_username}}</p>-->
+    <!--</div>-->
+    <div class="row justify-content-center">
+        <h1 style="text-align:center;">{% trans "Upload File" %}</h1>
     </div>
+    <br>
+    <div class="row">
+        <p class='text-muted'>Hi, Jason will add the instruction here!</p>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+        <form method="POST" enctype = "multipart/form-data">
+            {% csrf_token %}
+            <!-- update with bootstrap by looking at over view -->
+            {% bootstrap_form upload_file_form %}
+             <input type="submit" class="btn btn-primary btn-block" >
+        </form>
+    </div>
+    <br>
 </div>
 <!-- </center> -->
 {% endblock content %}
