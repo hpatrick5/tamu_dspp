@@ -70,9 +70,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             prediction = model.predict(x_math)
             pd.DataFrame(prediction).to_csv(directory)
 
-            file_path.upload_file.url = prediction
-
-            return render(request, 'file_upload/success.html', {'file_path':file_path})
+            return render(request, 'file_upload/success.html', {'file_path': directory})
 
         messages.error(request, upload_file_form.errors)
         return render(request, self.template_name, context=context)
