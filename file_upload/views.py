@@ -60,9 +60,10 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             math = pd.read_csv("/app/media/" + str(file_path))#not required to close this file
             math=math.fillna(math.mean())
             math = pd.get_dummies(math,columns=['Ethnicity'])
-
+            responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
             math_analysis=math.iloc[:,2:]
-            prediction = model.predict(math_analysis)
+            x_math=math_analysis.drop(responseVariable,axis=1)
+            prediction = model.predict(x_math)
             pd.DataFrame(prediction).to_csv("/app/media/" + str(file_path))
 
             return render(request, 'file_upload/success.html', {'file_path':file_path})
