@@ -169,4 +169,5 @@ ANYMAIL = {
 mimetypes.add_type("text/css", ".css", True)
 
 # Activate Django-Heroku.
-django_heroku.settings(locals(), test_runner=False)
+if DEBUG == False:
+    django_heroku.settings(locals(), test_runner=False)
