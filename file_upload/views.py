@@ -56,9 +56,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             here = os.path.dirname(os.path.abspath(__file__))
             filename = os.path.join(here, 'dummy_ml_model_clf.sav')
             model = pickle.load(open(filename, "rb"))
-            here = os.path.dirname(os.path.abspath(os.curdir))
-            filename = os.path.join(here, "sp21-csce606-group_project/media/" + str(file_path))
-            df = pd.read_csv(filename)
+            df = pd.read_csv(str(file_path))
             X = df.iloc[:, 1:12]
             prediction = model.predict(X)
             pd.DataFrame(prediction).to_csv(filename)

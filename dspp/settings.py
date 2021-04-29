@@ -79,6 +79,8 @@ TEMPLATES = [
     },
 ]
 
+SQL_ALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+
 WSGI_APPLICATION = 'dspp.wsgi.application'
 
 # Database
