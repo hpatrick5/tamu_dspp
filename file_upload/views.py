@@ -12,6 +12,8 @@ from django.http import HttpResponse, Http404
 
 from .models import File
 from user_profile.models import UserProfile
+
+from dspp.settings import BASE_DIR
 ## end of download files
 
 
@@ -57,15 +59,16 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             filename = os.path.join(here, 'math_7th_pickle')
             model = pickle.load(open(filename, "rb"))
 
-            here = os.path.dirname(os.curdir)
-            math = pd.read_csv(os.path.join(here, "/media/" + str(file_path)))#not required to close this file
+            directory = BASE_DIR + "/media/" + str(file_path)
+
+            math = pd.read_csv(directory)#not required to close this file
             math=math.fillna(math.mean())
             math = pd.get_dummies(math,columns=['Ethnicity'])
             responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
             math_analysis=math.iloc[:,2:]
             x_math=math_analysis.drop(responseVariable,axis=1)
             prediction = model.predict(x_math)
-            pd.DataFrame(prediction).to_csv(os.path.join(here, "/media/" + str(file_path)))
+            pd.DataFrame(prediction).to_csv(directory)
 
             return render(request, 'file_upload/success.html', {'file_path':file_path})
 
