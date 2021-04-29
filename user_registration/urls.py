@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
 
 urlpatterns = [
-    url(r'^accounts/', include('allauth.urls')),
+    path(r'^accounts/', include('allauth.urls')),
 ]
