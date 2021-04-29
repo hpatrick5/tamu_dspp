@@ -26,7 +26,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
         # context = super(UploadFileView(), self).get_context_data(**kwargs)
         # context['upload_file_form'] = upload_file_form = UploadFileModelForm(
         #           request.POST, request.FILES, instance=request.user.user_profile)
-        
+
         #might be able to delete line directly below comments as its useless with understanding of context
         #context will only be pushed to page when error
         context = {"upload_file_form": UploadFileModelForm(
@@ -40,17 +40,29 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             temp.upload_file = request.FILES["upload_file"]
             temp.owner = request.user
             temp.save()
-            
-            
-            #do we need to have a special save command for foreign key relationships? Im not sure our DB model is 
+
+
+            #do we need to have a special save command for foreign key relationships? Im not sure our DB model is
             #working correctly. I ended up finding a work around to only show one file from user upload
             #response.user.file.add(temp)  # adds the to do list to the current logged in user
-            
-            #the line below queries the database and pulls all objects from the File table. 
+
+            #the line below queries the database and pulls all objects from the File table.
             file_path = File.objects.get(upload_file = temp.upload_file)
-            
-            
-            
+
+            import pickle
+            import pandas as pd
+            import os
+
+            here = os.path.dirname(os.path.abspath(__file__))
+            filename = os.path.join(here, 'dummy_ml_model_clf.sav')
+            model = pickle.load(open(filename, "rb"))
+            here = os.path.dirname(os.path.abspath(os.curdir))
+            filename = os.path.join(here, "sp21-csce606-group_project/media/" + str(file_path))
+            df = pd.read_csv(filename)
+            X = df.iloc[:, 1:12]
+            prediction = model.predict(X)
+            pd.DataFrame(prediction).to_csv(filename)
+
             return render(request, 'file_upload/success.html', {'file_path':file_path})
 
         messages.error(request, upload_file_form.errors)
@@ -73,11 +85,10 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
         # context['user_detail_form'] = UserDetailModelForm(
         #     instance=request.user)
         return render(request, self.template_name, context=context)
-    
+
 class ErrorView(TemplateView):
     template_name = "file_upload/error.html"
 
 
 class SuccessView(TemplateView):
     template_name = "file_upload/success.html"
-    
