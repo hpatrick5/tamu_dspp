@@ -134,8 +134,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 'data' is my media folder
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)  # 'data' is my media folder
 
 DATE_FORMAT = 'b d, Y'
 SHORT_DATE_FORMAT = 'b d, Y'
@@ -164,6 +164,8 @@ LOGIN_URL = "accounts/login/"
 ANYMAIL = {
     "SENDGRID_API_KEY": os.environ.get('SENDGRID_API_KEY'),
 }
+
+SERVE_MEDIA_FILES = True
 
 mimetypes.add_type("text/css", ".css", True)
 

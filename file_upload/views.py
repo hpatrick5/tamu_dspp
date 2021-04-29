@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
@@ -10,10 +11,10 @@ import os
 from django.conf import settings
 from django.http import HttpResponse, Http404
 
-from .models import File
+from .models import File, get_trained_file
 from user_profile.models import UserProfile
 
-from dspp.settings import BASE_DIR
+from dspp.settings import BASE_DIR,MEDIA_ROOT, MEDIA_URL
 ## end of download files
 
 
@@ -40,38 +41,11 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             temp = upload_file_form.save(commit=False)
             temp.grade = request.POST["grade"]
             temp.upload_file = request.FILES["upload_file"]
+            temp.upload_file = get_trained_file(temp.upload_file)
             temp.owner = request.user
             temp.save()
 
-
-            #do we need to have a special save command for foreign key relationships? Im not sure our DB model is
-            #working correctly. I ended up finding a work around to only show one file from user upload
-            #response.user.file.add(temp)  # adds the to do list to the current logged in user
-
-            #the line below queries the database and pulls all objects from the File table.
             file_path = File.objects.get(upload_file = temp.upload_file)
-
-            import pickle
-            import pandas as pd
-            import os
-
-            here = os.path.dirname(os.path.abspath(__file__))
-            filename = os.path.join(here, 'math_7th_pickle')
-            model = pickle.load(open(filename, "rb"))
-
-            math = pd.read_csv(file_path.upload_file)#not required to close this file
-            math=math.fillna(math.mean())
-            math = pd.get_dummies(math,columns=['Ethnicity'])
-            responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
-            math_analysis=math.iloc[:,2:]
-            x_math=math_analysis.drop(responseVariable,axis=1)
-            prediction = model.predict(x_math)
-            pd.DataFrame(prediction).to_csv("results.csv")
-
-            file_path.upload_file = "results.csv"
-            file_path.save()
-
-
             return render(request, 'file_upload/success.html', {'file_path': file_path})
 
         messages.error(request, upload_file_form.errors)
