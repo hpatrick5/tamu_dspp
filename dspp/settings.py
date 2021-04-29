@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
+import django_heroku
 import mimetypes
 import os
 
@@ -32,19 +33,21 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.messages',
+    'django.contrib.sites',
+    'django.contrib.admin',
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     'user_registration',
     'bootstrap4',
     'django_thumbs',
     'anymail',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'user_profile',
     'webpages',
     'file_upload'
@@ -78,6 +81,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'dspp.wsgi.application'
 
@@ -156,9 +160,14 @@ EMAIL_SUBJECT_PREFIX = '[Test mail]'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_LOGOUT_ON_GET = True
+LOGIN_URL = "accounts/login/"
 
 ANYMAIL = {
     "SENDGRID_API_KEY": os.environ.get('SENDGRID_API_KEY'),
 }
 
 mimetypes.add_type("text/css", ".css", True)
+
+# Activate Django-Heroku.
+if DEBUG == False:
+    django_heroku.settings(locals(), test_runner=False)

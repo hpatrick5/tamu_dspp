@@ -5,6 +5,16 @@ from django.views.generic import TemplateView
 
 from file_upload.forms import UploadFileModelForm
 
+#used to downlaod files
+import os
+from django.conf import settings
+from django.http import HttpResponse, Http404
+
+from .models import File
+from user_profile.models import UserProfile
+## end of download files
+
+
 # accepted file types for upload
 ACCEPTED_FILE_TYPES = ['csv']
 
@@ -17,6 +27,8 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
         # context['upload_file_form'] = upload_file_form = UploadFileModelForm(
         #           request.POST, request.FILES, instance=request.user.user_profile)
 
+        #might be able to delete line directly below comments as its useless with understanding of context
+        #context will only be pushed to page when error
         context = {"upload_file_form": UploadFileModelForm(
             instance=request.user.user_profile)}
 
@@ -29,7 +41,32 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             temp.owner = request.user
             temp.save()
 
-            return render(request, 'file_upload/success.html')
+
+            #do we need to have a special save command for foreign key relationships? Im not sure our DB model is
+            #working correctly. I ended up finding a work around to only show one file from user upload
+            #response.user.file.add(temp)  # adds the to do list to the current logged in user
+
+            #the line below queries the database and pulls all objects from the File table.
+            file_path = File.objects.get(upload_file = temp.upload_file)
+
+            import pickle
+            import pandas as pd
+            import os
+
+            here = os.path.dirname(os.path.abspath(__file__))
+            filename = os.path.join(here, 'math_7th_pickle')
+            model = pickle.load(open(filename, "rb"))
+
+            math = pd.read_csv("/app/media/" + str(file_path))#not required to close this file
+            math=math.fillna(math.mean())
+            math = pd.get_dummies(math,columns=['Ethnicity'])
+            responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
+            math_analysis=math.iloc[:,2:]
+            x_math=math_analysis.drop(responseVariable,axis=1)
+            prediction = model.predict(x_math)
+            pd.DataFrame(prediction).to_csv("/app/media/" + str(file_path))
+
+            return render(request, 'file_upload/success.html', {'file_path':file_path})
 
         messages.error(request, upload_file_form.errors)
         return render(request, self.template_name, context=context)
@@ -37,12 +74,9 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
     # get will be when form is empty, just going to that page
     def get(self, request, *args, **kwargs):
         # context = super(UploadFileView(), self).get_context_data(**kwargs)
-        # context['upload_file_form'] = UploadFileModelForm(
-        #     instance=request.user.user_profile)
 
         username = request.user.user_profile
         initial_data = {
-                'name' : username,
                 'grade' : 0,
         }
 
@@ -54,7 +88,6 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
         # context['user_detail_form'] = UserDetailModelForm(
         #     instance=request.user)
         return render(request, self.template_name, context=context)
-
 
 class ErrorView(TemplateView):
     template_name = "file_upload/error.html"

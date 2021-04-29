@@ -21,7 +21,9 @@ def upload_file_to(instance, filename):
 class File(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="file_owner")
     grade = models.PositiveIntegerField()
-    upload_path = u'uploads/%Y/%m/%d/'
+    
+    #this line below is on our models as '' just that string in our table for every file object; have to get rid of that
+    upload_path = 'uploads/%Y/%m/%d/'
 
     # look at blank = true or not in django documentation
     upload_file = models.FileField(
