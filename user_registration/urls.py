@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.conf.urls import path, include
 
 urlpatterns = [
     path(r'^accounts/', include('allauth.urls')),
