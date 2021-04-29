@@ -57,8 +57,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             filename = os.path.join(here, 'math_7th_pickle')
             model = pickle.load(open(filename, "rb"))
             df = pd.read_csv("/app/media/" + str(file_path))
-            X = df.iloc[:, 0:11]
-            prediction = model.predict(X)
+            prediction = model.predict(df)
             pd.DataFrame(prediction).to_csv("/app/media/" + str(file_path))
 
             return render(request, 'file_upload/success.html', {'file_path':file_path})
