@@ -54,7 +54,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             import os
 
             here = os.path.dirname(os.path.abspath(__file__))
-            filename = os.path.join(here, 'dummy_ml_model_clf.sav')
+            filename = os.path.join(here, 'math_7th_pickle')
             model = pickle.load(open(filename, "rb"))
             df = pd.read_csv("/app/media/" + str(file_path))
             X = df.iloc[:, 1:12]
