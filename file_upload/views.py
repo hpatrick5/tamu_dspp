@@ -59,18 +59,20 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             filename = os.path.join(here, 'math_7th_pickle')
             model = pickle.load(open(filename, "rb"))
 
-            directory = BASE_DIR + "/media/" + str(file_path)
-
-            math = pd.read_csv(directory)#not required to close this file
+            math = pd.read_csv(file_path.upload_file)#not required to close this file
             math=math.fillna(math.mean())
             math = pd.get_dummies(math,columns=['Ethnicity'])
             responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
             math_analysis=math.iloc[:,2:]
             x_math=math_analysis.drop(responseVariable,axis=1)
             prediction = model.predict(x_math)
-            pd.DataFrame(prediction).to_csv(directory)
+            pd.DataFrame(prediction).to_csv("results.csv")
 
-            return render(request, 'file_upload/success.html', {'file_path': directory})
+            file_path.upload_file = "results.csv"
+            file_path.save()
+
+
+            return render(request, 'file_upload/success.html', {'file_path': file_path})
 
         messages.error(request, upload_file_form.errors)
         return render(request, self.template_name, context=context)
