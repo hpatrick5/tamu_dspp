@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'anymail',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'user_profile',
     'webpages',
     'file_upload'
