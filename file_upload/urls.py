@@ -6,10 +6,10 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^upload$', views.UploadFileView.as_view(), name="upload"),
-    url(r'^error', views.ErrorView.as_view(), name="error"),
-    url(r'^success', views.SuccessView.as_view(), name="success"),
-    
+    url(r'upload$', views.UploadFileView.as_view(), name="upload"),
+    url(r'error', views.ErrorView.as_view(), name="error"),
+    url(r'success', views.SuccessView.as_view(), name="success"),
+
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # need the following 3 lines in order to provide files for a user to download in debug mode
 if settings.DEBUG:
