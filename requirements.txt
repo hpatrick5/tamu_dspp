@@ -10,3 +10,4 @@ coverage
 whitenoise
 pandas
 sklearn
+django_heroku

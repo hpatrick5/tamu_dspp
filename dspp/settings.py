@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
+import django_heroku
 import mimetypes
 import os
 
@@ -79,7 +80,6 @@ TEMPLATES = [
     },
 ]
 
-SQL_ALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 WSGI_APPLICATION = 'dspp.wsgi.application'
 
@@ -164,3 +164,6 @@ ANYMAIL = {
 }
 
 mimetypes.add_type("text/css", ".css", True)
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
