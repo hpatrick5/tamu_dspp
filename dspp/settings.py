@@ -148,7 +148,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-SITE_ID = 1
+SITE_ID = 2
 
 # TODO - use this for a valid email backend (production/staging only)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # use this in dev
