@@ -5,10 +5,6 @@
 
 {% block content %}
 
-<div>
-    <a  href="/media/template/teacher_template.csv" download> Download Template CSV </a>
-</div>
-
 <div class="container">
             <div class="mt-5 "></div>
 
@@ -26,7 +22,7 @@
     <!--     <p class='text-muted'>Logged in as: {{request.user.get_username}}</p>-->
     <!--</div>-->
     <div class="row justify-content-center">
-        <h1 style="text-align:center;">{% trans "Upload File" %}</h1>
+        <h1 style="text-align:center;">{% trans "Upload File for ML Prediction" %}</h1>
     </div>
     <br>
     <div class="row">
@@ -35,16 +31,18 @@
 
             <div class="card">
                 <div class="card-body">
-
-                    <h1 class="h4">{% trans "Upload File" %}</h1>
+                    <div>
+                        <a  href="/media/template/teacher_template.csv" download> Download Template CSV </a><br>
+                        Currently, our site can only evaluate Grade (#) (Subject) data.
+                    </div>
                     <hr>
 
                     <form method="POST" enctype = "multipart/form-data">
                         {% csrf_token %}
-                        <p>LOGIN AS: {{request.user.get_username}}</p>
+                        <p>You are logged in as user <b> {{request.user.get_username}}.</b></p>
                         <!-- update with bootstrap by looking at over view -->
                         {% bootstrap_form upload_file_form %}
-                         <input type="submit" class="btn btn-primary btn-block" >
+                         <input type="submit" class="btn btn-primary btn-block" value="Run ML Prediction">
                     </form>
                 </div>
             </div>
