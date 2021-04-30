@@ -58,7 +58,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
 
         username = request.user.user_profile
         initial_data = {
-                'grade' : 0,
+                'grade' : 5,
         }
 
         # context = {"upload_file_form": UploadFileModelForm(

@@ -21,7 +21,7 @@ class UploadViewTestCase(TestCase):
         self.assertEqual(self.client.get(self.url).status_code, 200)
 
         self.upload_failure_empty_file_message = b'The submitted file is empty.'
-        self.upload_success_message = b'Success! Your input data has been evaluated by the ML model, and the predicted scores are ready.'
+        self.upload_success_message = b'Your input data has been evaluated by the ML model, and the predicted scores are ready.'
 
     def test_upload_returns_upload_template_for_get(self):
         response = self.client.get(self.url)

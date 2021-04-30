@@ -6,7 +6,7 @@
         <img class="logo" ref="/" src="{% static 'img/elrc_dark.png' %}" alt="Education Leadership Research Center logo" class="center">
         
         <!-- add image -->
-        <a class="navbar-brand" href="#"> District School Performance Predictor</a>
+        <a class="navbar-brand" href="{% url 'home' %}"> District School Performance Predictor</a>
         
         <ul class="navbar-nav">
             {% if request.user.is_authenticated %}
@@ -18,28 +18,40 @@
                 </a> 
             </li> -->
             <li class="nav-item">
-                <a class="nav-link " href="{% url 'about' %}">About</a>
+                <b>
+                    <a class="nav-link " href="{% url 'about' %}">About</a>
+                </b>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link " href="{% url 'upload' %}">Upload File</a>
+                <b>
+                    <a class="nav-link" href="{% url 'upload' %}">Upload File</a>
+                </b>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link " href="/accounts/logout/">Logout</a>
+                <b>
+                    <a class="nav-link " href="/accounts/logout/">Logout</a>
+                </b>
             </li>
             {% else %}
             
             <li class="nav-item">
-                <a class="nav-link " href="{% url 'about' %}">About</a>
+                <b>
+                    <a class="nav-link " href="{% url 'about' %}">About</a>
+                </b>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link " href="/accounts/login/">Login</a>
+                <b>
+                    <a class="nav-link " href="/accounts/login/">Login</a>
+                </b>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link " href="/accounts/signup/">Signup</a>
+                <b>
+                    <a class="nav-link " href="/accounts/signup/">Signup</a>
+                </b>
             </li>
             {% endif %}
         </ul>

@@ -169,6 +169,8 @@ SERVE_MEDIA_FILES = True
 
 mimetypes.add_type("text/css", ".css", True)
 
+LOGIN_REDIRECT_URL = '/upload'
+
 # Activate Django-Heroku.
 django_heroku.settings(locals(), test_runner=False)
 
