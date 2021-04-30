@@ -22,7 +22,7 @@
         <div class="col col-5  mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="h4">{% trans "Sign Up" %}</h1>
+                    <h1 class="h4" style="caret-color:transparent;">{% trans "Sign Up" %}</h1>
                     <hr>
                     <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                         {% csrf_token %}
