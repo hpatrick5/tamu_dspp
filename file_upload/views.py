@@ -41,11 +41,12 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             temp = upload_file_form.save(commit=False)
             temp.grade = request.POST["grade"]
             temp.upload_file = request.FILES["upload_file"]
-            temp.upload_file = get_trained_file(temp.upload_file)
+            trained_file = get_trained_file(temp.upload_file)
             temp.owner = request.user
+            temp.upload_file.save(name='results.csv',content=trained_file)
             temp.save()
 
-            file_path = File.objects.get(upload_file = temp.upload_file)
+            file_path = File.objects.get(pk=temp.pk)
             return render(request, 'file_upload/success.html', {'file_path': file_path})
 
         messages.error(request, upload_file_form.errors)

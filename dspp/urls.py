@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.static import serve
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,10 +25,8 @@ urlpatterns = [
     url(r'^', include('user_profile.urls')),
     url(r'^', include('webpages.urls')),
     url(r'^', include('file_upload.urls')),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
 ]
-
-if settings.SERVE_MEDIA_FILES:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

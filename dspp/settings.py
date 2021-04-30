@@ -24,7 +24,7 @@ SECRET_KEY = '0x9%f5$w(79=-9k*=g_90!)p(rvo4wh)tn)0vrozsscbh5lj2b'
 # SECRET_KEY = '_uv_lnq5n9#)v9-!&2l-@f2%#c@wonam+-b3iprv)_@91b9-h4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
 
 # SECURITY WARNING: cannot do this in production!

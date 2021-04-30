@@ -28,26 +28,17 @@ def get_trained_file(self):
     filename = os.path.join(here, 'math_7th_pickle')
     model = pickle.load(open(filename, "rb"))
 
-    math = pd.read_csv(self)#not required to close this file
-    math=math.fillna(math.mean())
+    math = pd.read_csv(self)
+    math = math.fillna(math.mean())
     math = pd.get_dummies(math,columns=['Ethnicity'])
+
     responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
     math_analysis=math.iloc[:,2:]
-    x_math=math_analysis.drop(responseVariable,axis=1)
+    x_math = math_analysis.drop(responseVariable,axis=1)
+
     prediction = model.predict(x_math)
     output = pd.DataFrame(prediction)
     return ContentFile(output.to_csv(index=False, header=True))
-
-def make_filepath(field_name, instance, filename):
-    '''
-        Produces a unique file path for the upload_to of a FileField.
-
-        The produced path is of the form:
-        "[model name]/[field name]/[random name].[filename extension]".
-    '''
-    new_filename = "%s.%s" % (User.objects.make_random_password(10),
-                             filename.split('.')[-1])
-    return '/'.join(new_filename)
 
 
 class File(models.Model):
@@ -61,7 +52,7 @@ class File(models.Model):
     upload_file = models.FileField(
         default=None,
         verbose_name="file_name",
-        upload_to=os.path.join(upload_path, str(uuid.uuid4())[:8]),
+        upload_to=upload_path,
         null=True,
         blank=True
     )
