@@ -25,7 +25,6 @@ SECRET_KEY = '0x9%f5$w(79=-9k*=g_90!)p(rvo4wh)tn)0vrozsscbh5lj2b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 # ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
 
 # SECURITY WARNING: cannot do this in production!
@@ -135,8 +134,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 'data' is my media folder
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)  # 'data' is my media folder
 
 DATE_FORMAT = 'b d, Y'
 SHORT_DATE_FORMAT = 'b d, Y'
@@ -166,8 +165,42 @@ ANYMAIL = {
     "SENDGRID_API_KEY": os.environ.get('SENDGRID_API_KEY'),
 }
 
+SERVE_MEDIA_FILES = True
+
 mimetypes.add_type("text/css", ".css", True)
 
 # Activate Django-Heroku.
-if DEBUG == False:
-    django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals(), test_runner=False)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                       'pathname=%(pathname)s lineno=%(lineno)s ' +
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'testlogger': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        }
+    }
+}
