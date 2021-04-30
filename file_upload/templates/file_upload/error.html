@@ -1,6 +1,44 @@
 {% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+
 {% block content %}
-<CENTER>
-    <h1 style = 'border: 5px red solid;'> Error uploading file; please try again.</h1>
-</CENTER>
-{% endblock %}
+
+<div class="container">
+    <style type="text/css">
+            body {
+             background: url('{% static "img/bg.jpg" %}') no-repeat center center fixed;
+             -webkit-background-size: cover;
+             /*-moz-background-size: cover;*/
+             /*-o-background-size: cover;*/
+             /*background-size: cover;*/
+            }
+    </style>
+    <!--<div class="row">-->
+    <!--     <p class='text-muted'>Logged in as: {{request.user.get_username}}</p>-->
+    <!--</div>-->
+    <div class="row">
+        <div class="col col-5  mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                      <div>
+                        <h1 style="text-align:center;">{% trans "Oppps!" %} </h1>
+                        <hr>
+                      </div>
+                      <div>
+                        <p class='text-muted' style="margin-left:1em; margin-right:1em;">
+                          Something went wrong, please check your csv file and make sure it is in the correct format. Once you are sure about the file and its format, try again.
+                        </p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+<!-- </center> -->
+{% endblock content %}

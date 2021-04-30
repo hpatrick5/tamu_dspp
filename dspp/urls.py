@@ -19,11 +19,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^', include('user_registration.urls')),
     url(r'^', include('user_profile.urls')),
     url(r'^', include('webpages.urls')),
     url(r'^', include('file_upload.urls')),
+    url(r'^admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:
