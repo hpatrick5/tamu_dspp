@@ -12,6 +12,7 @@ from django.utils import timezone
 logger = logging.getLogger(__name__)
 
 
+#can probably delete this
 def upload_file_to(instance, filename):
     filename_base, filename_ext = os.path.splitext(filename)
     return 'userprofile/%s%s' % (
@@ -40,9 +41,19 @@ def get_trained_file(self):
 
 class File(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="file_owner")
+    
+    READING_ENGLISH = 'RE'
+    READING_SPANISH = 'RS'
+    MATH = 'MA'
+    
+    SUBJECT_CHOICES = [(READING_ENGLISH, 'Reading-Spanish'),(READING_SPANISH,'Reading-English'),(MATH, 'Math')]
+    
+    subject = models.CharField(max_length = 25,
+        choices = SUBJECT_CHOICES,
+        default = None)
+        
+    #grade = models.PositiveIntegerField(max_value = 12, min_value = 1)
     grade = models.PositiveIntegerField()
-
-    #this line below is on our models as '' just that string in our table for every file object; have to get rid of that
     upload_path = 'uploads/%Y/%m/%d/'
 
     # look at blank = true or not in django documentation
@@ -66,4 +77,4 @@ class File(models.Model):
 class FileForm(ModelForm):
     class Meta:
         model = File
-        fields = ['owner', 'grade', 'upload_file']
+        fields = ['owner', 'subject', 'grade', 'upload_file']
