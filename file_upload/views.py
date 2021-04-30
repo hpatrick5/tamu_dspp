@@ -36,7 +36,18 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             instance=request.user.user_profile)}
 
         upload_file_form = UploadFileModelForm(request.POST, request.FILES)
-
+        
+        ##csv file type confirmation
+        if upload_file_form.is_valid():
+            temp02 = upload_file_form.save(commit=False)
+            temp02.upload_file = request.FILES["upload_file"]
+            file_type = temp02.upload_file.url.split('.')[-1]
+            file_type = file_type.lower()
+            if file_type not in ACCEPTED_FILE_TYPES:
+                return render(request, 'file_upload/error.html')
+        ##
+        
+        
         if upload_file_form.is_valid():
             temp = upload_file_form.save(commit=False)
             temp.grade = request.POST["grade"]
@@ -45,7 +56,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             temp.owner = request.user
             temp.upload_file.save(name='results.csv',content=trained_file)
             temp.save()
-
+            
             file_path = File.objects.get(pk=temp.pk)
             return render(request, 'file_upload/success.html', {'file_path': file_path})
 
