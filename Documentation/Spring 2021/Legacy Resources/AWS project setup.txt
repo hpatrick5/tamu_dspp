@@ -1,0 +1,74 @@
+﻿Project CSCE 606 AWS Setup
+-----
+The video that was referenced to understand Fall 2020 legacy code. 
+https://www.youtube.com/watch?v=F5mRW0jo-U4
+
+
+-----
+Run the following command lines in AWS terminal, and make appropriate changes to file:
+        (Note: adding python3 -m in front of each command fixed any errors I had)
+
+pip install --user -U pip
+        #upgrades pip
+
+
+pip install --user --upgrade setuptools
+        #upgrades setup tools
+        #(those are two dashes each)
+
+
+There may be two requirements.txt files (legacy project has 2), so use the outer one or the one in the main DSSP Directory
+pip install --user -r requirements.txt
+        #04/23/21 pip install --user psycopg2-binary
+        #can install everything but I had to do manually at first
+        #if doesnt work then manually install packages in requirements.txt (e.g. pip install --user asgiref==3.2.10)
+
+## if sqlite3 database error refer below for additional steps
+
+
+*In settings.py file change ALLOWED_HOST = [‘..heroku’] to
+ALLOWED_HOSTS = ['2b44a7e254184d5b99660ff4bb8973cf.vfs.cloud9.us-east-2.amazonaws.com']
+        #depends on your own AW2 cloud 9 instance
+
+
+Go to DistrictSchoolPerformancePrediction/ directory or directory where manage.py file is located
+python manage.py runserver 8080
+        *make sure cross-website tracking is enabled to display page. If not then enable and refresh AWS page
+
+
+Look into “python manage.py makemigrations” and “python manage.py migrate” if you are unfamiliar with these commands. 
+Lastly Debug can be switched boolean value.
+
+________________
+
+
+To get new app interation to run to AWS: 
+
+
+To fix the sqlite 3 database.
+https://stackoverflow.com/questions/55485858/using-sqlite3-with-django-2-2-and-python-3-6-7-on-centos7
+
+
+wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
+sudo yum localinstall atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
+
+
+sudo mv /lib64/libsqlite3.so.0.8.6{,-3.17}
+sudo cp /opt/atomic/atomic-sqlite/root/usr/lib64/libsqlite3.so.0.8.6 /lib64
+
+
+----------------
+When anything is changed in the models.py files across the app you need to do the following:
+
+
+Delete the main db.sqlite3 database file, then the __pycach files under all the migration folders except the __init __.py file
+        #note the exception!
+        #and dont delete the database file if actual users exist, this was just for production. 
+
+Then run the following:
+
+"python manage.py makemigrations" 
+"python manage.py migrate" 
+python manage.py runserver 8080
+        #runserver will generate new database with model changes
+        
