@@ -15,7 +15,7 @@ from file_upload.forms import UploadFileModelForm
 from user_profile.models import UserProfile
 
 
-ACCEPTED_FILE_TYPES = ['csv'] # for upload
+ACCEPTED_FILE_TYPES = ['csv']  # for upload
 
 
 class UploadFileView(TemplateView, LoginRequiredMixin):
@@ -47,7 +47,6 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
 
         messages.error(request, upload_file_form.errors)
         return render(request, self.template_name, context=context)
-
 
     def get(self, request, *args, **kwargs):
         username = request.user.user_profile

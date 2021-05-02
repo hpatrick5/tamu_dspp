@@ -44,18 +44,18 @@ class File(models.Model):
     ]
 
     subject = models.CharField(
-        max_length = 25,
-        choices = SUBJECT_CHOICES,
-        default = None
+        max_length=25,
+        choices=SUBJECT_CHOICES,
+        default=None
     )
 
     MATH_CHOICES = [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'),
     ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12')]
 
     grade = models.CharField(
-        max_length = 2,
-        choices = MATH_CHOICES,
-        default = None
+        max_length=2,
+        choices=MATH_CHOICES,
+        default=None
     )
 
     upload_path = 'uploads/%Y/%m/%d/'

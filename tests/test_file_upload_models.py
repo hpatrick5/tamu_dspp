@@ -22,7 +22,13 @@ class FileModelTestCase(TestCase):
 
         with open('tests/files/TESTING-content.csv') as fp:
             self.client.post(
-                self.url, {'owner': self.user, 'subject': 'READING_SPANISH', 'grade': '5', 'upload_file': fp})
+                self.url,
+                {
+                    'owner': self.user,
+                    'subject': 'READING_SPANISH',
+                    'grade': '5',
+                    'upload_file': fp
+                })
 
         self.assertEqual(File.objects.count(), 1)
         self.file = File.objects.first()
