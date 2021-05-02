@@ -75,8 +75,7 @@ class UserProfile(models.Model):
         placeholder.image.save(f, format='png')
         s = f.getvalue()
 
-        self.image.save("%s.png" % self.user.id,
-                        ContentFile(s))
+        self.image.save("%s.png" % self.user.id, ContentFile(s))
 
 
 @receiver(post_save, sender=User)
@@ -86,7 +85,7 @@ def create_user_profile(sender, instance, created, **kwargs):
         # uncomment the next two lines to autogenerate user
         # profile pics, was deemed unnessccesary
         # if not profile.image:
-            # profile.generate_img()
+        #   profile.generate_img()
 
 
 @receiver(post_save, sender=User)
