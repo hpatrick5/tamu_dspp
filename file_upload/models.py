@@ -22,7 +22,7 @@ def get_trained_file(self):
     math = pd.get_dummies(math, columns=['Ethnicity'])
 
     responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
-    math_analysis = math.iloc[:,2:]
+    math_analysis = math.iloc[:, 2:]
     x_math = math_analysis.drop(responseVariable, axis=1)
 
     prediction = model.predict(x_math)
