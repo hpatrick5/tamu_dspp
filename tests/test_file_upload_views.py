@@ -30,7 +30,14 @@ class UploadViewTestCase(TestCase):
     def test_upload_returns_empty_error_for_invalid_post(self):
         with open('tests/files/TESTING-empty.csv') as fp:
             response = self.client.post(
-                self.url, {'owner': self.user, 'subject': 'READING_SPANISH', 'grade': 5, 'upload_file': fp})
+                self.url,
+                {
+                    'owner': self.user,
+                    'subject': 'MATH',
+                    'grade': 5,
+                    'upload_file': fp
+
+                })
         self.assertTrue(
             self.upload_failure_empty_file_message in response.content)
         self.assertTrue(
@@ -39,7 +46,13 @@ class UploadViewTestCase(TestCase):
     def test_upload_returns_success_for_valid_post(self):
         with open('tests/files/TESTING-content.csv') as fp:
             response = self.client.post(
-                self.url, {'owner': self.user, 'subject': 'READING_SPANISH', 'grade': 5, 'upload_file': fp})
+                self.url,
+                {
+                    'owner': self.user,
+                    'subject': 'MATH',
+                    'grade': 5,
+                    'upload_file': fp
+                })
         self.assertTemplateUsed("file_upload/success.html")
         self.assertTrue(
             self.upload_success_message in response.content)
@@ -52,7 +65,13 @@ class UploadViewTestCase(TestCase):
     def test_upload_creates_file_object_for_valid_post(self):
         with open('tests/files/TESTING-content.csv') as fp:
             self.client.post(
-                self.url, {'owner': self.user, 'subject': 'MATH', 'grade': 5, 'upload_file': fp})
+                self.url,
+                {
+                    'owner': self.user,
+                    'subject': 'MATH',
+                    'grade': 5,
+                    'upload_file': fp
+                })
         self.assertEqual(File.objects.count(), 1)
 
         # clean-up created files

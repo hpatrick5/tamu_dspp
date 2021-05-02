@@ -18,7 +18,6 @@ from placeholder_pics.placeholder import PlaceholderPic
 logger = logging.getLogger(__name__)
 
 
-# Create your models here.
 def upload_avatar_to(instance, filename):
     filename_base, filename_ext = os.path.splitext(filename)
     return 'userprofile/%s%s' % (
@@ -84,9 +83,10 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         profile = UserProfile.objects.create(user=instance)
-        #uncomment the next two lines to autogenerate user profile pics, was deemed unnessccesary
-        #if not profile.image:
-            #profile.generate_img()
+        # uncomment the next two lines to autogenerate user
+        # profile pics, was deemed unnessccesary
+        # if not profile.image:
+            # profile.generate_img()
 
 
 @receiver(post_save, sender=User)

@@ -21,14 +21,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '0x9%f5$w(79=-9k*=g_90!)p(rvo4wh)tn)0vrozsscbh5lj2b'
-# SECRET_KEY = '_uv_lnq5n9#)v9-!&2l-@f2%#c@wonam+-b3iprv)_@91b9-h4'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-# ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
-
-# SECURITY WARNING: cannot do this in production!
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -36,7 +31,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sites',
     'django.contrib.admin',
-
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
@@ -152,7 +146,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 SITE_ID = 1
 
 # TODO - use this for a valid email backend (production/staging only)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # use this in dev
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 
 EMAIL_SUBJECT_PREFIX = '[Test mail]'
