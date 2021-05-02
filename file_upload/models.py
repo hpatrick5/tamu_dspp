@@ -14,16 +14,16 @@ logger = logging.getLogger(__name__)
 
 def get_trained_file(self):
     here = os.path.dirname(os.path.abspath(__file__))
-    filename = os.path.join(here, 'math_7th_pickle')
+    filename = os.path.join(here, 'math_5th_pickle')
     model = pickle.load(open(filename, "rb"))
 
     math = pd.read_csv(self)
     math = math.fillna(math.mean())
-    math = pd.get_dummies(math,columns=['Ethnicity'])
+    math = pd.get_dummies(math, columns=['Ethnicity'])
 
     responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
-    math_analysis=math.iloc[:,2:]
-    x_math = math_analysis.drop(responseVariable,axis=1)
+    math_analysis = math.iloc[:, 2:]
+    x_math = math_analysis.drop(responseVariable, axis=1)
 
     prediction = model.predict(x_math)
     output = pd.DataFrame(prediction)
@@ -78,7 +78,7 @@ class File(models.Model):
     @property
     def upload_file_url(self):
         if self.upload_file and hasattr(self.upload_file, 'url'):
-            return(self.upload_file.url)
+            return self.upload_file.url
 
 
 class FileForm(ModelForm):

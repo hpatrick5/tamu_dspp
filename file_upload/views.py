@@ -39,7 +39,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
 
             trained_file = get_trained_file(temp.upload_file)
             temp.owner = request.user
-            temp.upload_file.save(name='results.csv',content=trained_file)
+            temp.upload_file.save(name='results.csv', content=trained_file)
             temp.save()
 
             file_path = File.objects.get(pk=temp.pk)
