@@ -11,15 +11,6 @@ from django.utils import timezone
 
 logger = logging.getLogger(__name__)
 
-
-def upload_file_to(instance, filename):
-    filename_base, filename_ext = os.path.splitext(filename)
-    return 'userprofile/%s%s' % (
-        timezone.now().strftime("%Y%m%d%H%M%S"),
-        filename_ext.lower(),
-    )
-
-
 def get_trained_file(self):
     here = os.path.dirname(os.path.abspath(__file__))
     filename = os.path.join(here, 'math_7th_pickle')
@@ -37,12 +28,23 @@ def get_trained_file(self):
     output = pd.DataFrame(prediction)
     return ContentFile(output.to_csv(index=False, header=True))
 
-
 class File(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="file_owner")
-    grade = models.PositiveIntegerField()
 
-    #this line below is on our models as '' just that string in our table for every file object; have to get rid of that
+    SUBJECT_CHOICES = [('READING_SPANISH', 'Reading-Spanish'),('READING_ENGLISH','Reading-English'),('MATH', 'Math')]
+
+    subject = models.CharField(max_length = 25,
+        choices = SUBJECT_CHOICES,
+        default = None)
+
+    MATH_CHOICES = [('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),
+    ('7','7'),('8','8'),('9','9'), ('10','10'), ('11','11'), ('12','12')]
+
+    grade = models.CharField(max_length = 2,
+        choices = MATH_CHOICES,
+        default = None)
+
+
     upload_path = 'uploads/%Y/%m/%d/'
 
     # look at blank = true or not in django documentation
@@ -62,8 +64,7 @@ class File(models.Model):
         if self.upload_file and hasattr(self.upload_file, 'url'):
             return(self.upload_file.url)
 
-
 class FileForm(ModelForm):
     class Meta:
         model = File
-        fields = ['owner', 'grade', 'upload_file']
+        fields = ['owner', 'subject', 'grade', 'upload_file']

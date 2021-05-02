@@ -10,5 +10,5 @@ User = get_user_model()
 class UploadFileModelForm(forms.ModelForm):
     class Meta:
         model = File
-        fields = ('owner', 'grade', 'upload_file')
+        fields = ('owner', 'subject', 'grade', 'upload_file')
         exclude = ['owner']
