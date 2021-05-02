@@ -30,21 +30,21 @@ def get_trained_file(self):
 
 class File(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="file_owner")
-    
+
     SUBJECT_CHOICES = [('READING_SPANISH', 'Reading-Spanish'),('READING_ENGLISH','Reading-English'),('MATH', 'Math')]
-    
+
     subject = models.CharField(max_length = 25,
         choices = SUBJECT_CHOICES,
         default = None)
-    
+
     MATH_CHOICES = [('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),
     ('7','7'),('8','8'),('9','9'), ('10','10'), ('11','11'), ('12','12')]
-    
+
     grade = models.CharField(max_length = 2,
         choices = MATH_CHOICES,
         default = None)
-        
-    
+
+
     upload_path = 'uploads/%Y/%m/%d/'
 
     # look at blank = true or not in django documentation
@@ -63,3 +63,8 @@ class File(models.Model):
     def upload_file_url(self):
         if self.upload_file and hasattr(self.upload_file, 'url'):
             return(self.upload_file.url)
+
+class FileForm(ModelForm):
+    class Meta:
+        model = File
+        fields = ['owner', 'subject', 'grade', 'upload_file']
