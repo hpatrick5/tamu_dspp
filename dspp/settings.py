@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '0x9%f5$w(79=-9k*=g_90!)p(rvo4wh)tn)0vrozsscbh5lj2b'
 
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
 
 # Application definition
@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'user_profile',
     'webpages',
-    'file_upload'
+    'file_upload',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -119,14 +120,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
+AWS_STORAGE_BUCKET_NAME = 'tamu-dspp-bucket'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)  # 'data' is my media folder
@@ -171,6 +175,7 @@ EMAIL_HOST_USER = 'tamu.dspp@gmail.com'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals(), staticfiles=False)
 
 LOGGING = {
     'version': 1,
