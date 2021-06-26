@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '0x9%f5$w(79=-9k*=g_90!)p(rvo4wh)tn)0vrozsscbh5lj2b'
 
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
 
 # Application definition
@@ -145,25 +145,29 @@ AUTHENTICATION_BACKENDS = (
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 SITE_ID = 1
 
-# TODO - use this for a valid email backend (production/staging only)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 
-EMAIL_SUBJECT_PREFIX = '[Test mail]'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 60
+
 ACCOUNT_LOGOUT_ON_GET = True
 LOGIN_URL = "accounts/login/"
-
-ANYMAIL = {
-    "SENDGRID_API_KEY": os.environ.get('SENDGRID_API_KEY'),
-}
 
 SERVE_MEDIA_FILES = True
 
 mimetypes.add_type("text/css", ".css", True)
 
 LOGIN_REDIRECT_URL = '/upload'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tamu.dspp@gmail.com'
+# EMAIL_HOST_PASSWORD = manually put here when testing locally
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), test_runner=False)
