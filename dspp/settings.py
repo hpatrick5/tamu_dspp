@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'dspp.urls'
@@ -120,16 +121,21 @@ USE_L10N = True
 USE_TZ = True
 
 AWS_STORAGE_BUCKET_NAME = 'tamu-dspp-bucket'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_ACCESS_KEY_ID = 'AKIA6D72ZVZWXLQSVPXK'
+AWS_SECRET_ACCESS_KEY = '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'
+
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_LOCATION = 'static'
+AWS_DEFAULT_ACL = 'public-read'
 
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)  # 'data' is my media folder
@@ -148,6 +154,7 @@ AUTHENTICATION_BACKENDS = (
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 SITE_ID = 1
 
+
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_UNIQUE_EMAIL = True
@@ -159,7 +166,7 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 60
 ACCOUNT_LOGOUT_ON_GET = True
 LOGIN_URL = "accounts/login/"
 
-# SERVE_MEDIA_FILES = True
+SERVE_MEDIA_FILES = True
 
 mimetypes.add_type("text/css", ".css", True)
 
@@ -173,6 +180,7 @@ EMAIL_HOST_USER = 'tamu.dspp@gmail.com'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals(), staticfiles=False)
 
 LOGGING = {
     'version': 1,
