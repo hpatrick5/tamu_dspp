@@ -11,3 +11,5 @@ whitenoise
 pandas
 sklearn
 django_heroku
+boto3
+django-storages
