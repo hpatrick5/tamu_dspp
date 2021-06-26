@@ -55,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'dspp.urls'
@@ -149,7 +148,6 @@ AUTHENTICATION_BACKENDS = (
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 SITE_ID = 1
 
-
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_UNIQUE_EMAIL = True
@@ -161,7 +159,7 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 60
 ACCOUNT_LOGOUT_ON_GET = True
 LOGIN_URL = "accounts/login/"
 
-SERVE_MEDIA_FILES = True
+# SERVE_MEDIA_FILES = True
 
 mimetypes.add_type("text/css", ".css", True)
 
@@ -175,7 +173,6 @@ EMAIL_HOST_USER = 'tamu.dspp@gmail.com'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), test_runner=False)
-django_heroku.settings(locals(), staticfiles=False)
 
 LOGGING = {
     'version': 1,
