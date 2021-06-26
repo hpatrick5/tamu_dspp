@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0x9%f5$w(79=-9k*=g_90!)p(rvo4wh)tn)0vrozsscbh5lj2b'
 
 DEBUG = False
-ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
+ALLOWED_HOSTS = ['test-sp21-606-school-district.herokuapp.com', 'sp21-606-school-district-data.herokuapp.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -55,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'dspp.urls'
@@ -111,34 +110,36 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'EST'
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-AWS_S3_REGION_NAME = 'us-east-2'
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+# AWS S3
 
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'static'
-AWS_DEFAULT_ACL = 'public-read'
+# USE_S3 = os.getenv('USE_S3') == 'TRUE'
+USE_S3 = 'TRUE'
 
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+if USE_S3:
+    # aws settings
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = 'public-read'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    AWS_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+else:
+    STATIC_URL = '/staticfiles/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)  # 'data' is my media folder
+MEDIA_URL = '/mediafiles/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 DATE_FORMAT = 'b d, Y'
 SHORT_DATE_FORMAT = 'b d, Y'
@@ -154,7 +155,6 @@ AUTHENTICATION_BACKENDS = (
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 SITE_ID = 1
 
-
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_UNIQUE_EMAIL = True
@@ -166,8 +166,6 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 60
 ACCOUNT_LOGOUT_ON_GET = True
 LOGIN_URL = "accounts/login/"
 
-SERVE_MEDIA_FILES = True
-
 mimetypes.add_type("text/css", ".css", True)
 
 LOGIN_REDIRECT_URL = '/upload'
@@ -176,11 +174,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tamu.dspp@gmail.com'
-# EMAIL_HOST_PASSWORD = manually put here when testing locally
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # Activate Django-Heroku.
-django_heroku.settings(locals(), test_runner=False)
-django_heroku.settings(locals(), staticfiles=False)
+django_heroku.settings(locals(), test_runner=False, staticfiles=False)
 
 LOGGING = {
     'version': 1,
