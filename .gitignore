@@ -2,3 +2,5 @@
 venv
 staticfiles
 .idea
+.env
+
