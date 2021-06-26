@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '0x9%f5$w(79=-9k*=g_90!)p(rvo4wh)tn)0vrozsscbh5lj2b'
 
-DEBUG = False
+DEBUG = os.getenv('DEBUG')
 ALLOWED_HOSTS = ['test-sp21-606-school-district.herokuapp.com', 'sp21-606-school-district-data.herokuapp.com']
 
 # Application definition
