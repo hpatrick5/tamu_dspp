@@ -20,10 +20,9 @@ from django.contrib import admin
 from django.views.static import serve
 
 urlpatterns = [
-    url(r'^', include('user_registration.urls')),
-    url(r'^', include('user_profile.urls')),
-    url(r'^', include('webpages.urls')),
-    url(r'^', include('file_upload.urls')),
+    url(r'^', include('apps.user_registration.urls')),
+    url(r'^', include('apps.pages.urls')),
+    url(r'^', include('apps.file_upload.urls')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^admin/', admin.site.urls),
 ]

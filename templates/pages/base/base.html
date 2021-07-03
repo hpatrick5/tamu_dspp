@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block head_title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_registration_bs4.css' %}">
+</head>
+
+<style>
+  .bgmarron{
+    background:rgb(80,0,0);
+  }
+  .txtoswald{
+    font-family: 'Oswald', sans-serif;
+  }
+
+</style>
+
+<style type="text/css">
+        body {
+         background: url('{% static "img/bg.jpg" %}') no-repeat center center fixed;
+         -webkit-background-size: cover;
+         /*-moz-background-size: cover;*/
+         /*-o-background-size: cover;*/
+         /*background-size: cover;*/
+        }
+
+</style>
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+{% include 'pages/base/header.html' %}
+
+<body>
+<main role="main" class="container">
+    <br>
+    {% if messages %}
+    <div class="row">
+        <div class="col">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %} {% endif %}
+        </div>
+    </div>
+    <div class="content-section" style="caret-color:transparent;">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
+{% include 'pages/base/footer.html' %}
+
+</body>
+</html>

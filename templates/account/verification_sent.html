@@ -1,0 +1,12 @@
+{% extends "pages/base/base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+{% block content %}
+
+<h1 class="h4">{% trans "Verify Your E-mail Address" %}</h1>
+<hr>
+
+<p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided in the e-mail to finalize
+    the registration process.{% endblocktrans %}</p>
+
+{% endblock %}
