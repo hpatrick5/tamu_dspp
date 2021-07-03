@@ -1,0 +1,24 @@
+{% extends "pages/base/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+<h2>Upload File for AI Prediction</h2>
+<hr>
+<div>
+    <a href="/media/template/teacher_template.csv" download> Download Template CSV </a><br>
+    <p>Currently, our site can only make STAAR predictions for <b>Grade 5 Math</b> scores.<br></p>
+    <p>Please strictly follow the format provided in the template, otherwise you may get inaccurate preditions or
+        errors.</p>
+    <p><b>Please make sure your CSV file does not include student's personally identifiable information!</b></p>
+</div>
+<hr>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form upload_file_form %}
+    <input type="submit" class="btn btn-primary btn-block" value="Run AI Prediction">
+</form>
+<br>
+
+{% endblock content %}

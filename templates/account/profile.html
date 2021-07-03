@@ -1,0 +1,26 @@
+{% extends "pages/base/base.html" %}
+{% load account %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Profile" %}{% endblock %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+
+<h2>Profile</h2>
+<hr>
+{% user_display user as name %}
+<p>Hello, {{name}}.</p>
+<ul>
+    <li>
+        View Uploaded Files
+    </li>
+    <li>
+        <a href="{% url 'account_email' %}">Manage Account Email Addresses</a>
+    </li>
+    <li>
+        <a href="{% url 'account_change_password' %}">Change Account Password</a>
+    </li>
+</ul>
+
+{% endblock %}
