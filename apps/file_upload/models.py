@@ -14,21 +14,45 @@ logger = logging.getLogger(__name__)
 
 def get_trained_file(self):
     here = os.path.dirname(os.path.abspath(__file__))
-    filename = os.path.join(here, 'math_5th_pickle')
-    model = pickle.load(open(filename, "rb"))
+    
+    #I need to confirm working file upload
+    #then write new file name
+    #then get pickle files
+    if self.subject == "MATH":
+        if self.grade == '5':
+            filename = os.path.join(here, 'math_5th_pickle')
+  
+    #filename = os.path.join(here, 'math_5th_pickle')
+            model = pickle.load(open(filename, "rb"))
 
-    math = pd.read_csv(self)
-    math = math.fillna(math.mean())
-    math = pd.get_dummies(math, columns=['Ethnicity'])
+            math = pd.read_csv(self.upload_file)
+            math = math.fillna(math.mean())
+            math = pd.get_dummies(math, columns=['Ethnicity'])
+            responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
+            math_analysis = math.iloc[:, 2:]
+            x_math = math_analysis.drop(responseVariable, axis=1)
 
-    responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
-    math_analysis = math.iloc[:, 2:]
-    x_math = math_analysis.drop(responseVariable, axis=1)
+            prediction = model.predict(x_math)
+            output = pd.DataFrame(prediction)
+            return ContentFile(output.to_csv(index=False, header=True))
+    
+    #--------
+    #code that orignially worked for file upload
+    #filename = os.path.join(here, 'math_5th_pickle')
+    #model = pickle.load(open(filename, "rb"))
 
-    prediction = model.predict(x_math)
-    output = pd.DataFrame(prediction)
-    return ContentFile(output.to_csv(index=False, header=True))
+    #math = pd.read_csv(self)
+    #math = math.fillna(math.mean())
+    #math = pd.get_dummies(math, columns=['Ethnicity'])
 
+    #responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
+    #math_analysis = math.iloc[:, 2:]
+    #x_math = math_analysis.drop(responseVariable, axis=1)
+
+    #prediction = model.predict(x_math)
+    #output = pd.DataFrame(prediction)
+    #return ContentFile(output.to_csv(index=False, header=True))
+    #--------
 
 class File(models.Model):
     owner = models.ForeignKey(

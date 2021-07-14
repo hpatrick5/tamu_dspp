@@ -25,6 +25,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
         if upload_file_form.is_valid():
             temp = upload_file_form.save(commit=False)
             temp.grade = request.POST["grade"]
+            temp.subject = request.POST["subject"]
             temp.upload_file = request.FILES["upload_file"]
 
             file_type = temp.upload_file.url.split('.')[-1]
@@ -32,9 +33,14 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             if file_type not in ACCEPTED_FILE_TYPES:
                 messages.warning(request, 'Oops! Something went wrong with the file upload. Please check your CSV file and make sure it is in the correct format.')
                 return HttpResponseRedirect('upload')
-
-            trained_file = get_trained_file(temp.upload_file)
+            
+            #gets trained data calling def get_trained_file in models.py
+            #upload_file, temp.grade, temp.subject)
+            trained_file = get_trained_file(temp)
             temp.owner = request.user
+            if trained_file == None:
+                messages.warning(request, 'Oops! Something went wrong with the file upload. Please check your CSV file and make sure it is in the correct format.')
+                return HttpResponseRedirect('upload')
             temp.upload_file.save(name='results.csv', content=trained_file)
             temp.save()
 
@@ -47,7 +53,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         # username = request.user_display_user
         initial_data = {
-                'subject': 'Math',
+                'subject': 'MATH',
                 'grade' : '5',
         }
 
