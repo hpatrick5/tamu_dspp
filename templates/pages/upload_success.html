@@ -9,8 +9,10 @@
     </p>
 </div>
 <div>
-    <a style="font-size:20px;" href="{{ file_path.upload_file.url }}" download>Click Here to Download Predicted
-        Scores</a>
+    <form method="GET" action="{{ file_path }}">
+    <input type="submit" class="btn btn-primary btn-block" value="Click Here to Download Predicted
+        Scores">
+</form>
 </div>
 
 {% endblock content %}

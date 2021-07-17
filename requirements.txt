@@ -7,10 +7,11 @@ django-thumbs-v2==0.4.1
 git+https://github.com/rrmerugu/placeholder-pics
 gunicorn==20.1.0
 coverage
-pandas
+pandas~=1.2.5
 sklearn
 django_heroku
 boto3
 django-storages
 psycopg2>=2.8,<2.9
-python-dotenv
+python-dotenv~=0.18.0
+requests~=2.25.1

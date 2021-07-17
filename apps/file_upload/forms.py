@@ -1,14 +1,10 @@
 from django import forms
-from django.contrib.auth import get_user_model
 
-from .models import File
-
-
-User = get_user_model()
+SUBJECT_CHOICES = [('READING', 'Reading'), ('MATH', 'Math')]
+GRADE_CHOICES = [('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8')]
 
 
-class UploadFileModelForm(forms.ModelForm):
-    class Meta:
-        model = File
-        fields = ('owner', 'subject', 'grade', 'upload_file')
-        exclude = ['owner']
+class FileForm(forms.Form):
+    subject = forms.CharField(label='Subject', widget=forms.Select(choices=SUBJECT_CHOICES))
+    grade = forms.CharField(label='Grade', widget=forms.Select(choices=GRADE_CHOICES))
+    file = forms.FileField()
