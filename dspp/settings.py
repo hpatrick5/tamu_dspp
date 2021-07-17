@@ -116,11 +116,9 @@ USE_L10N = True
 USE_TZ = True
 
 # AWS S3
+USE_S3 = os.getenv('USE_S3')
 
-# USE_S3 = os.getenv('USE_S3') == 'TRUE'
-USE_S3 = 'TRUE'
-
-if USE_S3:
+if USE_S3 == "TRUE":
     # aws settings
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')

@@ -16,7 +16,7 @@
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {% bootstrap_form upload_file_form %}
+    {% bootstrap_form file_form %}
     <input type="submit" class="btn btn-primary btn-block" value="Run AI Prediction">
 </form>
 <br>
