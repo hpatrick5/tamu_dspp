@@ -35,5 +35,6 @@ class File_Info(models.Model):
     original_file_name = models.CharField(max_length=50)
     grade = models.CharField(max_length=50)
     subject = models.CharField(max_length=50)
+    creation_date = models.DateTimeField(auto_now_add=True)
 
 
