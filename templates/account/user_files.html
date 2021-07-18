@@ -1,0 +1,36 @@
+{% extends "pages/base/base.html" %}
+{% load account %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Profile" %}{% endblock %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+
+<h2>Uploaded Files</h2>
+<table width="100%">
+    <tr>
+        <th>File Name</th>
+        <th>Subject</th>
+        <th>Grade</th>
+        <th>Creation Date</th>
+        <th>Download</th>
+    </tr>
+    {% for x in files %}
+    <tr>
+        <td>{{ x.original_file_name }}</td>
+        <td>{{ x.subject }}</td>
+        <td>{{ x.grade }}</td>
+        <td>{{ x.creation_date }}</td>
+        <td>
+            <form method="GET" action="http://54.160.87.107:5000/doc/{{ x.document_id }}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                <input type="submit" value="Download" name="download_btn"/>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
