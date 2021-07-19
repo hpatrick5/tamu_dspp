@@ -1,3 +1,5 @@
+from io import BytesIO
+
 import requests
 
 from .models import File_Info, get_trained_file
@@ -34,16 +36,16 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
                 return HttpResponseRedirect('upload')
 
             # ML train
-            # file = get_trained_file(file)
-            trained_file = {'document': file }
+            file = get_trained_file(file)
+
+            trained_file = {'document': file.open() }
             payload = {
                 'user_email': request.user.username.__str__,
             }
 
             r = requests.post(FILE_MANAGER_URL, files=trained_file, data=payload)
-
             if r.status_code != 200:
-                messages.warning(request, 'Oops! Something went wrong with the file upload.' + r.status_code + ' ' + r.content)
+                messages.warning(request, 'Oops! Something went wrong with the file upload.' + str(r.status_code) + ' ' + str(r.content))
                 return HttpResponseRedirect('upload')
 
             file_info = File_Info()
@@ -56,10 +58,6 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
 
             file_info.save()
 
-            # temp file?
-            # file_path = File.objects.get(pk=temp.pk)
-            # get request to file
-            # warning: file download here is temporary - go to my files page to see all files after this
             return render(request, 'pages/upload_success.html', {'file_path': FILE_MANAGER_URL + "/" + file_info.document_id})
 
         messages.error(request, form.errors)

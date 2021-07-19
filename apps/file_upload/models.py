@@ -1,10 +1,14 @@
 import logging
 import os
+import sys
+import io
+
 import pandas as pd
 import pickle
 
 from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 
 logger = logging.getLogger(__name__)
@@ -26,7 +30,17 @@ def get_trained_file(self):
 
     prediction = model.predict(x_math)
     output = pd.DataFrame(prediction)
-    return ContentFile(output.to_csv(index=False, header=True))
+
+    # Adds results as a column
+    math['Results'] = output[0]
+    s_buf = io.StringIO()
+    trained_csv = math.to_csv(path_or_buf=s_buf, mode="w", header=True)
+
+    return InMemoryUploadedFile(s_buf,
+                                   'file',
+                                   'trained_csv.csv',
+                                   'application/vnd.ms-excel',
+                                   sys.getsizeof(trained_csv), None)
 
 
 class File_Info(models.Model):
