@@ -7,6 +7,10 @@
 {% load static %}
 {% block content %}
 
+<div style="white-space: nowrap"><a style="display: inline-block" class="nav-link " href="{% url 'profile' %}">< Back to
+    Profile </a> | <a style="display: inline-block" class="nav-link " href="{% url 'upload' %}">Upload More Files</a>
+</div>
+<br>
 <h2>Uploaded Files</h2>
 <table width="100%">
     <tr>
@@ -24,13 +28,12 @@
         <td>{{ x.creation_date }}</td>
         <td>
             <form method="GET" action="http://54.160.87.107:5000/doc/{{ x.document_id }}" enctype="multipart/form-data">
-                  {% csrf_token %}
+                {% csrf_token %}
                 <input type="submit" value="Download" name="download_btn"/>
             </form>
         </td>
     </tr>
     {% endfor %}
 </table>
-
 
 {% endblock %}

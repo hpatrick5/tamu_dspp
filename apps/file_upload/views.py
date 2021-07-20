@@ -56,11 +56,9 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
 
             file_info.save()
 
-            # temp file?
-            # file_path = File.objects.get(pk=temp.pk)
-            # get request to file
-            # warning: file download here is temporary - go to my files page to see all files after this
-            return render(request, 'pages/upload_success.html', {'file_path': FILE_MANAGER_URL + "/" + file_info.document_id})
+            messages.info(request, "Success! Your input data has been evaluated by the ML model, and the predicted "
+                                   "scores are ready. Download them below.")
+            return HttpResponseRedirect('accounts/profile/files')
 
         messages.error(request, form.errors)
         return render(request, self.template_name, context=context)
@@ -74,7 +72,3 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
 
         context = {"file_form": FileForm(initial=initial_data)}
         return render(request, self.template_name, context=context)
-
-
-class SuccessView(TemplateView):
-    template_name = "pages/upload_success.html"
