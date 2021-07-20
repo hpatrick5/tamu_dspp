@@ -34,7 +34,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
                 return HttpResponseRedirect('upload')
 
             # ML train
-            file = get_trained_file(file)
+            file = get_trained_file(file,grade,subject)
 
             trained_file = {'document': file.open() }
             payload = {
@@ -66,7 +66,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         # username = request.user_display_user
         initial_data = {
-                'subject': 'Math',
+                'subject': 'MATH',
                 'grade' : '5',
         }
 

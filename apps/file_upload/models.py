@@ -13,13 +13,18 @@ from django.db import models
 logger = logging.getLogger(__name__)
 
 
-def get_trained_file(self):
-    # choose correct model
+def get_trained_file(file,grade,subject):
+    
     here = os.path.dirname(os.path.abspath(__file__))
-    filename = os.path.join(here, '../../ml_models/5_math')
+    
+    model_file_path = ('../../ml_models/' + grade+'_'+subject.lower())
+    #filename = os.path.join(here, '../../ml_models/5_math')
+    
+    filename = os.path.join(here, model_file_path)
+
     model = pickle.load(open(filename, "rb"))
 
-    math = pd.read_csv(self)
+    math = pd.read_csv(file)
     math = math.fillna(math.mean())
     math = pd.get_dummies(math, columns=['Ethnicity'])
 
