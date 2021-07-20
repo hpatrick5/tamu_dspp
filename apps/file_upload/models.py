@@ -6,7 +6,6 @@ import io
 import pandas as pd
 import pickle
 
-from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models

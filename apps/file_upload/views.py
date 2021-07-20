@@ -1,5 +1,3 @@
-from io import BytesIO
-
 import requests
 
 from .models import File_Info, get_trained_file
@@ -58,7 +56,9 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
 
             file_info.save()
 
-            return render(request, 'pages/upload_success.html', {'file_path': FILE_MANAGER_URL + "/" + file_info.document_id})
+            messages.info(request, "Success! Your input data has been evaluated by the ML model, and the predicted "
+                                   "scores are ready. Download them below.")
+            return HttpResponseRedirect("accounts/profile/files")
 
         messages.error(request, form.errors)
         return render(request, self.template_name, context=context)
@@ -73,6 +73,3 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
         context = {"file_form": FileForm(initial=initial_data)}
         return render(request, self.template_name, context=context)
 
-
-class SuccessView(TemplateView):
-    template_name = "pages/upload_success.html"
