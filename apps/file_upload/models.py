@@ -25,6 +25,7 @@ def get_trained_file(file,grade,subject):
     model = pickle.load(open(filename, "rb"))
 
     math = pd.read_csv(file)
+    #will mean work if columns are zeros
     math = math.fillna(math.mean())
     math = pd.get_dummies(math, columns=['Ethnicity'])
 
@@ -39,7 +40,7 @@ def get_trained_file(file,grade,subject):
     math['Results'] = output[0]
     s_buf = io.StringIO()
     trained_csv = math.to_csv(path_or_buf=s_buf, mode="w", header=True)
-
+    
     return InMemoryUploadedFile(s_buf,
                                    'file',
                                    'trained_csv.csv',

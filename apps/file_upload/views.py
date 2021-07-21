@@ -32,8 +32,9 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
                 messages.warning(request, 'Oops! Something went wrong with the file upload. Please check your CSV '
                                           'file and make sure it is in the correct format.')
                 return HttpResponseRedirect('upload')
-
-            # ML train
+            
+            
+            #ML train
             file = get_trained_file(file,grade,subject)
 
             trained_file = {'document': file.open() }
@@ -47,7 +48,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
                 return HttpResponseRedirect('upload')
 
             file_info = File_Info()
-
+           
             file_info.owner = request.user
             file_info.document_id = r.json()['document_id']
             file_info.original_file_name = file.name
