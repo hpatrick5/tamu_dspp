@@ -19,6 +19,7 @@
         <th>Grade</th>
         <th>Creation Date</th>
         <th>Download</th>
+        
     </tr>
     {% for x in files %}
     <tr>
@@ -27,10 +28,7 @@
         <td>{{ x.grade }}</td>
         <td>{{ x.creation_date }}</td>
         <td>
-            <form method="GET" action="http://54.160.87.107:5000/doc/{{ x.document_id }}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="submit" value="Download" name="download_btn"/>
-            </form>
+            <a href="/download/{{ x.document_id }}" download> Download File </a><br>
         </td>
     </tr>
     {% endfor %}
