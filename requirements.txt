@@ -16,3 +16,4 @@ psycopg2>=2.8,<2.9
 python-dotenv~=0.18.0
 requests~=2.25.1
 djangorestframework~=3.12.4
+django-revproxy

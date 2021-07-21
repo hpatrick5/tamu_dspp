@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    #'revproxy',
+    'revproxy',
 ]
 
 MIDDLEWARE = [

@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from revproxy.views import ProxyView
 
 class HomePageView(TemplateView):
     template_name = "pages/home.html"
@@ -22,3 +23,6 @@ class UserFilesView(TemplateView, LoginRequiredMixin):
         
         return render(request, self.template_name)
 
+class TestProxyView(ProxyView):
+    upstream = 'http://54.160.87.107:5000/doc'
+    
