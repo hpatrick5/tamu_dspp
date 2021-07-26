@@ -7,7 +7,7 @@
 
 <h2>Register</h2>
 <hr>
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+<form class="signup" id="signup_form"  style="cursor: #FFFFFF;" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% if redirect_field_value %}
