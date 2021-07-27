@@ -78,8 +78,8 @@ a.article-title:hover {
 
 .navbar {
     /*background-color: #F6F5D7;*/
-    margin:0%;
-    padding: 0px;/*padding: 0%;*/
+    margin: 0%;
+    padding: 5%;/*padding: 0%;*/
     border: 1px solid rgb(0, 0, 0);
 }
 
@@ -97,6 +97,7 @@ a.article-title:hover {
 .logo {
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-left: 100px;
     margin-right: 0px;
     width: 250px;
 }
