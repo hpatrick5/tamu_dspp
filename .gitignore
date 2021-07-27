@@ -3,4 +3,5 @@ venv
 staticfiles
 .idea
 .env
-
+db.sqlite3
+mediafiles/
