@@ -126,8 +126,8 @@ a.article-title:hover {
   .dspp-text{
     margin: 0 57%;
   }
-  
 }
+
 @media screen and (max-width: 799px) {
   .nav-item, .welcome-text{
     margin: 0 10%;
@@ -144,4 +144,8 @@ a.article-title:hover {
   .logo{
     margin: 0 97%;
   }
+}
+
+.template_button{
+  float: right;
 }
