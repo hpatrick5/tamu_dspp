@@ -7,8 +7,8 @@
 {% load static %}
 {% block content %}
 
-<div style="white-space: nowrap"><a style="display: inline-block" class="nav-link btn btn-danger" href="{% url 'profile' %}">< Back to
-    Profile </a> | <a style="display: inline-block" class="nav-link btn btn-success" href="{% url 'upload' %}">Upload More Files</a>
+<div style="white-space: nowrap"><a style="display: inline-block" class="nav-link c-button c-button_maroon" href="{% url 'profile' %}">< Back to
+    Profile </a> | <a style="display: inline-block" class="nav-link c-button c-button_blue" href="{% url 'upload' %}">Upload More Files</a>
 </div>
 <br>
 <h2>Uploaded Files</h2>
@@ -28,7 +28,7 @@
         <td>{{ x.grade }}</td>
         <td>{{ x.creation_date }}</td>
         <td>
-            <a href="/download/{{ x.document_id }}" download> Download File </a><br>
+            <a class = "c-button c-button_blue-ghost" href="/download/{{ x.document_id }}" download> Download File </a><br>
         </td>
     </tr>
     {% endfor %}

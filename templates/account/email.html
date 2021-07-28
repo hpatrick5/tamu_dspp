@@ -6,7 +6,7 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<a class="btn btn-danger" href="{% url 'profile' %}">< Back to Profile </a>
+<a class="c-button c-button_maroon" href="{% url 'profile' %}">< Back to Profile </a>
 <br>
 <h2>Account Email Addresses</h2>
 <hr>
@@ -35,11 +35,11 @@
         {% endfor %}
 
         <div class="buttonHolder">
-            <button class="secondaryAction btn btn-primary" type="submit" name="action_primary">Make Primary
+            <button class="secondaryAction c-button c-button_blue" type="submit" name="action_primary">Make Primary
             </button>
-            <button class="secondaryAction btn btn-secondary" type="submit" name="action_send">Re-send Verification
+            <button class="secondaryAction c-button c-button_midgray" type="submit" name="action_send">Re-send Verification
             </button>
-            <button class="primaryAction  btn btn-secondary" type="submit" name="action_remove">Remove
+            <button class="primaryAction c-button c-button_midgray" type="submit" name="action_remove">Remove
             </button>
         </div>
 
@@ -58,7 +58,7 @@
 <form method="post" action="{% url 'account_email' %}" class="add_email">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button name="action_add" class="btn btn-primary btn-block" type="submit">{% trans "Add E-mail" %}</button>
+    <button name="action_add" class="c-button c-button_blue btn-block submit_button" type="submit">{% trans "Add E-mail" %}</button>
 </form>
 
 {% endblock %}
