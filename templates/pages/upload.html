@@ -6,7 +6,7 @@
 <h2>Upload File for AI Prediction</h2>
 <hr>
 <div>
-    <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv" download> Download Template CSV </a><br>
+    <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv" class="c-button c-button_maroon-ghost" download> Download Template CSV </a><br>
     <p>Currently, our site can only make STAAR predictions for <b>Grade 5 Math</b> scores.<br></p>
     <p>Please strictly follow the format provided in the template, otherwise you may get inaccurate preditions or
         errors.</p>
@@ -17,7 +17,7 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form file_form %}
-    <input type="submit" class="btn btn-primary btn-block" value="Run AI Prediction">
+    <input type="submit" class="c-button c-button_blue btn-block submit_button" value="Run AI Prediction">
 </form>
 <br>
 

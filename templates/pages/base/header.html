@@ -1,21 +1,30 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bgmarron txtoswald fixed-top justify-content-between" id="mainNav">
-    <span>
-        <a class="navbar-brand mx-1" href='https://elrc.tamu.edu'>
-            <img class="logo" src="{% static 'img/elrc_dark.png' %}" alt="Education Leadership Research Center logo">
-        </a>
-        <a class="navbar-brand" href="{% url 'home' %}">District School Performance Predictor</a>
-    </span>
-
-    <span class="navbar-text d-flex justify-content-end">
-        {% if request.user.is_authenticated %}
-    <span class="navbar-text d-flex justify-content-end" style="padding-right:1.5rem">
-      Welcome, {{ request.user.username }}
-    </span>
+<header>
+<nav class="navbar navbar-expand-lg bgmaroon fixed-top txtoswald" id="mainNav" role="navigation">
+    <div class="menu-split">
+    <a class="navbar-brand mx-1" href='https://elrc.tamu.edu'>
+        <img class="logo" src="{% static 'img/elrc_dark.png' %}" alt="Education Leadership Research Center logo">
+    </a>
+    </div>
+    <div class="menu-split">
+        <a class="navbar-brand dspp-text" href="{% url 'home' %}">District School Performance Predictor</a>
+    </div>
+    
+    <span class="navbar-text d-flex justify-content-end menu-split welcome-text">
+        
+    {% if request.user.is_authenticated %}
+        <span class="navbar-text d-flex justify-content-end" style="padding-right:1.5rem">
+            Welcome, {{ request.user.username }}
+        </span>
     {% endif %}
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    </span>
 
-
-    <ul class="navbar-nav d-flex justify-content-end">
+    <div class="collapse navbar-collapse menu-split" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
             <b>
                 <a class="nav-link " href="{% url 'about' %}">About</a>
@@ -54,6 +63,7 @@
             </b>
         </li>
         {% endif %}
-    </ul>
-    </span>
-</nav>
+      </ul>
+    </div>
+  </nav>
+</header>
