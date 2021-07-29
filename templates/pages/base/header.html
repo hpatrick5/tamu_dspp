@@ -1,13 +1,14 @@
 {% load static %}
+
 <header>
 <nav class="navbar navbar-expand-lg bgmaroon fixed-top txtoswald" id="mainNav" role="navigation">
     <div class="menu-split">
-    <a class="navbar-brand mx-1" href='https://elrc.tamu.edu'>
-        <img class="logo" src="{% static 'img/elrc_dark.png' %}" alt="Education Leadership Research Center logo">
+    <a class="navbar-brand mx-1" href="{% url 'home' %}">
+        <img class="logo ml-auto" src="{% static 'img/elrc_dark.png' %}" alt="Education Leadership Research Center logo" >
     </a>
     </div>
     <div class="menu-split">
-        <a class="navbar-brand dspp-text" href="{% url 'home' %}">District School Performance Predictor</a>
+        <a class="navbar-brand dspp-text" style="color: rgb(255,255,255);letter-spacing:.25px;" href="{% url 'home' %}">District School Performance Predictor</a>
     </div>
     
     <span class="navbar-text d-flex justify-content-end menu-split welcome-text">
@@ -26,41 +27,29 @@
     <div class="collapse navbar-collapse menu-split" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <b>
-                <a class="nav-link " href="{% url 'about' %}">About</a>
-            </b>
+                <a class="nav-link " style="color: rgb(234,234,234);letter-spacing:.25px;" href="{% url 'about' %}">About</a>
         </li>
 
         {% if request.user.is_authenticated %}
         <li class="nav-item">
-            <b>
-                <a class="nav-link" href="{% url 'upload' %}">Upload</a>
-            </b>
+                <a class="nav-link" style="color: rgb(234,234,234);letter-spacing:.25px;" href="{% url 'upload' %}">Upload</a>
         </li>
 
         <li class="nav-item">
-            <b>
-                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-            </b>
+                <a class="nav-link" style="color: rgb(234,234,234);letter-spacing:.25px;" href="{% url 'profile' %}">Profile</a>
         </li>
 
         <li class="nav-item">
-            <b>
-                <a class="nav-link " href="{% url 'account_logout' %}">Logout</a>
-            </b>
+                <a class="nav-link " style="color: rgb(234,234,234);letter-spacing:.25px;" href="{% url 'account_logout' %}">Logout</a>
         </li>
         {% else %}
 
         <li class="nav-item">
-            <b>
-                <a class="nav-link " href="{% url 'account_login' %}">Login</a>
-            </b>
+                <a class="nav-link "style="color: rgb(234,234,234);letter-spacing:.25px;" href="{% url 'account_login' %}">Login</a>
         </li>
 
         <li class="nav-item">
-            <b>
-                <a class="nav-link " href="{% url 'account_signup' %}">Register</a>
-            </b>
+                <a class="nav-link "style="color: rgb(234,234,234);letter-spacing:.25px;" href="{% url 'account_signup' %}">Register</a>
         </li>
         {% endif %}
       </ul>

@@ -1,18 +1,39 @@
 {% extends "pages/base/base.html" %}
 {% block content %}
 
-<h2>District School Performance Predictor</h2>
+<style>
+
+.txtToBlack{
+    color: rgb(0,0,0);
+}
+.headingText{
+    color: rgb(80,0,0);
+    font-family: 'oswald';
+    letter-spacing:.25px !important;
+    font-weight: 400;
+}
+.linkColor{
+    color: rgb(0,100,131);
+    text-decoration: none;
+}
+
+</style>
+
+
+
+
+<h2 class= "headingText" >District School Performance Predictor</h2>
 <hr>
 <div>
-    <p class='text-muted'>
+    <p class="txtToBlack">
         In the state of Texas, testing is part of the accountability system to grade schools from A to F.
-        As part of the <a href="https://tea.texas.gov/student-assessment/"><u>State of Texas Assessments of Academic
+        As part of the <a class = "linkColor" href="https://tea.texas.gov/student-assessment/"><u>State of Texas Assessments of Academic
         Readiness (STAAR)</u></a> program, students in grades three to eight take assessments in math and reading each
         year. School principals and leadership teams have yearned for some sort of predictability program that can help
         to accurately predict a student's score on the state-wide assessment.
         <br><br>
-        <a href="https://elrc.tamu.edu/"><u>Educational Leadership Research Center (ELRC)</u></a> at
-        <a href="https://www.tamu.edu/"><u>Texas A&M University</u></a> has worked on a machine learning model which
+        <a class = "linkColor" href="https://elrc.tamu.edu/"><u>Educational Leadership Research Center (ELRC)</u></a> at
+        <a class = "linkColor" href="https://www.tamu.edu/"><u>Texas A&M University</u></a> has worked on a machine learning model which
         predicts students' performance based on their percent score in the previous year STAAR tests (if available) and
         in practice STAAR released assessments that were taken throughout the year. Using a CSV that you can upload to
         our site, our machine learning predictions will help you to predict what students will score without any
