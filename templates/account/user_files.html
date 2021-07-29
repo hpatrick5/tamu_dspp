@@ -13,18 +13,19 @@
 }
 </style>
 
-<div style="white-space: nowrap"><a style="display: inline-block" class="nav-link c-button c-button_maroon" href="{% url 'profile' %}">< Back to
-    Profile </a> | <a style="display: inline-block" class="nav-link c-button c-button_blue" href="{% url 'upload' %}">Upload More Files</a>
+<div style="white-space: nowrap"><a style="display: inline-block" class="c-button c-button_maroon" href="{% url 'profile' %}">< Back to
+    Profile </a> | <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'upload' %}">Upload More Files</a>
 </div>
 <br>
 <h2>Uploaded Files</h2>
-<table width="100%">
+<div class="tablewrap">
+<table class="table table-striped">
     <tr>
-        <th>File Name</th>
-        <th>Subject</th>
-        <th>Grade</th>
-        <th>Creation Date</th>
-        <th>Download</th>
+        <th scope="col">File Name</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Grade</th>
+        <th scope="col">Creation Date</th>
+        <th scope="col">Download</th>
         
     </tr>
     {% for x in files %}
@@ -34,23 +35,24 @@
         <td>{{ x.grade }}</td>
         <td>{{ x.creation_date }}</td>
         <td>
-            <a class = "c-button c-button_blue-ghost" href="/download/{{ x.document_id }}" download> Download File </a><br>
+            <a class = "c-button c-button_blue-ghost submit_button" href="/download/{{ x.document_id }}" download> Download File </a><br>
         </td>
     </tr>
     {% endfor %}
 </table>
+</div>
 <br>
-
+<!-- 
 <div class="container">
     <div class="row justify-content-start">
          <div class="col-sm">
-            <div style="white-space: nowrap"><a style="display: inline-block" class="nav-link c-button c-button_maroon" href="{% url 'profile' %}">< Back to Profile </a>
+            <div style="white-space: nowrap"><a style="display: inline-block" class="c-button c-button_maroon" href="{% url 'profile' %}">< Back to Profile </a>
             </div>
             </div>
         <div class="col-sm">
-            <a style="display: inline-block" class="nav-link c-button c-button_blue" href="{% url 'upload' %}">Upload More Files</a>
+            <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'upload' %}">Upload More Files</a>
         </div>
     </div>
-</div>
+</div> -->
 
 {% endblock %}
