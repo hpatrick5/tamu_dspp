@@ -25,7 +25,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = (os.getenv('DEBUG') == 'True')
 
-ALLOWED_HOSTS = ['test-sp21-606-school-district.herokuapp.com', 'sp21-606-school-district-data.herokuapp.com']
+ALLOWED_HOSTS = ['test-sp21-606-school-district.herokuapp.com', 'sp21-606-school-district-data.herokuapp.com','421cb4a099ff4c0bab21603775566469.vfs.cloud9.us-west-2.amazonaws.com' ]
 
 # Application definition
 INSTALLED_APPS = [
@@ -117,9 +117,10 @@ USE_L10N = True
 USE_TZ = True
 
 # AWS S3
-USE_S3 = os.getenv('USE_S3')
+#USE_S3 = os.getenv('USE_S3') 
+USE_S3 = 'False'
 
-if USE_S3 == "TRUE":
+if USE_S3 == "True":
     # aws settings
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
@@ -188,7 +189,7 @@ EMAIL_HOST_USER = 'tamu.dspp@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # Activate Django-Heroku.
-django_heroku.settings(locals(), test_runner=False, staticfiles=False)
+#django_heroku.settings(locals(), test_runner=False, staticfiles=False)
 
 LOGGING = {
     'version': 1,

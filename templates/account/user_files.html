@@ -7,6 +7,12 @@
 {% load static %}
 {% block content %}
 
+<style>
+    .table {
+  table-layout: fixed;
+}
+</style>
+
 <div style="white-space: nowrap"><a style="display: inline-block" class="nav-link c-button c-button_maroon" href="{% url 'profile' %}">< Back to
     Profile </a> | <a style="display: inline-block" class="nav-link c-button c-button_blue" href="{% url 'upload' %}">Upload More Files</a>
 </div>
@@ -33,5 +39,18 @@
     </tr>
     {% endfor %}
 </table>
+<br>
+
+<div class="container">
+    <div class="row justify-content-start">
+         <div class="col-sm">
+            <div style="white-space: nowrap"><a style="display: inline-block" class="nav-link c-button c-button_maroon" href="{% url 'profile' %}">< Back to Profile </a>
+            </div>
+            </div>
+        <div class="col-sm">
+            <a style="display: inline-block" class="nav-link c-button c-button_blue" href="{% url 'upload' %}">Upload More Files</a>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

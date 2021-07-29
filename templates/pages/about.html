@@ -1,18 +1,36 @@
 {% extends "pages/base/base.html" %}
 {% block content %}
+<style>
 
-<h2>About</h2>
+.txtToBlack{
+    color: rgb(0,0,0);
+}
+.headingText{
+    color: rgb(80,0,0);
+    font-family: 'oswald';
+    letter-spacing:.25px !important;
+    font-weight: 400;
+}
+.linkColor{
+    color: rgb(0,100,131);
+    text-decoration: none;
+}
+
+</style>
+
+
+<h2 class = "headingText">About</h2>
 <hr>
 <div>
     <h5>Education Leadership Research Center (ELRC) </h5>
-    <p class='text-muted'>
+    <p class='text'>
         ELRC was established by the Texas A&M University College of Education
         and Human Development to advance knowledge about effective education
         leadership by engaging in relevant, high-quality research and disseminating
         key findings on leadership practices and policies that will make a difference
         in helping American schools improve the learning experiences of children.
         <br>
-        Find more information check <a href="https://elrc.tamu.edu/"><u>ELRC's website.</u></a>
+        Find more information check <a class = "linkColor" href="https://elrc.tamu.edu/"><u>ELRC's website.</u></a>
         <br>
     </p>
     <h5>Contact Us</h5>
@@ -21,7 +39,7 @@
         427 Harrington Tower<br>
         College Station, TX<br>
         979-845-2716<br>
-        <a href="mailto: irbyb@tamu.edu"><u>irbyb@tamu.edu</u></a>
+        <a class = "linkColor" href="mailto: irbyb@tamu.edu"><u>irbyb@tamu.edu</u></a>
     </p>
 </div>
 {% endblock %}
