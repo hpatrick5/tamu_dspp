@@ -13,6 +13,10 @@ class HomePageView(TemplateView):
 
 class AboutView(TemplateView):
     template_name = "pages/about.html"
+
+class FileInformationView(TemplateView):
+    template_name = "pages/fileinformation.html"
+
     
     
 FILE_MANAGER_URL = "http://54.160.87.107:5000/doc"
