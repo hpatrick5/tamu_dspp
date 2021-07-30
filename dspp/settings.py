@@ -25,7 +25,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = (os.getenv('DEBUG') == 'True')
 
-ALLOWED_HOSTS = ['test-sp21-606-school-district.herokuapp.com', 'sp21-606-school-district-data.herokuapp.com','127.0.0.1' ]
+ALLOWED_HOSTS = ['test-sp21-606-school-district.herokuapp.com', 'sp21-606-school-district-data.herokuapp.com','127.0.0.1' , '421cb4a099ff4c0bab21603775566469.vfs.cloud9.us-west-2.amazonaws.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -116,7 +116,8 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-USE_S3 = os.getenv('USE_S3')
+#USE_S3 = os.getenv('USE_S3')
+USE_S3 = False
 
 if USE_S3 == "True":
     # aws settings

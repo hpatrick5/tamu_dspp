@@ -3,10 +3,17 @@
 {% block content %}
 
 
-<h2>Upload File for AI Prediction</h2>
+<h2>Upload an Information File for Machine Learning Prediction</h2>
 <hr>
 <div>
-    <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv" class="c-button c-button_maroon-ghost" download> Download Template CSV </a><br>
+    <p> In order to receive accurate student STAAR prediction scores it is necessary to provide an information file created by following the instructions outlined in the
+    <a class = "linkColor" href="{% url 'fileinformation' %}"><u></u>How to Create an Information File.</a> 
+    </p>
+    <p>
+    Please work through the steps outlined in the How to create an information file before uploading a file. 
+    </p>
+    
+    <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv" class="c-button c-button_maroon-ghost" download> Download Template Information File CSV </a><br>
     <p>Currently, our site can only make STAAR predictions for <b>Grade 5 Math</b> scores.<br></p>
     <p>Please strictly follow the format provided in the template, otherwise you may get inaccurate preditions or
         errors.</p>

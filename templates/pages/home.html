@@ -6,46 +6,73 @@
 .txtToBlack{
     color: rgb(0,0,0);
 }
+.headingTextWelcome{
+    text-align: center;
+    color: rgb(80,0,0);
+    font-family: 'oswald';
+    letter-spacing:.5px !important;
+    font-weight: 400;
+    font-size: 3rem;
+}
 .headingText{
     color: rgb(80,0,0);
     font-family: 'oswald';
     letter-spacing:.25px !important;
     font-weight: 400;
 }
+
 .linkColor{
     color: rgb(0,100,131);
     text-decoration: none;
 }
 
+.welcomeHeader{
+    text-align: center;
+    font-style: italic;
+    font-size: 1.75rem;
+    display: block;
+    letter-spacing: .25px;
+    text-rendering: optimizeLegibility;
+    margin-top: 0.2rem;
+    margin-bottom: 0.25rem;
+    color: #500000;
+    text-shadow: none;
+}
+ul.bulletedList {
+  list-style-type: circle;
+}
 </style>
 
 
 
-
-<h2 class= "headingText" >District School Performance Predictor</h2>
+<h2 class= "headingText welcomeHeader" >Welcome To The</h2>
+<h2 class= "headingTextWelcome" >District School Performance Predictor</h2>
 <hr>
 <div>
     <p class="txtToBlack">
-        In the state of Texas, testing is part of the accountability system to grade schools from A to F.
-        As part of the <a class = "linkColor" href="https://tea.texas.gov/student-assessment/"><u>State of Texas Assessments of Academic
-        Readiness (STAAR)</u></a> program, students in grades three to eight take assessments in math and reading each
-        year. School principals and leadership teams have yearned for some sort of predictability program that can help
-        to accurately predict a student's score on the state-wide assessment.
-        <br><br>
-        <a class = "linkColor" href="https://elrc.tamu.edu/"><u>Educational Leadership Research Center (ELRC)</u></a> at
-        <a class = "linkColor" href="https://www.tamu.edu/"><u>Texas A&M University</u></a> has worked on a machine learning model which
-        predicts students' performance based on their percent score in the previous year STAAR tests (if available) and
-        in practice STAAR released assessments that were taken throughout the year. Using a CSV that you can upload to
-        our site, our machine learning predictions will help you to predict what students will score without any
-        additional interventions. <br><br>By using this model, school leaders will save countless hours in data research and
-        can
-        instead focus on the needed interventions. We suggest that you use this model approximately seven to eight weeks
-        prior to the state-wide assessment. By doing this, you will have ample time to work with all students (those
-        close to masters, meets grade-level, approaches grade-level, or did not meet grade-level). You will also be able
-        to look at students in fourth to eighth grades to see if the students have met their growth that is needed for
-        the student progress domain. <br><br>After you upload your student information, you will receive a CSV file with a
-        predicted score in the subjects you uploaded. <br>
-    </p>
+        Created by the  <a class = "linkColor" href="https://elrc.tamu.edu/"><u>Educational Leadership Research Center (ELRC)</u></a> 
+        at <a class = "linkColor" href="https://www.tamu.edu/"><u>Texas A&M University</u></a> this 
+        software as a service provides school leaders with accurate student 
+        <a class = "linkColor" href="https://tea.texas.gov/student-assessment/"><u>STAAR assessments</u></a> score predictions in order
+        to enable school leaders to make informed decisions on where to focus school resources, determine
+        which core subject areas need improvement, and an advanced way to provide parents assurance that their children
+        are prepared for the next grade level.
+    </p>    
+    
+    <p class="txtToBlack">
+    To utilize this service start by <a class = "linkColor" href="{% url 'account_signup' %}"><u>registering</u></a> an account and then proceeding to the how to upload an information file. 
+    </p>   
+    <br>
+    <p class="txtToBlack">
+    For more information regarding this website visit the links below:
+
+    <ul class="bulletedList">
+      <li><a class = "linkColor" href="{% url 'about' %}"><u>About the District School Performance Predictor</u></a></li>
+      <li><a class = "linkColor" href="{% url 'fileinformation' %}"><u>How to Create an Information File</u></a></li>
+
+
+    </ul>
+    </p> 
 </div>
 
 
