@@ -38,7 +38,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             
             
             #ML train
-            file = get_trained_file(file,grade,subject)
+            file = get_trained_file(file,grade,subject,request.user)
 
             trained_file = {'document': file.open() }
             payload = {

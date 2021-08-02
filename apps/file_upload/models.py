@@ -2,6 +2,7 @@ import logging
 import os
 import sys
 import io
+from datetime import datetime
 
 import pandas as pd
 import pickle
@@ -13,7 +14,7 @@ from django.db import models
 logger = logging.getLogger(__name__)
 
 
-def get_trained_file(file,grade,subject):
+def get_trained_file(file,grade,subject,email):
     
     here = os.path.dirname(os.path.abspath(__file__))
     
@@ -41,9 +42,13 @@ def get_trained_file(file,grade,subject):
     s_buf = io.StringIO()
     trained_csv = math.to_csv(path_or_buf=s_buf, mode="w", header=True)
     
+    # print(email)
+    date_now = datetime.now()
+    fname = str(email) + "_" + str(date_now) + ".csv"
+
     return InMemoryUploadedFile(s_buf,
                                    'file',
-                                   'trained_csv.csv',
+                                   fname,
                                    'application/vnd.ms-excel',
                                    sys.getsizeof(trained_csv), None)
 
