@@ -5,19 +5,21 @@ import io
 
 import pandas as pd
 import pickle
+import requests
 
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
+from django.contrib import messages
+from django.http import HttpResponseRedirect, request
 
 logger = logging.getLogger(__name__)
 
 
-def get_trained_file(file, grade, subject):
+def get_trained_file(file, file_info):
     
     here = os.path.dirname(os.path.abspath(__file__))
 
-    file_info = subject.lower() + "_" + grade
     # model_file_path = ('../../ml_models/' + grade+'_'+subject.lower())
     model_file_path = '../../ml_models/model_new'
     ranges_file_path = '../../ml_models/score_ranges_2021.csv'
@@ -29,8 +31,8 @@ def get_trained_file(file, grade, subject):
     original_file = data
 
     data = data.fillna(data.mean())
-    data = pd.get_dummies(data, columns=['Ethnicity'])
 
+    data = pd.get_dummies(data, columns=['Ethnicity'])
     data = data.drop(['LocalId', 'Grade'], axis=1)
 
     prediction = model.predict(data)
