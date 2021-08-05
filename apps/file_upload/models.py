@@ -13,33 +13,31 @@ from django.db import models
 logger = logging.getLogger(__name__)
 
 
-def get_trained_file(file,grade,subject):
+def get_trained_file(file, grade, subject):
     
     here = os.path.dirname(os.path.abspath(__file__))
-    
-    model_file_path = ('../../ml_models/' + grade+'_'+subject.lower())
-    #filename = os.path.join(here, '../../ml_models/5_math')
-    
-    filename = os.path.join(here, model_file_path)
 
+    file_info = subject.lower() + "_" + grade
+    # model_file_path = ('../../ml_models/' + grade+'_'+subject.lower())
+    model_file_path = '../../ml_models/model_new'
+    filename = os.path.join(here, model_file_path)
     model = pickle.load(open(filename, "rb"))
 
-    math = pd.read_csv(file)
-    #will mean work if columns are zeros
-    math = math.fillna(math.mean())
-    math = pd.get_dummies(math, columns=['Ethnicity'])
+    data = pd.read_csv(file)
+    original_file = data
 
-    responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
-    math_analysis = math.iloc[:, 2:]
-    x_math = math_analysis.drop(responseVariable, axis=1)
+    data = data.fillna(data.mean())
+    data = pd.get_dummies(data, columns=['Ethnicity'])
 
-    prediction = model.predict(x_math)
+    data = data.drop(['LocalId', 'Grade'], axis=1)
+
+    prediction = model.predict(data)
     output = pd.DataFrame(prediction)
 
     # Adds results as a column
-    math['Results'] = output[0]
+    original_file['Predicted % Score'] = output[0]
     s_buf = io.StringIO()
-    trained_csv = math.to_csv(path_or_buf=s_buf, mode="w", header=True)
+    trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", header=True)
     
     return InMemoryUploadedFile(s_buf,
                                    'file',
