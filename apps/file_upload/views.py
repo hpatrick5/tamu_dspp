@@ -32,8 +32,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             file_type = file_type.lower()
             # ADD SIZE RESTRICTION
             if file_type != 'csv':
-                messages.warning(request, 'Oops! Something went wrong with the file upload. Please check your CSV '
-                                          'file and make sure it is in the correct format.')
+                messages.warning(request, 'Error: Please upload a CSV file.')
                 return HttpResponseRedirect('upload')
             
             
