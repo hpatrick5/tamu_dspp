@@ -11,35 +11,40 @@
     .table {
   table-layout: fixed;
 }
+
 </style>
 
-<div style="white-space: nowrap"><a style="display: inline-block" class="c-button c-button_maroon" href="{% url 'profile' %}">< Back to
-    Profile </a> | <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'upload' %}">Upload More Files</a>
+<div style="white-space: nowrap"><a style="display: inline-block" class="c-button c-button_maroon"
+                                    href="{% url 'profile' %}">< Back to
+    Profile </a> | <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'upload' %}">Upload More
+    Files</a> | <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'results_explained' %}">Results
+    Explained</a>
 </div>
 <br>
 <h2>Uploaded Files</h2>
 <div class="tablewrap">
-<table class="table table-striped">
-    <tr>
-        <th scope="col">File Name</th>
-        <th scope="col">Subject</th>
-        <th scope="col">Grade</th>
-        <th scope="col">Creation Date</th>
-        <th scope="col">Download</th>
-        
-    </tr>
-    {% for x in files %}
-    <tr>
-        <td>{{ x.original_file_name }}</td>
-        <td>{{ x.subject }}</td>
-        <td>{{ x.grade }}</td>
-        <td>{{ x.creation_date }}</td>
-        <td>
-            <a class = "c-button c-button_blue-ghost submit_button" href="/download/{{ x.document_id }}" download> Download File </a><br>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">File Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">Download</th>
+
+        </tr>
+        {% for x in files %}
+        <tr>
+            <td>{{ x.original_file_name }}</td>
+            <td>{{ x.subject }}</td>
+            <td>{{ x.grade }}</td>
+            <td>{{ x.creation_date }}</td>
+            <td>
+                <a class="c-button c-button_blue-ghost submit_button" href="/download/{{ x.document_id }}" download>
+                    Download File </a><br>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 <br>
 <!-- 
