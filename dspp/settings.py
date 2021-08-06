@@ -116,8 +116,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-#USE_S3 = os.getenv('USE_S3')
-USE_S3 = False
+USE_S3 = os.getenv('USE_S3')
 
 if USE_S3 == "True":
     # aws settings
