@@ -19,6 +19,9 @@ class FileInformationView(TemplateView):
 
 class WhyUseView(TemplateView):
     template_name = "pages/whyuse.html"
+
+class ResultsExplainedView(TemplateView):
+    template_name = "pages/results_explained.html"
     
     
 FILE_MANAGER_URL = "http://54.160.87.107:5000/doc"

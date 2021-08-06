@@ -8,7 +8,7 @@
 {% block content %}
 <a class="c-button c-button_maroon" href="{% url 'profile' %}">< Back to Profile </a>
 <br>
-<h2>Account Email Addresses</h2>
+<h2 align="center">Account Email Addresses</h2>
 <hr>
 {% if user.emailaddress_set.all %}
 <p>{% trans 'The following email addresses are associated with your account:' %}</p>
