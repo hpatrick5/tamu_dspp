@@ -23,29 +23,31 @@
 <hr>
 <div>
     <p class='text'>
-    In the state of Texas, student testing is part of the accountability system used to grade 
-    schools from A to F. The <a href="https://tea.texas.gov/student-assessment/"><u class = "linkColor">State of Texas Assessments of Academic
-        Readiness (STAAR)</u></a> program is one 
-    such suite of testing in which students from grades three to eight take assessments in math and reading each year. 
-    These assessments are based on the Texas Essential Knowledge and Skills, state curriculum standards.
+    In the state of Texas, student testing is part of an accountability system used to grade schools from A to F, 
+    and a way to generate data for educators and parents to support strong teaching. The <a href="https://tea.texas.gov/student-assessment/"><u class = "linkColor">State of Texas Assessments of Academic
+        Readiness (STAAR)</u></a> program is one such suite of student testing in which grade levels from three to twelve take
+    summative assessments each year. These summative assessments are based on the Texas Essential Knowledge and Skills, which are Texas state curriculum standards.
     </p>
 
     <p class='text'>
-    Therefore, school principals and leadership teams have yearned for a software that can predict student 
-    STAAR assessment scores in order to help determine where to best focus school resources. Predicting future 
-    student STAAR assessment scores in order to aid school principals’ and leadership teams’ decisions is the purpose of this website.
+    Therefore, school principals and leadership teams have yearned for a service that can quickly provide insight on the large data
+    sets generated through student testing. This is the purpose of the District School Performance Predictor (DSPP) website, a software as a service.
     </p>
     
     <p class='text'>
-    The <a href="https://elrc.tamu.edu/"><u class = "linkColor">Educational Leadership Research Center (ELRC)</u></a>
-    at <a href="https://www.tamu.edu/"><u class = "linkColor">Texas A&M University</u></a> has worked on a machine learning model to predict student 
-    STAAR performances using students’ prior percent scores on STAAR tests (if available), and practice STAAR released assessments 
-    taken throughout the year. By simply uploading a CSV file with the appropriate data to our site, our returned machine learning model 
-    STAAR assessment score predictions will save you countless hours in data research, analysis, and processing.  We suggest that you use this 
-    model approximately seven to eight weeks prior to the state-wide assessment.  By doing this, you will have ample time to work with all students 
-    including those close to masters, meets grade-level, approaches grade-level, or did not meet grade-level.  You will also be able to look at students 
-    in third to eighth grades to see if the students have met their growth that is needed for the student progress domain.  After you upload your student 
-    information, you will receive a CSV file with a predicted STAAR assessment score in the subjects you uploaded.
+    Built by the <a href="https://elrc.tamu.edu/"><u class = "linkColor">Educational Leadership Research Center (ELRC)</u></a> at 
+    <a href="https://www.tamu.edu/"><u class = "linkColor">Texas A&M University</u></a>, 
+    the DSPP provides users a pre-trained machine learning model that can generate student STAAR 
+    test performance predictions using prior student benchmark tests, and other student variables. 
+    Simply by uploading a CSV information file with the appropriate data, the DSPP can save users countless hours
+    in data research, analysis, and processing. A user will be able to look at students in grades third to eighth
+    to see if they have met their growth needed for the student progress domain.  Upon the upload of an information
+    file, users will be able to download a processed CSV file populated with student STAAR assessment score predictions
+    for the subject uploaded.
+    </p>
+    
+     <p class='text'>
+    It is recommended that users use the DSPP approximately seven to eight weeks prior to the state-wide assessments in order to have ample time to work with all students.  
     </p>
     
     <h5>About the Education Leadership Research Center</h5>
@@ -64,6 +66,19 @@
         979-845-2716<br>
         <a class = "linkColor" href="mailto: irbyb@tamu.edu"><u>irbyb@tamu.edu</u></a>
     </p>
+    
+    <br>
+    <p class="txtToBlack">
+    For more information regarding this website please visit the links below:
+
+    <ul class="bulletedList">
+      <li><a class = "linkColor" href="{% url 'home' %}"><u>Welcome to The District School Performance Predictor</u></a></li>
+      <li><a class = "linkColor" href="{% url 'whyuse' %}"><u>Why use the District School Performance Predictor</u></a></li>
+      <li><a class = "linkColor" href="{% url 'fileinformation' %}"><u>How to Create an Information File</u></a></li>
+      
+
+    </ul>
+    </p> 
     
 </div>
 {% endblock %}
