@@ -20,9 +20,8 @@ def get_trained_file(file, file_info):
     
     here = os.path.dirname(os.path.abspath(__file__))
 
-    # model_file_path = ('../../ml_models/' + grade+'_'+subject.lower())
     model_file_path = '../../ml_models/model_new'
-    ranges_file_path = '../../ml_models/score_ranges_2021.csv'
+    pl_ranges_file_path = '../../ml_models/performance_label_ranges_2021.csv'
 
     filename = os.path.join(here, model_file_path)
     model = pickle.load(open(filename, "rb"))
@@ -40,42 +39,43 @@ def get_trained_file(file, file_info):
 
     output[0] = round(output[0])
 
-    ranges_filename = os.path.join(here, ranges_file_path)
-    ranges = pd.read_csv(ranges_filename)
-    index_names = ranges["Grade_Subject"]
-    ranges = ranges.drop("Grade_Subject", axis=1)
-    ranges.index = index_names
+    pl_ranges_filename = os.path.join(here, pl_ranges_file_path)
+    pl_ranges_csv = pd.read_csv(pl_ranges_filename)
 
-    row = ranges.filter(like=file_info, axis=0)
-    thresholds = row.values.tolist()
+    index_names = pl_ranges_csv["Grade_Subject"]
+    pl_ranges_csv = pl_ranges_csv.drop("Grade_Subject", axis=1)
+    pl_ranges_csv.index = index_names
 
-    distance_to_next_threshold = []
-    distance_to_previous_threshold = []
+    pl_range_select = pl_ranges_csv.filter(like=file_info, axis=0)
+    pl_thresholds = pl_range_select.values.tolist()
 
-    mastery_ranges = []
-    for x in output[0]:
-        if x > thresholds[0][2]:
-            mastery_ranges.append("Masters")
-            distance_to_next_threshold.append(0)
-            distance_to_previous_threshold.append(abs(x - thresholds[0][2]))
-        elif thresholds[0][1] < x <= thresholds[0][2]:
-            mastery_ranges.append("Meets")
-            distance_to_next_threshold.append(abs(x - thresholds[0][2]))
-            distance_to_previous_threshold.append(abs(x - thresholds[0][1]))
-        elif thresholds[0][0] < x <= thresholds[0][1]:
-            mastery_ranges.append("Approaches")
-            distance_to_next_threshold.append(abs(x - thresholds[0][1]))
-            distance_to_previous_threshold.append(abs(x - thresholds[0][0]))
+    percent_to_next_pl = []
+    percent_to_previous_pl = []
+
+    performance_labels = []
+    for score in output[0]:
+        if score > pl_thresholds[0][2]:
+            performance_labels.append("Masters")
+            percent_to_next_pl.append(0)
+            percent_to_previous_pl.append(abs(score - pl_thresholds[0][2]))
+        elif pl_thresholds[0][1] < score <= pl_thresholds[0][2]:
+            performance_labels.append("Meets")
+            percent_to_next_pl.append(abs(score - pl_thresholds[0][2]))
+            percent_to_previous_pl.append(abs(score - pl_thresholds[0][1]))
+        elif pl_thresholds[0][0] < score <= pl_thresholds[0][1]:
+            performance_labels.append("Approaches")
+            percent_to_next_pl.append(abs(score - pl_thresholds[0][1]))
+            percent_to_previous_pl.append(abs(score - pl_thresholds[0][0]))
         else:
-            mastery_ranges.append("Did Not Meet")
-            distance_to_next_threshold.append(abs(x - thresholds[0][0]))
-            distance_to_previous_threshold.append(0)
+            performance_labels.append("Did Not Meet")
+            percent_to_next_pl.append(abs(score - pl_thresholds[0][0]))
+            percent_to_previous_pl.append(0)
 
     # Adds results as a column
     original_file['Predicted % Score'] = output[0]
-    original_file['Predicted Mastery Range'] = mastery_ranges
-    original_file['% to Next Mastery Range'] = distance_to_next_threshold
-    original_file['% to Previous Mastery Range'] = distance_to_previous_threshold
+    original_file['Predicted PL'] = performance_labels
+    original_file['% to Next PL'] = percent_to_next_pl
+    original_file['% to Previous PL'] = percent_to_previous_pl
 
     s_buf = io.StringIO()
     trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", header=True)
