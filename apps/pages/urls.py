@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^about$', views.AboutView.as_view(), name="about"),
     url(r'^fileinformation$', views.FileInformationView.as_view(), name="fileinformation"),
     url(r'^download/(?P<path>.*)$', views.TestProxyView.as_view()),
+    url(r'^whyuse', views.WhyUseView.as_view(), name="whyuse"),
 ]
