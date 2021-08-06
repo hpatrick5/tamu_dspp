@@ -38,31 +38,29 @@
     color: #500000;
     text-shadow: none;
 }
-ul.bulletedList {
-  list-style-type: circle;
-}
 
 </style>
 
 
 <h2 class="headingText welcomeHeader">Welcome To The</h2>
 <h2 class="headingTextWelcome">District School Performance Predictor</h2>
+<h5 class="headingText" align="center">DSPP</h5>
 <hr>
 <div>
     <p class="txtToBlack">
-        Created by the <a class="linkColor" href="https://elrc.tamu.edu/"><u>Educational Leadership Research Center
-        (ELRC)</u></a>
-        at <a class="linkColor" href="https://www.tamu.edu/"><u>Texas A&M University</u></a>,
+        Created by the <a href="https://elrc.tamu.edu/">Educational Leadership Research Center
+        (ELRC)</a>
+        at <a href="https://www.tamu.edu/">Texas A&M University</a>,
         this software as a service computes student
 
-        <a class="linkColor" href="https://tea.texas.gov/student-assessment/"><u>STAAR test</u></a>
+        <a href="https://tea.texas.gov/student-assessment/">STAAR test</a>
         scores that enables users to make informed decisions during the critical time periods between
         final benchmark tests and official STAAR tests.
     </p>
 
     <p class="txtToBlack">
-        With the predictions computed by the District School Performance Predictor machine learning model,
-        user’s can determine which core subject areas their school needs improvement in, specific students that need
+        With the predictions computed by the District School Performance Predictor (DSPP) machine learning model,
+        users can determine which core subject areas their school needs improvement in, specific students that need
         help,
         an estimate on how far a student is to the next Texas Education Agency (TEA) performance categorization, and can
         provide an
@@ -71,24 +69,19 @@ ul.bulletedList {
 
 
     <p class="txtToBlack">
-        To utilize this service start by <a class="linkColor" href="{% url 'account_signup' %}"><u>registering</u></a>
+        To utilize this service start by <a href="{% url 'account_signup' %}">registering</a>
         an account and then proceed to the
-        <a class="linkColor" href="{% url 'fileinformation' %}"><u>How to Create an Information File</u></a>.
+        <a href="{% url 'fileinformation' %}">How to Create an Information File</a>.
     </p>
     <br>
-    <p class="txtToBlack">
-        For more information regarding this website please visit the links below:
+    <p class="txtToBlack" align="center">For more information regarding this website, please visit the links below.</p>
+    <div class="list-group" align="center">
+        <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'about' %}">About the DSPP</a>
+        <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'whyuse' %}">Why use the DSPP?</a>
+        <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'fileinformation' %}">How to Create an Information File</a>
+        <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'results_explained' %}">Explaining the Results of the DSPP</a>
+    </div>
 
-    <ul class="bulletedList">
-        <li><a class="linkColor" href="{% url 'about' %}"><u>About the District School Performance Predictor</u></a>
-        </li>
-        <li><a class="linkColor" href="{% url 'whyuse' %}"><u>Why use the District School Performance Predictor</u></a>
-        </li>
-        <li><a class="linkColor" href="{% url 'fileinformation' %}"><u>How to Create an Information File</u></a></li>
-        <li><a class="linkColor" href="{% url 'results_explained' %}"><u>Explaining the Results of the District School
-            Performance Predictor</u></a></li>
-    </ul>
-    </p>
 </div>
 
 

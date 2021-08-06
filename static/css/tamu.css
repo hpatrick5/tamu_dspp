@@ -735,11 +735,9 @@ h6 {
 }
 
 .c-button_maroon-slide-button {
-  display: block;
   color: #500000;
-  border: 3px solid #500000;
+  border: 2px solid #500000;
   line-height: 2;
-  max-width: 450px;
   background-size: 100% 200%;
   background-image: linear-gradient(180deg, transparent 50%, #500000 0);
   transition: background-position 0.5s ease, color 0.5s ease;
@@ -749,7 +747,7 @@ h6 {
 .c-button_maroon-slide-button:hover {
   color: #ffffff;
   background-position: 0 100%;
-  transition: background-position 0.5s ease, color 0.5s ease;
+  transition: background-position 0.6s ease, color 0.6s ease;
 }
 
 .c-button_blue-slide-button {
@@ -757,7 +755,6 @@ h6 {
   color: #004362;
   border: 3px solid #004362;
   line-height: 2;
-  max-width: 450px;
   background-size: 100% 200%;
   background-image: linear-gradient(180deg, transparent 50%, #004362 0);
   transition: background-position 0.5s ease, color 0.5s ease;
@@ -818,4 +815,12 @@ h6 {
 .c-button_white-ghost-reverse:hover {
   background-color: transparent;
   color: #ffffff;
+}
+
+p a {
+  color:#004362;
+  font-weight:bold;
+  text-decoration: none;
+  border-bottom: 1px dotted #004362;
+          transition: 0.5s ease;
 }
