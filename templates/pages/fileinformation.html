@@ -15,133 +15,271 @@ ul.bulletdList {
 ul.indentedList{
   margin-left: +15px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 
 
-<h2 class="headingText" align="center">How to Create an Information File</h2>
+<h2 class="headingText" align="center">How to Upload Student STAAR Score Data</h2>
 <hr>
 
-<div class = txtToBlack>
+<div class=txtToBlack>
     <p class='text'>
-    The following instructions are for the appropriate
-    assembly of data in a comma-separated values file, or CSV file,
-    in order to receive accurate student STAAR prediction scores.
+        The following instructions are for the appropriate assembly of student information in a comma-separated values
+        (CSV) file, termed the "information file".
     </p>
 
     <p class='text'>
-    Simply put, the machine learning models receive data from the information
-    file and after analysis and computation append new computed predictions to the end of the file.
-    </p>
-    
-    <p class='text'>
-     Therefore, in order for the machine learning models to provide the most accurate predictions
-     it is necessary to provide all requested information in the correct order and format.
-    </p>
-    
-    <p class='text'>
-    It is recommended that the following template information file CSV be used for easier assembly of the
-    information file, and to ensure inputted information is accurate.
-    </p>
-    
-    <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv" class="c-button c-button_maroon-ghost" download> Download Template Information File CSV </a><br>
-    <br>
-    <h5>Step 1</h5>
-    <p class='text'>
-        As seen in the column headers ‘A’ to ‘F’ of the information file CSV template, the following student data is required for each student:
-    </p>
-    
-    <ul class="bulletedList">
-      <li>Local Id</li>
-      <ul class="bulletedList">
-        <li>No space characters can be utilized in this column</li>
-      </ul>
-      <li>Grade</li>
-      <ul class="bulletedList">
-        <li>Please convey by the grade number rather name</li>
-      </ul>
-      <li>Ethnicity</li>
-      <ul class="bulletedList">
-         <li>Use the following abbreviations to convey students’ ethnicities</li>
-              <ul class="bulletedList">
-                <li>‘H’ for Hispanic and or Latin Origin</li>
-                <li>‘W’ for White and or European</li>
-                <li>‘B’ for African American</li>
-              </ul>
-        </ul>
-      <li>ECD (Early Childhood Development)</li>
-      <ul class="bulletedList">
-        <li>Please use ‘1’s and ’0’s for ‘yes’ and ‘no’</li>
-      </ul>
-      <li>LEP (Limited English Proficiency)</li>      
-      <ul class="bulletedList">
-        <li>Please use ‘1’s and ’0’s for ‘yes’ and ‘no’</li>
-      </ul>
-      <li>SpEd (Special Education)</li>
-      <ul class="bulletedList">
-        <li>Please use ‘1’s and ’0’s for ‘yes’ and ‘no’</li>
-      </ul>
-    </ul>
-    <br>
-    <p class='text'>
-        Note, each student should be in a unique row with each student’s information parameter
-        in a unique column in said row. Details on how to convey each information parameter can be seen in the table above.
+        The DSPP machine learning model uses the data within the uploaded information file to compute predictions and
+        append them to the end of the file once complete. For the machine learning model to provide the most accurate
+        predictions, it is necessary to use the provided template CSV as a guide to input your data.
     </p>
 
-    <h5>Step 2</h5>
-    
-    <p>
-       As can be seen in the template column headers ‘G’ through ‘L’ should be populated with student STAAR test scores.
-       These test scores columns can be populated with prior STAAR scores for a student and or benchmark test given by the school district. 
-       At this time, it is necessary that each uploaded information file contain scores ONLY from the same core subject area and grade cohort.
-    
-       The STAAR test score data itself should be conveyed as the percent number out of one hundred, excluding any percent signs or decimals. 
-       The following are the column header names within the information file CSV template:
-    </p>
-    
-    <ul class="bulletedList">
-      <li>Fall 2017 Math BM MA.04.005.E PcntScore 12/13/2017</li>
-      <ul class="bulletedList">
-        <li>Conveyed as the percent number out of one hundred, excluding any percent signs or decimals</li>
-      </ul>
-      <li>Spring 2018 Released STAAR BM  3/29/2018</li>
-      <ul class="bulletedList">
-        <li>Conveyed as the percent number out of one hundred, excluding any percent signs or decimals</li>
-      </ul>
-      
-      <li>Spring 2018 STAAR MA04 PcntScore 5/2018</li>
-      <ul class="bulletedList">
-        <li>Conveyed as the percent number out of one hundred, excluding any percent signs or decimals</li>
-      </ul>
-      
-      <li>Fall 2018 Math BM MA.05.018.E PcntScore 12/21/2018</li>
-      <ul class="bulletedList">
-        <li>Conveyed as the percent number out of one hundred, excluding any percent signs or decimals</li>
-      </ul>
-      
-      <li>Spring 2019 Released STAAR BM  2/11/2019</li>      
-     <ul class="bulletedList">
-        <li>Conveyed as the percent number out of one hundred, excluding any percent signs or decimals</li>
-      </ul>
-      
-      <li>Spring 2019 STAAR MA05 PcntScore 5/2019 or 6/2019</li>
-        <ul class="bulletedList">
-        <li>Conveyed as the percent number out of one hundred, excluding any percent signs or decimals</li>
-      </ul>
-    </ul>
+    <div align="center">
+        <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv"
+           class="c-button c-button_maroon-ghost" download> Download Information File Template CSV</a>
+    </div>
     <br>
-    <h5>Step 3</h5>
-    
-    <p>
-    Finally, save the populated file as a csv. Note, any file name can be used.
+
+
+    <h5 class="headingText" align="center">General Information</h5>
+    <hr>
+    <p class='text'>
+    <ul>
+        <li>
+            Each row in the CSV file represents a student, with each of their information parameters in a unique column
+            in that row.
+        </li>
+        <li>
+            Your CSV information file should only contain information from one STAAR subject test area over one grade.
+            For example, an information file can include third-grade students' information and their math benchmark test
+            scores from the same academic year. An information file should NOT include varying subject areas and or
+            grade levels.
+        </li>
+        <li>
+            Please avoid leaving any blanks in the CSV file. Doing so will yield an inaccurate result for that student.
+        </li>
+    </ul>
     </p>
-    <p>
-    Upon the completion of step three an information file has now been created that will 
-    result in  accurate student STAAR score predictions. To receive these predictions please 
-    upload the file on the District School Performance Predictor File Upload Page using an email-verified account.
+
+    <br>
+
+    <h5 class="headingText" align="center">Step 1</h5>
+    <hr>
+    <p class='text'>
+        As seen in the column headers 'A' to 'F' of the information file CSV template, the following data is required
+        for each student. Details on how to convey each information parameter can be seen in the table below.
     </p>
-    
-    <a class = "linkColor fileUploadLink" href="{% url 'upload' %}"><u>Upload an Information File for Machine Learning Prediction</u></a>
-    
+
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Header</th>
+            <th scope="col">Name</th>
+            <th scope="col">Values</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>A</td>
+            <td>LocalId</td>
+            <td>
+                <ul>
+                    <li>
+                        A number to identify a student.
+                    </li>
+                    <li>
+                        For example, this can be a student's school ID number.
+                    </li>
+                    <li>
+                        Do not include actual student names.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>B</td>
+            <td>Grade</td>
+            <td>
+                <ul>
+                    <li>
+                        A number corresponding to the student's grade.
+                    </li>
+                    <li>
+                        For example, if the student is in third grade, put 3.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>C</td>
+            <td>Ethnicity</td>
+            <td>
+                <ul>
+                    <li>
+                        AM - American Indian or Alaska Native
+                    </li>
+                    <li>
+                        A - Asian
+                    </li>
+                    <li>
+                        B - Black or African American
+                    </li>
+                    <li>
+                        H - Hispanic or Latino or Spanish Origin
+                    </li>
+                    <li>
+                        P - Native Hawaiian or Other Pacific Islander
+                    </li>
+                    <li>
+                        W - White
+                    </li>
+                    <li>
+                        T - Two or more ethnicities
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>D</td>
+            <td>ECD</td>
+            <td><i>Early Childhood Development</i>
+                <ul>
+                    <li>
+                        1 - Yes
+                    </li>
+                    <li>
+                        0 - No
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>E</td>
+            <td>LEP</td>
+            <td><i>Limited English Proficiency</i>
+                <ul>
+                    <li>
+                        1 - Yes
+                    </li>
+                    <li>
+                        0 - No
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>F</td>
+            <td>SpEd</td>
+            <td><i>Special Education</i>
+                <ul>
+                    <li>
+                        1 - Yes
+                    </li>
+                    <li>
+                        0 - No
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <h5 class="headingText" align="center">Step 2</h5>
+    <hr>
+    <p class='text'>
+        Headers 'G' and 'H' should be populated with student test scores. These scores can be from previous STAAR tests,
+        school district benchmark tests, or a combination thereof. Details on how to convey each test score can be seen
+        in the table below.
+    </p>
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Header</th>
+            <th scope="col">Name</th>
+            <th scope="col">Values</th>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>G</td>
+            <td>BM 1</td>
+            <td><i>Benchmark 1</i>
+                <ul>
+                    <li>
+                        Enter the second most recent STAAR or benchmark test score for the corresponding subject.
+                    </li>
+                    <li>
+                        This number should be a percentage. For example, if a student got 18 out of 36 questions
+                        correct, enter 50. Do not include the percent sign.
+                    </li>
+                    <li>
+                        This number can be a decimal.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>H</td>
+            <td>BM 2</td>
+            <td><i>Benchmark 2</i>
+                <ul>
+                    <li>
+                        Enter the most recent STAAR or benchmark test score for the corresponding subject.
+                    </li>
+                    <li>
+                        This number should be a percentage. For example, if a student got 18 out of 36 questions
+                        correct, enter 50. Do not include the percent sign.
+                    </li>
+                    <li>
+                        This number can be a decimal.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <div align="center">
+        <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/example_csv.csv"
+           class="c-button c-button_maroon-ghost" download> Download Completed Example Information File CSV</a>
+    </div>
+    <br>
+
+    <h5 class="headingText" align="center">Step 3</h5>
+    <hr>
+    <p class="text">
+        Save the populated information file as a CSV. It can have any name.
+        <br>
+        Please note: Saving files in this format will delete any additional formatting, including other pages or tabs
+        within the same spreadsheet. Copy and paste the data into a new, separate document if the file formatting and
+        other pages or tabs are critical.
+    </p>
+    <br>
+
+    <h5 class="headingText" align="center">Step 4</h5>
+    <hr>
+    <p class="text">
+        Proceed to upload the CSV file on the "Upload an Information File for Machine Learning Prediction" page.
+    </p>
+    <div align="center">
+        <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'user_files' %}">> Upload an Information File for Machine Learning
+        Prediction</a>
+    </div>
 </div>
 
 {% endblock %}
