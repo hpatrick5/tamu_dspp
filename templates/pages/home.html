@@ -1,53 +1,17 @@
 {% extends "pages/base/base.html" %}
+
+{% block head_title %}DSPP{% endblock %}
+
 {% block content %}
 
-<style>
-
-.txtToBlack{
-    color: rgb(0,0,0);
-}
-.headingTextWelcome{
-    text-align: center;
-    color: rgb(80,0,0);
-    font-family: 'oswald';
-    letter-spacing:.5px !important;
-    font-weight: 400;
-    font-size: 3rem;
-}
-.headingText{
-    color: rgb(80,0,0);
-    font-family: 'oswald';
-    letter-spacing:.25px !important;
-    font-weight: 400;
-}
-
-.linkColor{
-    color: rgb(0,100,131);
-    text-decoration: none;
-}
-
-.welcomeHeader{
-    text-align: center;
-    font-style: italic;
-    font-size: 1.75rem;
-    display: block;
-    letter-spacing: .25px;
-    text-rendering: optimizeLegibility;
-    margin-top: 0.2rem;
-    margin-bottom: 0.25rem;
-    color: #500000;
-    text-shadow: none;
-}
-
-</style>
-
-
-<h2 class="headingText welcomeHeader">Welcome To The</h2>
-<h2 class="headingTextWelcome">District School Performance Predictor</h2>
-<h5 class="headingText" align="center">DSPP</h5>
-<hr>
+<div class="headingText txtoswald">
+    <h2 class="welcomeHeader">Welcome To The</h2>
+    <h2 class="headingTextWelcome">District School Performance Predictor</h2>
+    <h5>DSPP</h5>
+    <hr>
+</div>
 <div>
-    <p class="txtToBlack">
+    <p>
         Created by the <a href="https://elrc.tamu.edu/">Educational Leadership Research Center
         (ELRC)</a>
         at <a href="https://www.tamu.edu/">Texas A&M University</a>,
@@ -57,8 +21,7 @@
         scores that enables users to make informed decisions during the critical time periods between
         final benchmark tests and official STAAR tests.
     </p>
-
-    <p class="txtToBlack">
+    <p>
         With the predictions computed by the District School Performance Predictor (DSPP) machine learning model,
         users can determine which core subject areas their school needs improvement in, specific students that need
         help,
@@ -66,23 +29,19 @@
         provide an
         advanced way to numerically assure parents their children are being prepared for their next grade level.
     </p>
-
-
-    <p class="txtToBlack">
+    <p>
         To utilize this service start by <a href="{% url 'account_signup' %}">registering</a>
         an account and then proceed to the
         <a href="{% url 'fileinformation' %}">How to Create an Information File</a>.
     </p>
     <br>
-    <p class="txtToBlack" align="center">For more information regarding this website, please visit the links below.</p>
+    <p align="center">For more information regarding this website, please visit the links below.</p>
     <div class="list-group" align="center">
         <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'about' %}">About the DSPP</a>
         <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'whyuse' %}">Why use the DSPP?</a>
         <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'fileinformation' %}">How to Create an Information File</a>
         <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'results_explained' %}">Explaining the Results of the DSPP</a>
     </div>
-
 </div>
-
 
 {% endblock %}

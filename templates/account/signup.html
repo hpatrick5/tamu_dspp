@@ -4,37 +4,17 @@
 
 {% block head_title %}{% trans "Register" %}{% endblock %}
 
-
 {% block content %}
-<style>
-
-.txtToBlack{
-    color: rgb(0,0,0);
-}
-.headingText{
-    color: rgb(80,0,0);
-    font-family: 'oswald';
-    letter-spacing:.25px !important;
-    font-weight: 400;
-}
-.linkColor{
-    color: rgb(0,100,131);
-    text-decoration: none;
-}
-
-</style>
-
-<h2 class = "headingText" align="center">Register</h2>
+<h2 class="headingText">Register</h2>
 <hr>
-<form class="signup" id="signup_form"  style="cursor: #FFFFFF;" method="post" action="{% url 'account_signup' %}">
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
     {% endif %}
-    <button type="submit" class="c-button c-button_blue btn-block submit_button">{% trans "Register" %} &raquo;</button>
+    <button type="submit" class="c-button c-button_blue btn-block submit_button">{% trans "Register" %}</button>
 </form>
 <br>
-<p align="center">{% blocktrans %}Already have an account? Then please <a class = "linkColor" href="{{ login_url }}">log in</a>.
-    {% endblocktrans %}</p>
+<p align="center">Already have an account? Then please <a href="{{ login_url }}">log in</a>.</p>
 {% endblock %}
