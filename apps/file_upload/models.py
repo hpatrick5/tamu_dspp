@@ -78,7 +78,7 @@ def get_trained_file(file, file_info):
     original_file['% to Previous PL'] = percent_to_previous_pl
 
     s_buf = io.StringIO()
-    trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", header=True)
+    trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", header=True, index=False)
     
     return InMemoryUploadedFile(s_buf,
                                    'file',
