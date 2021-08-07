@@ -7,16 +7,17 @@
 {% load static %}
 {% block content %}
 
-<h2 align="center">Profile</h2>
+<h2 class="headingText" align="center">Profile</h2>
 <hr>
 {% user_display user as name %}
-<h5 align="center">Hello, {{name}}</h5>
+<h5 class="headingText" align="center">Hello, {{name}}</h5>
+<br>
 <div align="center">
-    <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'user_files' %}">View Uploaded
+    <a style="display: inline-block" class="c-button c-button_blue submit_button" href="{% url 'user_files' %}">View Uploaded
         Files</a>
-    <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'account_email' %}">Manage Account
+    <a style="display: inline-block" class="c-button c-button_blue submit_button" href="{% url 'account_email' %}">Manage Account
         Email Addresses</a>
-    <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'account_change_password' %}">Change
+    <a style="display: inline-block" class="c-button c-button_blue submit_button" href="{% url 'account_change_password' %}">Change
         Account Password</a>
 </div>
 {% endblock %}
