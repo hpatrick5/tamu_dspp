@@ -622,9 +622,7 @@ h6 {
 .c-button {
 	display: inline-block;
 	margin: 0;
-	/* padding-top: 1rem; */
 	padding-right: 1.875rem;
-	/* padding-bottom: 1rem; */
 	padding-left: 1.875rem;
 	transition: 0.3s ease-in-out;
 	border-width: 3px;
@@ -635,7 +633,6 @@ h6 {
 	text-decoration: none;
 	cursor: pointer;
 	margin: 1rem;
-	/* presentation purposes only */
 }
 
 .c-button_lightgray {
@@ -1031,9 +1028,6 @@ a.article-title:hover {
 	line-height: 24px;
 	color: #737373;
 	position: relative;
-}
-
-.site-footer {
 	bottom: 0;
 }
 
@@ -1069,8 +1063,7 @@ a.article-title:hover {
 	color: rgb(255, 255, 255);
 }
 
-html,
-body {
+html {
 	height: 100%;
 }
 
@@ -1083,7 +1076,7 @@ body {
 }
 
 .table {
-	table-layout: auto !important;
+	table-layout: fixed;
 }
 
 .bgmaroon {
@@ -1097,9 +1090,11 @@ body {
 body {
 	background: url('../img/bg.jpg') no-repeat center center fixed;
 	-webkit-background-size: cover;
+	height: 100%;
 }
 
 .headingText {
+    text-align: center;
 	color: #500000;
 	letter-spacing: .25px !important;
 	font-weight: 300;
@@ -1117,4 +1112,8 @@ body {
 	text-rendering: optimizeLegibility;
 	margin-top: 0.2rem;
 	margin-bottom: 0.25rem;
+}
+
+.inline_block {
+    display: inline-block;
 }

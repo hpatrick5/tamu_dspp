@@ -1,7 +1,7 @@
 {% extends "pages/base/base.html" %}
 {% block content %}
 
-<div align="center" class="headingText txtoswald">
+<div class="headingText txtoswald">
     <h2 class="welcomeHeader">Welcome To The</h2>
     <h2 class="headingTextWelcome">District School Performance Predictor</h2>
     <h5>DSPP</h5>
@@ -18,7 +18,6 @@
         scores that enables users to make informed decisions during the critical time periods between
         final benchmark tests and official STAAR tests.
     </p>
-
     <p>
         With the predictions computed by the District School Performance Predictor (DSPP) machine learning model,
         users can determine which core subject areas their school needs improvement in, specific students that need
@@ -27,8 +26,6 @@
         provide an
         advanced way to numerically assure parents their children are being prepared for their next grade level.
     </p>
-
-
     <p>
         To utilize this service start by <a href="{% url 'account_signup' %}">registering</a>
         an account and then proceed to the
@@ -42,8 +39,6 @@
         <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'fileinformation' %}">How to Create an Information File</a>
         <a class="list-group-item list-group-item-action c-button_blue-slide-button" href="{% url 'results_explained' %}">Explaining the Results of the DSPP</a>
     </div>
-
 </div>
-
 
 {% endblock %}

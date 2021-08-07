@@ -7,21 +7,13 @@
 {% load static %}
 {% block content %}
 
-<style>
-    .table {
-  table-layout: fixed;
-}
-
-</style>
-
-<div style="white-space: nowrap"><a style="display: inline-block" class="c-button c-button_maroon"
-                                    href="{% url 'profile' %}">< Back to
-    Profile </a> | <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'upload' %}">Upload More
-    Files</a> | <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'results_explained' %}">Results
-    Explained</a>
+<div style="white-space: nowrap">
+    <a class="c-button c-button_maroon inline_block" href="{% url 'profile' %}">< Back to Profile</a> |
+    <a class="c-button c-button_blue inline_block" href="{% url 'upload' %}">Upload More Files</a> |
+    <a class="c-button c-button_blue inline_block" href="{% url 'results_explained' %}">Results Explained</a>
 </div>
 <br>
-<h2 class="headingText" align="center">Uploaded Files</h2>
+<h2 class="headingText">Uploaded Files</h2>
 <div class="tablewrap">
     <table class="table table-striped">
         <tr>
@@ -30,7 +22,6 @@
             <th scope="col">Grade</th>
             <th scope="col">Creation Date</th>
             <th scope="col">Download</th>
-
         </tr>
         {% for x in files %}
         <tr>
@@ -39,25 +30,12 @@
             <td>{{ x.grade }}</td>
             <td>{{ x.creation_date }}</td>
             <td>
-                <a class="c-button c-button_success submit_button" href="/download/{{ x.document_id }}" download>
-                    Download File </a><br>
+                <a class="c-button c-button_success submit_button" href="/download/{{ x.document_id }}" download>Download
+                    File</a><br>
             </td>
         </tr>
         {% endfor %}
     </table>
 </div>
-<br>
-<!-- 
-<div class="container">
-    <div class="row justify-content-start">
-         <div class="col-sm">
-            <div style="white-space: nowrap"><a style="display: inline-block" class="c-button c-button_maroon" href="{% url 'profile' %}">< Back to Profile </a>
-            </div>
-            </div>
-        <div class="col-sm">
-            <a style="display: inline-block" class="c-button c-button_blue" href="{% url 'upload' %}">Upload More Files</a>
-        </div>
-    </div>
-</div> -->
 
 {% endblock %}
