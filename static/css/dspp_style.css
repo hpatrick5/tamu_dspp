@@ -835,3 +835,294 @@ p a {
   background-color: #3ed488;
   color: #000000;
 }
+
+.card{
+    background: white;
+}
+
+body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+ul {
+  margin: 0;
+}
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.navbar-brand, .navbar-brand:hover, .navbar-text {
+  color: #cbd5db;
+}
+
+.nav-link {
+    color: rgb(234,234,234);
+    letter-spacing: .25px;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  caret-color: #000000;
+  color: #000000;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.navbar {
+    /*background-color: #F6F5D7;*/
+    margin: 0%;
+    padding: 0%;/*padding: 0%;*/
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.logo {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 100px;
+    margin-right: 0px;
+    width: 250px;
+}
+
+.navbar-expand-lg .navbar-nav {
+  width: 250px;
+}
+
+.navbar-brand{
+  margin: 0 12%;
+}
+
+.container-header{
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item{
+  margin: 0 2%;
+}
+
+@media screen and (min-width: 800px) {
+  .menu-split{
+    width: 25%;
+  }
+  .dspp-text{
+    margin: 0 57%;
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .nav-item, .welcome-text{
+    margin: 0 10%;
+  }
+  .content-section{
+    margin-top: 23%;
+  }
+  .menu-split{
+    width: 100%;
+  }
+  .navbar-brand{
+    margin: 0 27%;
+  }
+  .logo{
+    margin: 0 97%;
+  }
+}
+
+.submit_button{
+  margin: 0 !important;
+}
+
+/* .small_button{
+
+} */
+
+.site-footer
+{
+  background-color:rgb(80,0,0);
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+  position: relative;
+}
+.site-footer {
+    bottom: 0;
+}
+
+.site-footer h6
+{
+  color: rgb(255,255,255);
+  font-family: 'Oswald', sans-serif;
+  font-size:25px;
+  margin-top:5px;
+  letter-spacing:.25px
+}
+
+.site-footer a
+{
+  color: rgb(255,255,255);
+}
+.site-footer a:hover
+{
+    color: rgb(234,234,234);
+  background-color: rgb(60,0,0);
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer p
+{
+  color: rgb(255,255,255);
+}
+
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 90%;
+}
+.tablewrap{
+  overflow-x: auto;
+}
+.table {
+  table-layout: auto !important;
+}
+
+.bgmaroon{
+    background:rgb(80,0,0);
+  }
+  .txtoswald{
+    font-family: 'Oswald', sans-serif;
+  }
+  h2 {
+    color: rgb(80,0,0);
+    font-family: 'oswald';
+    letter-spacing:.25px !important;
+    font-weight: 400;
+    }
+
+    .txtToBlack{
+        color: rgb(0,0,0);
+    }
+    .headingText{
+        color: rgb(80,0,0);
+        font-family: 'oswald';
+        letter-spacing:.25px !important;
+        font-weight: 400;
+    }
+    .linkColor{
+        color: rgb(0,100,131);
+        text-decoration: none;
+    }
+
+body {
+     background: url('../img/bg.jpg') no-repeat center center fixed;
+     -webkit-background-size: cover;
+}
+
+.txtToBlack{
+    color: rgb(0,0,0);
+}
+.headingTextWelcome{
+    text-align: center;
+    color: rgb(80,0,0);
+    font-family: 'oswald';
+    letter-spacing:.5px !important;
+    font-weight: 400;
+    font-size: 3rem;
+}
+.headingText{
+    color: rgb(80,0,0);
+    font-family: 'oswald';
+    letter-spacing:.25px !important;
+    font-weight: 400;
+}
+
+.linkColor{
+    color: rgb(0,100,131);
+    text-decoration: none;
+}
+
+.welcomeHeader{
+    text-align: center;
+    font-style: italic;
+    font-size: 1.75rem;
+    display: block;
+    letter-spacing: .25px;
+    text-rendering: optimizeLegibility;
+    margin-top: 0.2rem;
+    margin-bottom: 0.25rem;
+    color: #500000;
+    text-shadow: none;
+}

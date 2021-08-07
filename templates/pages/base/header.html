@@ -1,6 +1,5 @@
 {% load static %}
 
-<header>
     <nav class="navbar navbar-expand-lg bgmaroon fixed-top txtoswald" id="mainNav" role="navigation">
         <div class="menu-split">
             <a class="navbar-brand mx-1" href="{% url 'home' %}">
@@ -14,12 +13,7 @@
         </div>
 
         <span class="navbar-text d-flex justify-content-end menu-split welcome-text">
-        
-    {% if request.user.is_authenticated %}
-        <span class="navbar-text d-flex justify-content-end" style="padding-right:1.5rem">
-            Welcome, {{ request.user.username }}
-        </span>
-    {% endif %}
+
     <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +24,7 @@
         <div class="collapse navbar-collapse menu-split" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link " style="color: rgb(234,234,234);letter-spacing:.25px;" href="{% url 'about' %}">About</a>
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -48,23 +42,20 @@
 
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(234,234,234);letter-spacing:.25px;" href="{% url 'upload' %}">Upload</a>
+                    <a class="nav-link" href="{% url 'upload' %}">Upload</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(234,234,234);letter-spacing:.25px;"
-                       href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " style="color: rgb(234,234,234);letter-spacing:.25px;"
-                       href="{% url 'account_logout' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                 </li>
                 {% else %}
 
                 <li class="nav-item">
-                    <a class="nav-link " style="color: rgb(234,234,234);letter-spacing:.25px;"
-                       href="{% url 'account_login' %}">Login</a>
+                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                 </li>
 
                 <li class="nav-item">
@@ -75,4 +66,3 @@
             </ul>
         </div>
     </nav>
-</header>
