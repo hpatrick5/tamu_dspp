@@ -699,6 +699,7 @@ h6 {
 .c-button_blue:hover {
   border-color: #006483;
   background-color: #006483;
+  color: #ffffff;
 }
 
 .c-button_blue-ghost {
@@ -823,4 +824,14 @@ p a {
   text-decoration: none;
   border-bottom: 1px dotted #004362;
           transition: 0.5s ease;
+}
+
+.c-button_success {
+  background-color: transparent;
+  border-color: #3ed488;
+  color: #3ed488;
+}
+.c-button_success:hover {
+  background-color: #3ed488;
+  color: #000000;
 }
