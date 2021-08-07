@@ -846,10 +846,6 @@ body {
   margin-top: 5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
-}
-
 ul {
   margin: 0;
 }
@@ -922,17 +918,9 @@ a.article-title:hover {
 }
 
 .navbar {
-    /*background-color: #F6F5D7;*/
     margin: 0%;
-    padding: 0%;/*padding: 0%;*/
+    padding: 0%;
     border: 1px solid rgb(0, 0, 0);
-}
-
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
 }
 
 .account-heading {
@@ -994,10 +982,6 @@ a.article-title:hover {
 .submit_button{
   margin: 0 !important;
 }
-
-/* .small_button{
-
-} */
 
 .site-footer
 {
@@ -1065,64 +1049,28 @@ html, body {
   .txtoswald{
     font-family: 'Oswald', sans-serif;
   }
-  h2 {
-    color: rgb(80,0,0);
-    font-family: 'oswald';
-    letter-spacing:.25px !important;
-    font-weight: 400;
-    }
-
-    .txtToBlack{
-        color: rgb(0,0,0);
-    }
-    .headingText{
-        color: rgb(80,0,0);
-        font-family: 'oswald';
-        letter-spacing:.25px !important;
-        font-weight: 400;
-    }
-    .linkColor{
-        color: rgb(0,100,131);
-        text-decoration: none;
-    }
 
 body {
      background: url('../img/bg.jpg') no-repeat center center fixed;
      -webkit-background-size: cover;
 }
 
-.txtToBlack{
-    color: rgb(0,0,0);
-}
-.headingTextWelcome{
-    text-align: center;
-    color: rgb(80,0,0);
-    font-family: 'oswald';
-    letter-spacing:.5px !important;
-    font-weight: 400;
-    font-size: 3rem;
-}
 .headingText{
-    color: rgb(80,0,0);
-    font-family: 'oswald';
-    letter-spacing:.25px !important;
-    font-weight: 400;
-}
+        color: #500000;
+        letter-spacing:.25px !important;
+        font-weight: 300;
+    }
 
-.linkColor{
-    color: rgb(0,100,131);
-    text-decoration: none;
+.headingTextWelcome{
+        letter-spacing:.5px !important;
+        font-size: 3rem;
 }
 
 .welcomeHeader{
-    text-align: center;
     font-style: italic;
     font-size: 1.75rem;
     display: block;
-    letter-spacing: .25px;
     text-rendering: optimizeLegibility;
     margin-top: 0.2rem;
     margin-bottom: 0.25rem;
-    color: #500000;
-    text-shadow: none;
 }
