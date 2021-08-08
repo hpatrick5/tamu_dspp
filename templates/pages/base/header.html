@@ -25,19 +25,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    More Info
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'whyuse' %}">Why use the DSPP?</a>
-                    <a class="dropdown-item" href="{% url 'fileinformation' %}">How to Create an Information
-                        File</a>
-                    <a class="dropdown-item" href="{% url 'results_explained' %}">Explaining the Results of the
-                        DSPP</a>
-                </div>
-            </li>
 
             {% if request.user.is_authenticated %}
             <li class="nav-item">
