@@ -1026,10 +1026,12 @@ p a {
 
 body {
 	background: url('../img/bg.jpg') no-repeat center center fixed;
-	color: #333333;
 	height: 100%;
 	margin-top: 5rem;
-	webkit-background-size: cover;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
  }
 
 ul {
