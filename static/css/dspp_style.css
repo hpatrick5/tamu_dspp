@@ -880,23 +880,38 @@ p a {
 	}
 }
 
+@media screen and (max-width: 992px) {
+	.navbar-nav{
+	    margin-left: auto;
+	    margin-right: auto;
+        text-align: center;
+	}
+
+	.navbar-brand {
+		margin-left: auto;
+	    margin-right: auto;
+	    text-align: center;
+	}
+}
+
 /** - Adaptive Styling - **/
 @media screen and (max-width: 799px) {
 	.nav-item,
 	.welcome-text {
 		margin: 0 10%;
 	}
-	.content-section {
-		margin-top: 23%;
-	}
-	.menu-split {
-		width: 100%;
-	}
+
 	.navbar-brand {
-		margin: 0 27%;
+		padding-left: 2%;
 	}
 	.logo {
-		margin: 0 97%;
+		display: none;
+	}
+}
+
+@media screen and (max-width: 340px) {
+	.navbar-brand {
+		display: none;
 	}
 }
 
@@ -932,31 +947,35 @@ p a {
  }
 
 .logo {
-	margin-left: 100px;
-	margin-right: 0px;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	width: 250px;
+	height: auto;
+    width: auto;
+    max-height: 100px;
+    max-width: 300px;
+    padding-right: 5%;
+    padding-left: 2%;
+    text-align: center;
  }
 
 .navbar {
 	border: 1px solid rgb(0, 0, 0);
 	margin: 0%;
 	padding: 0%;
+	height: 11%;
  }
 
 .navbar-brand {
 	color: #ffffff;
-	margin: 0 12%;
-	text-align: center;
- }
-
-.navbar-expand-lg .navbar-nav {
-	width: 250px;
+	margin-right: auto;
+	text-align: left;
  }
 
 .navbar-text {
 	color: #cbd5db;
+ }
+
+ .navbar-nav {
+    margin-left: auto;
+    padding-right: 2%;
  }
 
 .nav-link {
