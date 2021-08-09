@@ -27,12 +27,12 @@ def get_trained_file(file, file_info):
     model = pickle.load(open(filename, "rb"))
 
     data = pd.read_csv(file)
-    original_file = data
+    original_file = data.drop(['LocalId'], axis=1)
 
     data = data.fillna(data.mean())
 
     data = pd.get_dummies(data, columns=['Ethnicity'])
-    data = data.drop(['LocalId', 'Grade'], axis=1)
+    data = data.drop(['Grade'], axis=1)
 
     prediction = model.predict(data)
     output = pd.DataFrame(prediction)
@@ -78,7 +78,8 @@ def get_trained_file(file, file_info):
     original_file['% to Previous PL'] = percent_to_previous_pl
 
     s_buf = io.StringIO()
-    trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", header=True, index=False)
+    original_file.index.name = "LocalId"
+    trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", header=True, index=True)
     
     return InMemoryUploadedFile(s_buf,
                                    'file',
