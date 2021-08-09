@@ -10,16 +10,123 @@
 <hr>
 <div>
     <p>
-        Please work through the steps outlined on the "How to Create an Information File" page before attempting to upload a file.
+        Please work through the steps outlined on the "How to Create an Information File" page before attempting to
+        upload a file.
     </p>
     <div align="center">
-        <div><a href="{% url 'fileinformation' %}" class="c-button c-button_blue">> How to Create an Information File</a></div>
+        <div><a href="{% url 'fileinformation' %}" class="c-button c-button_blue">> How to Create an Information
+            File</a></div>
         <hr>
-        <div><a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv" class="c-button c-button_maroon-ghost" download> Download Template Information File CSV </a></div>
-        <div> <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/example_csv.csv"
-           class="c-button c-button_maroon-ghost" download> Download Completed Example Information File CSV</a></div>
+        <div><a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv"
+                class="c-button c-button_maroon-ghost" download> Download Template Information File CSV </a></div>
+        <div><a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/example_csv.csv"
+                class="c-button c-button_maroon-ghost" download> Download Completed Example Information File CSV</a>
+        </div>
         <hr>
-        <div><a href="{% url 'results_explained' %}" class="c-button c-button_blue">> Explaining the Results of the DSPP</a></div>
+    </div>
+    <div>
+        <p>
+            The table below lists the STAAR tests by grade and subject for which we have performance labels for. For
+            more information about performance labels, please visit the <a href="{% url 'results_explained' %}">Explaining
+            the Results of the DSPP page</a>. Please select the subject and grade corresponding to the data in your
+            information file. <strong> Selecting an improper combination of grade and subject will prevent you from
+            running the prediction on your information file. </strong>
+        </p>
+        <table class="table table-striped upload-table">
+            <tr>
+                <th class="text-align-center" scope="col">Grade</th>
+                <th scope="col">Subjects</th>
+                <th class="text-align-center" scope="col">Grade</th>
+                <th scope="col">Subjects</th>
+            </tr>
+            <tr>
+                <td class="text-align-center">3</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                    </ul>
+                </td>
+                <td class="text-align-center">6</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-align-center">4</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                        <li>
+                            Writing
+                        </li>
+                    </ul>
+                </td>
+                <td class="text-align-center">7</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                        <li>
+                            Writing
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-align-center">5</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                        <li>
+                            Science
+                        </li>
+                    </ul>
+                </td>
+                <td class="text-align-center">8</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                        <li>
+                            Science
+                        </li>
+                        <li>
+                            Social Studies
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 <hr>
