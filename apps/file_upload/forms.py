@@ -9,3 +9,4 @@ class FileForm(forms.Form):
     subject = forms.CharField(label='Subject', widget=forms.Select(choices=SUBJECT_CHOICES))
     grade = forms.CharField(label='Grade', widget=forms.Select(choices=GRADE_CHOICES))
     file = forms.FileField()
+    confirmation = forms.BooleanField(label='By checking this box, I confirm that...', required=True)
