@@ -1075,3 +1075,6 @@ ul {
  .text-size-sliding-button {
 	font-size: 1.15rem;
  }
+    .back-button-hover:hover {
+  color: white;
+}
