@@ -2,21 +2,19 @@ import logging
 import os
 import sys
 import io
+from datetime import datetime
 
 import pandas as pd
 import pickle
-import requests
 
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
-from django.contrib import messages
-from django.http import HttpResponseRedirect, request
 
 logger = logging.getLogger(__name__)
 
 
-def get_trained_file(file, file_info):
+def get_trained_file(file, file_info, email):
     
     here = os.path.dirname(os.path.abspath(__file__))
 
@@ -80,10 +78,14 @@ def get_trained_file(file, file_info):
     s_buf = io.StringIO()
     original_file.index.name = "LocalId"
     trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", header=True, index=True)
-    
+
+    date_now = datetime.now()
+    date_now = date_now.strftime("%m-%d-%Y_%H:%M:%S")
+    fname = str(email) + "_" + str(date_now) + ".csv"
+
     return InMemoryUploadedFile(s_buf,
                                    'file',
-                                   'trained_csv.csv',
+                                   fname,
                                    'application/vnd.ms-excel',
                                    sys.getsizeof(trained_csv), None)
 

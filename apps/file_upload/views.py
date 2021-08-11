@@ -45,7 +45,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
                 return HttpResponseRedirect('upload')
 
             try:
-                file = get_trained_file(file, subject_grade)
+                file = get_trained_file(file, subject_grade, request.user)
             except KeyError:
                 messages.warning(request, 'Error: Please make sure that the headers in your uploaded CSV file match '
                                           'the provided template.')
