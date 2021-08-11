@@ -1067,3 +1067,14 @@ ul {
 .text-align-center {
     text-align: center;
 }
+
+.text-justify {
+	 text-align: justify;
+    text-justify: auto;
+ }
+ .text-size-sliding-button {
+	font-size: 1.15rem;
+ }
+    .back-button-hover:hover {
+  color: white;
+}
