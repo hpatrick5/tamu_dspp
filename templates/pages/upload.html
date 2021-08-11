@@ -1,30 +1,140 @@
 {% extends "pages/base/base.html" %}
 {% load bootstrap4 %}
+
+{% block head_title %}Upload to DSPP{% endblock %}
+
 {% block content %}
 
 
-<h2>Upload an Information File for Machine Learning Prediction</h2>
+<h2 class="headingText">Upload an Information File to the District School Performance Predictor</h2>
 <hr>
 <div>
-    <p> In order to receive accurate student STAAR prediction scores it is necessary to provide an information file created by following the instructions outlined in the
-    <a class = "linkColor" href="{% url 'fileinformation' %}"><u></u>How to Create an Information File.</a> 
-    </p>
     <p>
-    Please work through the steps outlined in the How to create an information file before uploading a file. 
+        Please work through the steps outlined on the "How to Create an Information File" page before attempting to
+        upload a file.
     </p>
-    
-    <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv" class="c-button c-button_maroon-ghost" download> Download Template Information File CSV </a><br>
-    <p>Currently, our site can only make STAAR predictions for <b>Grade 5 Math</b> scores.<br></p>
-    <p>Please strictly follow the format provided in the template, otherwise you may get inaccurate preditions or
-        errors.</p>
-    <p><b>Please make sure your CSV file does not include student's personally identifiable information!</b></p>
+    <div align="center">
+        <div><a href="{% url 'fileinformation' %}" class="c-button c-button_blue">> How to Create an Information
+            File</a></div>
+        <hr>
+        <div><a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv"
+                class="c-button c-button_maroon-ghost" download> Download Template Information File CSV </a></div>
+        <div><a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/example_csv.csv"
+                class="c-button c-button_maroon-ghost" download> Download Completed Example Information File CSV</a>
+        </div>
+        <hr>
+    </div>
+    <div>
+        <p>
+            The table below lists the STAAR tests by grade and subject for which we have performance labels for. For
+            more information about performance labels, please visit the <a href="{% url 'results_explained' %}">Explaining
+            the Results of the DSPP page</a>. Please select the subject and grade corresponding to the data in your
+            information file. <strong> Selecting an improper combination of grade and subject will prevent you from
+            running the prediction on your information file. </strong>
+        </p>
+        <table class="table table-striped upload-table">
+            <tr>
+                <th class="text-align-center" scope="col">Grade</th>
+                <th scope="col">Subjects</th>
+                <th class="text-align-center" scope="col">Grade</th>
+                <th scope="col">Subjects</th>
+            </tr>
+            <tr>
+                <td class="text-align-center">3</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                    </ul>
+                </td>
+                <td class="text-align-center">6</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-align-center">4</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                        <li>
+                            Writing
+                        </li>
+                    </ul>
+                </td>
+                <td class="text-align-center">7</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                        <li>
+                            Writing
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-align-center">5</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                        <li>
+                            Science
+                        </li>
+                    </ul>
+                </td>
+                <td class="text-align-center">8</td>
+                <td>
+                    <ul>
+                        <li>
+                            Reading
+                        </li>
+                        <li>
+                            Math
+                        </li>
+                        <li>
+                            Science
+                        </li>
+                        <li>
+                            Social Studies
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 <hr>
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form file_form %}
-    <input type="submit" class="c-button c-button_blue btn-block submit_button" value="Run AI Prediction">
+    <input type="submit" class="c-button c-button_blue btn-block submit_button" value="Run Model Prediction">
 </form>
 <br>
 

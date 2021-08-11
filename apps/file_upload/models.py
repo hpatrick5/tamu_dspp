@@ -14,36 +14,73 @@ from django.db import models
 logger = logging.getLogger(__name__)
 
 
-def get_trained_file(file,grade,subject,email):
+def get_trained_file(file, file_info, email):
     
     here = os.path.dirname(os.path.abspath(__file__))
-    
-    model_file_path = ('../../ml_models/' + grade+'_'+subject.lower())
-    #filename = os.path.join(here, '../../ml_models/5_math')
-    
-    filename = os.path.join(here, model_file_path)
 
+    model_file_path = '../../ml_models/model_new'
+    pl_ranges_file_path = '../../ml_models/performance_label_ranges_2021.csv'
+
+    filename = os.path.join(here, model_file_path)
     model = pickle.load(open(filename, "rb"))
 
-    math = pd.read_csv(file)
-    #will mean work if columns are zeros
-    math = math.fillna(math.mean())
-    math = pd.get_dummies(math, columns=['Ethnicity'])
+    data = pd.read_csv(file)
+    original_file = data.drop(['LocalId'], axis=1)
 
-    responseVariable = 'Spring 2019 STAAR\nMA05\nPcntScore\n5/2019 or 6/2019'
-    math_analysis = math.iloc[:, 2:]
-    x_math = math_analysis.drop(responseVariable, axis=1)
+    data = data.fillna(data.mean())
 
-    prediction = model.predict(x_math)
+    data = pd.get_dummies(data, columns=['Ethnicity'])
+    data = data.drop(['LocalId', 'Grade'], axis=1)
+
+    prediction = model.predict(data)
     output = pd.DataFrame(prediction)
 
+    output[0] = round(output[0])
+
+    pl_ranges_filename = os.path.join(here, pl_ranges_file_path)
+    pl_ranges_csv = pd.read_csv(pl_ranges_filename)
+
+    index_names = pl_ranges_csv["Grade_Subject"]
+    pl_ranges_csv = pl_ranges_csv.drop("Grade_Subject", axis=1)
+    pl_ranges_csv.index = index_names
+
+    pl_range_select = pl_ranges_csv.filter(like=file_info, axis=0)
+    pl_thresholds = pl_range_select.values.tolist()
+
+    percent_to_next_pl = []
+    percent_to_previous_pl = []
+
+    performance_labels = []
+    for score in output[0]:
+        if score > pl_thresholds[0][2]:
+            performance_labels.append("Masters")
+            percent_to_next_pl.append(0)
+            percent_to_previous_pl.append(abs(score - pl_thresholds[0][2]))
+        elif pl_thresholds[0][1] < score <= pl_thresholds[0][2]:
+            performance_labels.append("Meets")
+            percent_to_next_pl.append(abs(score - pl_thresholds[0][2]))
+            percent_to_previous_pl.append(abs(score - pl_thresholds[0][1]))
+        elif pl_thresholds[0][0] < score <= pl_thresholds[0][1]:
+            performance_labels.append("Approaches")
+            percent_to_next_pl.append(abs(score - pl_thresholds[0][1]))
+            percent_to_previous_pl.append(abs(score - pl_thresholds[0][0]))
+        else:
+            performance_labels.append("Did Not Meet")
+            percent_to_next_pl.append(abs(score - pl_thresholds[0][0]))
+            percent_to_previous_pl.append(0)
+
     # Adds results as a column
-    math['Results'] = output[0]
+    original_file['Predicted % Score'] = output[0]
+    original_file['Predicted PL'] = performance_labels
+    original_file['% to Next PL'] = percent_to_next_pl
+    original_file['% to Previous PL'] = percent_to_previous_pl
+
     s_buf = io.StringIO()
-    trained_csv = math.to_csv(path_or_buf=s_buf, mode="w", header=True)
-    
-    # print(email)
+    original_file.index.name = "LocalId"
+    trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", header=True, index=True)
+
     date_now = datetime.now()
+    date_now = date_now.strftime("%m-%d-%Y_%H:%M:%S")
     fname = str(email) + "_" + str(date_now) + ".csv"
 
     return InMemoryUploadedFile(s_buf,

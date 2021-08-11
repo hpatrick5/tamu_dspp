@@ -12,9 +12,9 @@
         <form class="login" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
             {% bootstrap_form form %}
+
             {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}"
-                   value="{{ redirect_field_value }}"/>
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
             {% endif %}
 
             <button class="c-button c-button_blue btn-block submit_button" type="submit">{% trans "Log In" %}</button>
