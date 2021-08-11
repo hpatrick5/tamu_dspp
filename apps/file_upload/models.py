@@ -32,7 +32,7 @@ def get_trained_file(file, file_info):
     data = data.fillna(data.mean())
 
     data = pd.get_dummies(data, columns=['Ethnicity'])
-    data = data.drop(['Grade'], axis=1)
+    data = data.drop(['LocalId', 'Grade'], axis=1)
 
     prediction = model.predict(data)
     output = pd.DataFrame(prediction)
