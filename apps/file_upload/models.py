@@ -14,17 +14,26 @@ from django.db import models
 logger = logging.getLogger(__name__)
 
 
+def pl_zero_case(value):
+    if value == 0:
+        return 1
+    else:
+        return value
+
+
 def get_trained_file(file, file_info, email):
-    
     here = os.path.dirname(os.path.abspath(__file__))
 
     model_file_path = '../../ml_models/model_new'
-    pl_ranges_file_path = '../../ml_models/performance_label_ranges_2021.csv'
+    pl_ranges_file_path = '../../ml_models/performance_label_ranges.csv'
+    accepted_csv_cols = ['LocalId', 'Grade', 'Ethnicity', 'ECD', 'LEP', 'SpEd', 'BM 1', 'BM 2']
 
     filename = os.path.join(here, model_file_path)
     model = pickle.load(open(filename, "rb"))
 
     data = pd.read_csv(file)
+    data.drop(columns=[col for col in data if col not in accepted_csv_cols], inplace=True)
+
     original_file = data.drop(['LocalId'], axis=1)
 
     data = data.fillna(data.mean())
@@ -56,17 +65,20 @@ def get_trained_file(file, file_info, email):
             performance_labels.append("Masters")
             percent_to_next_pl.append(0)
             percent_to_previous_pl.append(abs(score - pl_thresholds[0][2]))
+
         elif pl_thresholds[0][1] < score <= pl_thresholds[0][2]:
             performance_labels.append("Meets")
-            percent_to_next_pl.append(abs(score - pl_thresholds[0][2]))
-            percent_to_previous_pl.append(abs(score - pl_thresholds[0][1]))
+            percent_to_next_pl.append(pl_zero_case(abs(score - pl_thresholds[0][2])))
+            percent_to_previous_pl.append(pl_zero_case(abs(score - pl_thresholds[0][1])))
+
         elif pl_thresholds[0][0] < score <= pl_thresholds[0][1]:
             performance_labels.append("Approaches")
-            percent_to_next_pl.append(abs(score - pl_thresholds[0][1]))
-            percent_to_previous_pl.append(abs(score - pl_thresholds[0][0]))
+            percent_to_next_pl.append(pl_zero_case(abs(score - pl_thresholds[0][1])))
+            percent_to_previous_pl.append(pl_zero_case(abs(score - pl_thresholds[0][0])))
+
         else:
             performance_labels.append("Did Not Meet")
-            percent_to_next_pl.append(abs(score - pl_thresholds[0][0]))
+            percent_to_next_pl.append(pl_zero_case(abs(score - pl_thresholds[0][0])))
             percent_to_previous_pl.append(0)
 
     # Adds results as a column
@@ -84,10 +96,10 @@ def get_trained_file(file, file_info, email):
     fname = str(email) + "_" + str(date_now) + ".csv"
 
     return InMemoryUploadedFile(s_buf,
-                                   'file',
-                                   fname,
-                                   'application/vnd.ms-excel',
-                                   sys.getsizeof(trained_csv), None)
+                                'file',
+                                fname,
+                                'application/vnd.ms-excel',
+                                sys.getsizeof(trained_csv), None)
 
 
 class File_Info(models.Model):
@@ -97,5 +109,3 @@ class File_Info(models.Model):
     grade = models.CharField(max_length=50)
     subject = models.CharField(max_length=50)
     creation_date = models.DateTimeField(auto_now_add=True)
-
-
