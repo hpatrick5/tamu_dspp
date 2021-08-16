@@ -181,7 +181,7 @@ LOGIN_URL = "accounts/login/"
 
 mimetypes.add_type("text/css", ".css", True)
 
-LOGIN_REDIRECT_URL = '/upload'
+LOGIN_REDIRECT_URL = '/fileinformation'
 
 EMAIL_USE_TLS = True
 
