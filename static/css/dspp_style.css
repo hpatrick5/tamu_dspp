@@ -1079,3 +1079,7 @@ ul {
     .back-button-hover:hover {
   color: white;
 }
+
+.button_width {
+    width: 65%;
+}
