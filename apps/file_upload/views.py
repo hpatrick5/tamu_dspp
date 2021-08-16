@@ -1,6 +1,6 @@
 import requests
 
-from .models import File_Info, get_trained_file
+from .models import FileInfo, get_trained_file
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -63,7 +63,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
                                      r.content))
                 return HttpResponseRedirect('upload')
 
-            file_info = File_Info()
+            file_info = FileInfo()
 
             file_info.owner = request.user
             file_info.document_id = r.json()['document_id']

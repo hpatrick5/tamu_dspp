@@ -4,11 +4,13 @@ from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from apps.file_upload.models import File_Info
+from apps.file_upload.models import FileInfo
+
 
 @method_decorator(login_required(login_url='/accounts/login/'), name='dispatch')
 class UserProfileView(TemplateView, LoginRequiredMixin):
     template_name = "account/profile.html"
+
 
 @method_decorator(login_required(login_url='/accounts/login/'), name='dispatch')
 class UserFileView(TemplateView, LoginRequiredMixin):
@@ -16,7 +18,7 @@ class UserFileView(TemplateView, LoginRequiredMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['files'] = File_Info.objects.filter(owner=self.request.user)
+        context['files'] = FileInfo.objects.filter(owner=self.request.user)
         context['files'] = context['files'].order_by('-id')
         return context
 

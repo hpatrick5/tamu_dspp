@@ -31,3 +31,4 @@ FILE_MANAGER_URL = "http://54.160.87.107:5000/doc"
 @method_decorator(login_required(login_url='/accounts/login/'), name='dispatch')
 class TestProxyView(ProxyView, LoginRequiredMixin):
     upstream = FILE_MANAGER_URL
+

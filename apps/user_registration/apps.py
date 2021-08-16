@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class UserRegistrationBs4Config(AppConfig):
+class UserRegistrationConfig(AppConfig):
     name = 'user_registration'
