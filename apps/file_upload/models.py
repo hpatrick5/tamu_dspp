@@ -26,7 +26,7 @@ def get_trained_file(file, file_info, email):
 
     model_file_path = '../../ml_models/model_new'
     pl_ranges_file_path = '../../ml_models/performance_label_ranges.csv'
-    accepted_csv_cols = ['LocalId', 'Grade', 'Ethnicity', 'ECD', 'LEP', 'SpEd', 'BM 1', 'BM 2']
+    accepted_csv_cols = ['Numerical Identifier', 'Grade', 'Ethnicity', 'ECD', 'LEP', 'SpEd', 'BM 1', 'BM 2']
 
     filename = os.path.join(here, model_file_path)
     model = pickle.load(open(filename, "rb"))
@@ -34,12 +34,12 @@ def get_trained_file(file, file_info, email):
     data = pd.read_csv(file)
     data.drop(columns=[col for col in data if col not in accepted_csv_cols], inplace=True)
 
-    original_file = data.drop(['LocalId'], axis=1)
+    original_file = data.drop(['Numerical Identifier'], axis=1)
 
     data = data.fillna(data.mean())
 
     data = pd.get_dummies(data, columns=['Ethnicity'])
-    data = data.drop(['LocalId', 'Grade'], axis=1)
+    data = data.drop(['Numerical Identifier', 'Grade'], axis=1)
 
     prediction = model.predict(data)
     output = pd.DataFrame(prediction)
@@ -88,7 +88,7 @@ def get_trained_file(file, file_info, email):
     original_file['% to Previous PL'] = percent_to_previous_pl
 
     s_buf = io.StringIO()
-    original_file.index.name = "LocalId"
+    original_file.index.name = "Numerical Identifier"
     trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", header=True, index=True)
 
     date_now = datetime.now()
