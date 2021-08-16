@@ -7,7 +7,7 @@
 <h2 class="headingText">About the District School Performance Predictor</h2>
 <hr>
 <div>
-    <p class= text-justify>
+    <p class=text-justify>
         In the state of Texas, student testing is part of an accountability system used to grade schools from A to F,
         and a way to generate data for educators and parents to support strong teaching. The
         <a href="https://tea.texas.gov/student-assessment/">State of Texas Assessments of Academic Readiness (STAAR)</a>
@@ -16,12 +16,12 @@
         These summative assessments are based on the Texas Essential Knowledge and Skills, which are Texas state
         curriculum standards.
     </p>
-    <p class= text-justify>
+    <p class=text-justify>
         Therefore, school principals and leadership teams have yearned for a service that can quickly provide insight on
         the large data sets generated through student testing. This is the purpose of the District School Performance
         Predictor (DSPP) website, a software as a service.
     </p>
-    <p class= text-justify>
+    <p class=text-justify>
         Built by the
         <a href="https://elrc.tamu.edu/">Educational Leadership Research Center (ELRC)</a>
         at <a href="https://www.tamu.edu/">Texas A&M University</a>,the DSPP provides users a pre-trained machine
@@ -33,15 +33,14 @@
         upload of an information file, users will be able to download a processed CSV file populated with student STAAR
         assessment score predictions for the subject uploaded.
     </p>
-    <p class= text-justify>
+    <p class=text-justify>
         It is recommended to use the DSPP approximately <strong>seven to eight weeks prior to the state-wide
         assessments</strong>
         in order to have ample time to work with all students.
     </p>
-    <hr>
     <h5 class="headingText">About the Education Leadership Research Center</h5>
     <br>
-    <p class= text-justify>
+    <p class=text-justify>
         The Education Leadership Research Center (ELRC) was established by the Texas A&M University College of Education
         and Human Development. The ELRC's mission is to inform and enrich the leadership practices of individuals and
         school organizations at
@@ -50,5 +49,18 @@
             href="https://elrc.tamu.edu/">ELRC's</a> main website for more information on their objectives,
         affiliations, and additional invaluable services.
     </p>
+    <br>
+    <br>
+    <h5 class="headingText" align="center">For more information regarding this website, please visit the links
+        below.</h5>
+    <br>
+    <div class="list-group" align="center" style="display: block">
+        <a class="list-group-item list-group-item-action c-button_maroon-slide-button text-size-sliding-button button_width"
+           href="{% url 'why_use' %}">Why use the DSPP?</a>
+        <a class="list-group-item list-group-item-action c-button_maroon-slide-button text-size-sliding-button button_width"
+           href="{% url 'file_info' %}">How to Create an Information File</a>
+        <a class="list-group-item list-group-item-action c-button_maroon-slide-button text-size-sliding-button button_width"
+           href="{% url 'results_explained' %}">Explaining the Results of the DSPP</a>
+    </div>
 </div>
 {% endblock %}

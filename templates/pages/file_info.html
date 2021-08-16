@@ -1,10 +1,10 @@
 {% extends "pages/base/base.html" %}
 
-{% block head_title %}How to Create an Information File{% endblock %}
+{% block head_title %}How To Create an Information File{% endblock %}
 
 {% block content %}
 
-<h2 class="headingText">How to Create an Information File</h2>
+<h2 class="headingText">How To Create an Information File</h2>
 <hr>
 <div>
     <p class=text-justify>
@@ -23,11 +23,11 @@
         </strong>
     </p>
     <div align="center">
-        <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/teacher_template.csv"
-           class="c-button c-button_maroon-ghost" download> Download Information File Template CSV</a>
+        <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/info_file_template.csv"
+           class="c-button c-button_maroon-ghost" download>Download Information File Template CSV</a>
     </div>
     <br>
-    <h5 class="headingText">General Information</h5>
+    <h4 class="headingText">General Information</h4>
     <hr>
     <p>
     <ul>
@@ -47,7 +47,7 @@
     </ul>
     </p>
     <br>
-    <h5 class="headingText">Step 1</h5>
+    <h4 class="headingText">Step 1</h4>
     <hr>
     <p class=text-justify>
         As seen in the column headers 'A' to 'F' of the information file CSV template, the following data is required
@@ -63,7 +63,7 @@
         <tr>
             <td>1</td>
             <td>A</td>
-            <td>Student Number</td>
+            <td>Numerical Identifier</td>
             <td>
                 <ul>
                     <li>
@@ -172,7 +172,7 @@
         </tr>
     </table>
     <br>
-    <h5 class="headingText">Step 2</h5>
+    <h4 class="headingText">Step 2</h4>
     <hr>
     <p class=text-justify>
         Headers 'G' and 'H' should be populated with student test scores. These scores can be from previous STAAR tests,
@@ -226,11 +226,11 @@
         </tr>
     </table>
     <div align="center">
-        <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/example_csv.csv"
-           class="c-button c-button_maroon-ghost" download> Download Completed Example Information File CSV</a>
+        <a href="https://tamu-dspp-s3.s3.us-east-2.amazonaws.com/media/template/info_file_completed_example.csv"
+           class="c-button c-button_maroon-ghost" download>Download Completed Example Information File CSV</a>
     </div>
     <br>
-    <h5 class="headingText">Step 3</h5>
+    <h4 class="headingText">Step 3</h4>
     <hr>
     <p class=text-justify>
         Save the populated information file as a CSV. It can have any name.
@@ -242,15 +242,14 @@
             other pages or tabs are critical.</b>
     </p>
     <br>
-    <h5 class="headingText">Step 4</h5>
+    <h4 class="headingText">Step 4</h4>
     <hr>
     <p>
         Proceed to upload the CSV file on the "Upload an Information File for Machine Learning Prediction" page.
     </p>
     <div align="center">
-        <a class="c-button c-button_blue inline_block" href="{% url 'upload' %}">> Upload an Information File for
-            Machine Learning
-            Prediction</a>
+        <a class="c-button c-button_blue inline_block" href="{% url 'upload' %}">Upload an Information File for
+            Machine Learning Prediction</a>
     </div>
 </div>
 

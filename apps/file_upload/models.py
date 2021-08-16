@@ -1,15 +1,15 @@
+import sys
+
+import io
 import logging
 import os
-import sys
-import io
-from datetime import datetime
-
 import pandas as pd
 import pickle
-
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
+
 
 logger = logging.getLogger(__name__)
 
@@ -102,7 +102,7 @@ def get_trained_file(file, file_info, email):
                                 sys.getsizeof(trained_csv), None)
 
 
-class File_Info(models.Model):
+class FileInfo(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="file_owner")
     document_id = models.CharField(max_length=50)
     original_file_name = models.CharField(max_length=50)

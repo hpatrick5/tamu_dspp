@@ -1,16 +1,15 @@
 import requests
-
-from .models import File_Info, get_trained_file
-
+from apps.file_upload.forms import FileForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import TemplateView
-from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView
 
-from apps.file_upload.forms import FileForm
+from .models import FileInfo, get_trained_file
+
 
 FILE_MANAGER_URL = "http://54.160.87.107:5000/doc"
 VALID_STAAR_TESTS = ["reading_3", "math_3", "reading_4", "math_4", "writing_4", "reading_5", "math_5", "science_5",
@@ -63,7 +62,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
                                      r.content))
                 return HttpResponseRedirect('upload')
 
-            file_info = File_Info()
+            file_info = FileInfo()
 
             file_info.owner = request.user
             file_info.document_id = r.json()['document_id']

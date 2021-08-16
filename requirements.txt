@@ -17,3 +17,4 @@ python-dotenv~=0.18.0
 requests~=2.25.1
 djangorestframework~=3.12.4
 django-revproxy
+dj_database_url

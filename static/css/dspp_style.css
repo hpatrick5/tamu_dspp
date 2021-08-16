@@ -854,10 +854,20 @@ h6 {
 
 p a {
 	color: #004362;
-	font-weight: bold;
 	text-decoration: none;
 	border-bottom: 1px dotted #004362;
-	transition: 0.5s ease;
+	line-height: inherit;
+    cursor: pointer;
+}
+
+p a:focus {
+	color: #003f58;
+    border-bottom: 1px solid #003f58;
+}
+
+p a:hover {
+	color: #003f58;
+    border-bottom: 1px solid #003f58;
 }
 
 .c-button_success {
@@ -1078,4 +1088,8 @@ ul {
  }
     .back-button-hover:hover {
   color: white;
+}
+
+.button_width {
+    width: 65%;
 }
