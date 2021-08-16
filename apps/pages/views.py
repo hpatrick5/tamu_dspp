@@ -14,11 +14,11 @@ class AboutView(TemplateView):
 
 
 class FileInformationView(TemplateView):
-    template_name = "pages/fileinformation.html"
+    template_name = "pages/file_info.html"
 
 
 class WhyUseView(TemplateView):
-    template_name = "pages/whyuse.html"
+    template_name = "pages/why_use.html"
 
 
 class ResultsExplainedView(TemplateView):
