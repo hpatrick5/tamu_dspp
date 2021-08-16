@@ -9,7 +9,7 @@
 <h2 class="headingText">Upload an Information File to the District School Performance Predictor</h2>
 <hr>
 <div>
-    <p>
+    <p align="center">
         Please work through the steps outlined on the "How to Create an Information File" page before attempting to
         upload a file.
     </p>
@@ -128,7 +128,7 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form file_form %}
-    <input type="submit" class="c-button c-button_blue btn-block submit_button" value="Run Model Prediction">
+    <input type="submit" class="c-button c-button_blue btn-block submit_button" value="Submit">
 </form>
 <br>
 
