@@ -1048,6 +1048,7 @@ body {
 	background: url('../img/bg.jpg') no-repeat center center fixed;
 	height: 100%;
 	margin-top: 5rem;
+    font-size: 1.05rem;
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
