@@ -1,16 +1,15 @@
+import sys
+
+import io
 import logging
 import os
-import sys
-import io
-
 import pandas as pd
 import pickle
-
 from datetime import datetime
-
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
+
 
 logger = logging.getLogger(__name__)
 
