@@ -27,11 +27,11 @@ def aws_session():
                                  region_name=os.getenv('AWS_REGION_NAME'))
 
 
-def get_s3_path(user):
+def get_s3_path(username):
     """
     Determines the path where the CSV file will be placed in the S3 bucket.
 
-    :param user: username of who is uploading the file
+    :param username: username of who is uploading the file (request.user.username)
     :return: folder path based on username and date
     """
     date_now = datetime.now()
@@ -40,17 +40,24 @@ def get_s3_path(user):
     month = date_now.month
     year = date_now.year
 
-    path = "uploads/" + str(user) + "/" + str(year) + "/" + str(month) + "/" + str(
-        day) + "/"
-
+    path = "uploads/" + str(username) + "/" + str(year) + "/" + str(month) + "/" + str(day) + "/"
     return path
 
 
-def upload_data_to_bucket(file, user):
-    path = os.path.join(get_s3_path(user), file.name)
+def upload_data_to_bucket(file, username):
+    """
+    Initiate AWS session and connect to S3 to upload CSV file to specified path.
+
+    :param file: to be uploaded, InMemoryUploadedFile type
+    :param username: username of who is uploading the file (request.user.username)
+    :return: path to file inside S3 bucket
+    """
+    path = os.path.join(get_s3_path(username), file.name)
     session = aws_session()
     s3_resource = session.resource('s3')
     obj = s3_resource.Object(os.getenv('AWS_STORAGE_BUCKET_NAME'), path)
+
+    # ACL must be specifically set to private in order to not expose the CSV inside the bucket
     obj.put(ACL='private', Body=file.read())
     return path
 
