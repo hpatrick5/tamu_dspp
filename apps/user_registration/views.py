@@ -16,6 +16,9 @@ class UserFileView(TemplateView, LoginRequiredMixin):
     template_name = "account/user_files.html"
 
     def get_context_data(self, **kwargs):
+        """
+        Populate files on User Files page with their associated files.
+        """
         context = super().get_context_data(**kwargs)
         context['files'] = FileInfo.objects.filter(owner=self.request.user)
         context['files'] = context['files'].order_by('-id')

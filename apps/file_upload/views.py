@@ -21,6 +21,9 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
     template_name = "pages/upload.html"
 
     def post(self, request, *args, **kwargs):
+        """
+        Submit uploaded information file CSV for prediction and upload to S3 bucket.
+        """
         context = {"file_form": FileForm()}
         form = FileForm(request.POST, request.FILES)
 
@@ -28,6 +31,7 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             subject = form.cleaned_data['subject']
             grade = form.cleaned_data['grade']
 
+            # Error checking: only allow valid grade/subject combination to be selected
             subject_grade = subject.lower() + "_" + grade
             if subject_grade not in VALID_STAAR_TESTS:
                 messages.warning(request, 'Error: ' + subject + ' STAAR test for Grade ' + grade + " does not exist.")
@@ -38,10 +42,12 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
             file_type = file.name.split('.')[-1]
             file_type = file_type.lower()
 
+            # Error checking: only allow CSV files to be uploaded
             if file_type != 'csv':
                 messages.warning(request, 'Error: Please upload a CSV file.')
                 return HttpResponseRedirect('upload')
 
+            # Error checking: prevent CSV files with incorrect headers from being uploaded
             try:
                 trained_file = get_trained_file(file, subject_grade, request.user)
             except KeyError:
