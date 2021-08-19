@@ -10,7 +10,9 @@ class FileInfo(models.Model):
 
     Important Fields
     owner - links the user account to their uploaded file
-    file_id - unique ID assigned to uploaded file used to later retrieve the file_path
+    file_id - unique ID assigned to uploaded file used to later retrieve the file_path.
+    This value is shown in the GET HTTP request. It is designed to be random enough to where
+    it cannot be guessed by a user who is not the owner.
     file_path - the path to the file inside the S3 bucket, in the format 'uploads/.../...csv'
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="file_owner")
