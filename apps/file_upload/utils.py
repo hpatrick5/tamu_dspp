@@ -93,13 +93,25 @@ def download_data_from_bucket(request, id):
 
 
 def pl_zero_case(value):
+    """
+    Helper function for dealing with edge cases with the performance label calculation.
+    """
     if value == 0:
         return 1
     else:
         return value
 
 
-def get_trained_file(file, file_info, email):
+def get_trained_file(file, grade_subject, user):
+    """
+    Perform basic preprocessing on the input CSV and append machine learning model results and performance label
+    predictions to the original CSV.
+
+    :param file: input CSV
+    :param grade_subject: grade and subject of the file to be used for performance label calculation
+    :param user: request.user
+    :return: trained CSV file as InMemoryUploadedFile
+    """
     here = os.path.dirname(os.path.abspath(__file__))
 
     model_file_path = '../../ml_models/model_new'
@@ -108,18 +120,25 @@ def get_trained_file(file, file_info, email):
 
     filename = os.path.join(here, model_file_path)
 
+    # Load the ML model, which is in Pickle format
     model_open = open(filename, "rb")
     model = pickle.load(model_open)
     model_open.close()
 
     data = pd.read_csv(file)
+
+    # Remove any columns from the data that are not valid/included in the template
     data.drop(columns=[col for col in data if col not in accepted_csv_cols], inplace=True)
 
+    # Remove the Numerical Identifier for the students from the original file in case the uploader is violating FERPA
+    # - these values will be replaced by 0...n later
     original_file = data.drop(['Numerical Identifier'], axis=1)
 
     data = data.fillna(data.mean())
 
     data = pd.get_dummies(data, columns=['Ethnicity'])
+
+    # Remove values not used in the prediction
     data = data.drop(['Numerical Identifier', 'Grade'], axis=1)
 
     prediction = model.predict(data)
@@ -134,13 +153,15 @@ def get_trained_file(file, file_info, email):
     pl_ranges_csv = pl_ranges_csv.drop("Grade_Subject", axis=1)
     pl_ranges_csv.index = index_names
 
-    pl_range_select = pl_ranges_csv.filter(like=file_info, axis=0)
+    # Get correct performance label thresholds based on the input grade and subject
+    pl_range_select = pl_ranges_csv.filter(like=grade_subject, axis=0)
     pl_thresholds = pl_range_select.values.tolist()
 
     percent_to_next_pl = []
     percent_to_previous_pl = []
 
     performance_labels = []
+    # Assign performance label to predicted score based on thresholds
     for score in output[0]:
         if score > pl_thresholds[0][2]:
             performance_labels.append("Masters")
@@ -162,7 +183,7 @@ def get_trained_file(file, file_info, email):
             percent_to_next_pl.append(pl_zero_case(abs(score - pl_thresholds[0][0])))
             percent_to_previous_pl.append(0)
 
-    # Adds results as a column
+    # Adds results as columns to the original file
     original_file['Predicted % Score'] = output[0]
     original_file['Predicted PL'] = performance_labels
     original_file['% to Next PL'] = percent_to_next_pl
@@ -175,10 +196,7 @@ def get_trained_file(file, file_info, email):
 
     date_now = datetime.now()
     date_now = date_now.strftime("%m-%d-%Y_%H:%M:%S")
-    fname = str(email) + "_" + str(date_now) + ".csv"
 
-    return InMemoryUploadedFile(s_buf,
-                                'file',
-                                fname,
-                                'application/vnd.ms-excel',
-                                sys.getsizeof(trained_csv), None)
+    file_name = str(user) + "_" + str(date_now) + ".csv"
+
+    return InMemoryUploadedFile(s_buf, 'file', file_name, 'application/vnd.ms-excel', sys.getsizeof(trained_csv), None)
