@@ -11,11 +11,17 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.http import HttpResponse
 
-
 logger = logging.getLogger(__name__)
 
 
 def aws_session():
+    """
+    Authenticates in to the S3 bucket to upload and download CSV files. This step is necessary to access the files in
+    the S3 bucket. Note: only authenticated users or this website is able to access the files in the bucket. No
+    outside user can plug in the URL to get the files.
+
+    :return: Authenticated AWS session connecting to the S3 bucket
+    """
     return boto3.session.Session(aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
                                  aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
                                  region_name=os.getenv('AWS_REGION_NAME'))
