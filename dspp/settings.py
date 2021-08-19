@@ -3,7 +3,6 @@ import mimetypes
 import os
 from dotenv import load_dotenv
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv()
@@ -11,7 +10,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = (os.getenv('DEBUG') == 'True')
 
-ALLOWED_HOSTS = ['test-sp21-606-school-district.herokuapp.com', 'sp21-606-school-district-data.herokuapp.com',
+ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com',
                  '127.0.0.1', '421cb4a099ff4c0bab21603775566469.vfs.cloud9.us-west-2.amazonaws.com']
 
 # Application definition
@@ -23,7 +22,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'bootstrap4',
-    'django_thumbs',
     'storages',
     'templates',
     'apps.user_registration',
@@ -32,7 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'revproxy',
 ]
 
 MIDDLEWARE = [
@@ -117,17 +114,12 @@ if USE_S3 == "True":
     AWS_DEFAULT_ACL = None
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    
     # s3 static settings
     AWS_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
     STATICFILES_STORAGE = 'dspp.storage_backends.StaticStorage'
-    # s3 public media settings
-    PUBLIC_MEDIA_LOCATION = 'media'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'dspp.storage_backends.PublicMediaStorage'
-    # s3 private media settings
-    PRIVATE_MEDIA_LOCATION = 'private'
-    PRIVATE_FILE_STORAGE = 'dspp.storage_backends.PrivateMediaStorage'
+
 else:
     STATIC_URL = '/staticfiles/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

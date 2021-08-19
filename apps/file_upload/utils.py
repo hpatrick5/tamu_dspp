@@ -1,27 +1,24 @@
 import sys
 
+import boto3
 import io
 import logging
 import os
-
-import boto3
 import pandas as pd
 import pickle
 from datetime import datetime
-
 from django.contrib.auth.decorators import login_required
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.utils.decorators import method_decorator
-from flask import Response
-from werkzeug.utils import secure_filename
+from django.http import HttpResponse
+
 
 logger = logging.getLogger(__name__)
 
 
-def aws_session(region_name='us-east-1'):
+def aws_session():
     return boto3.session.Session(aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
                                  aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
-                                 region_name=region_name)
+                                 region_name=os.getenv('AWS_REGION_NAME'))
 
 
 def get_s3_path(user):
@@ -31,41 +28,35 @@ def get_s3_path(user):
     month = date_now.month
     year = date_now.year
 
-    pathstr = "private/" + str(user) + "/" + str(year) + "/" + str(month) + "/" + str(
+    pathstr = "uploads/" + str(user) + "/" + str(year) + "/" + str(month) + "/" + str(
         day) + "/"
-
-    if not os.path.exists(pathstr):
-        os.makedirs(pathstr)
 
     return pathstr
 
 
 def upload_data_to_bucket(file, user):
     path = os.path.join(get_s3_path(user), file.name)
-
-    bucket_name = os.getenv('BUCKET_NAME')
     session = aws_session()
     s3_resource = session.resource('s3')
-    obj = s3_resource.Object(bucket_name, path)
+    obj = s3_resource.Object(os.getenv('AWS_STORAGE_BUCKET_NAME'), path)
     obj.put(ACL='private', Body=file.read())
-
     return path
 
 
 @login_required(login_url='/accounts/login/')
 def download_data_from_bucket(request, path):
-    bucket_name = os.getenv('BUCKET_NAME')
-
     session = aws_session()
     s3_resource = session.resource('s3')
-    obj = s3_resource.Object(bucket_name, path)
+    obj = s3_resource.Object(os.getenv('AWS_STORAGE_BUCKET_NAME'), path)
     io_stream = io.BytesIO()
     obj.download_fileobj(io_stream)
 
     io_stream.seek(0)
     data = io_stream.read().decode('utf-8')
 
-    return data
+    response = HttpResponse(data, content_type="text/csv")
+    response['Content-Disposition'] = "attachment;filename=" + path.split("/")[-1]
+    return response
 
 
 def pl_zero_case(value):

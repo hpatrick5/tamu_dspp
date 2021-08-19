@@ -1,5 +1,3 @@
-import os
-
 from apps.file_upload.forms import FileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -13,7 +11,6 @@ from .models import FileInfo
 from .utils import get_trained_file, upload_data_to_bucket
 
 
-FILE_MANAGER_URL = "http://54.160.87.107:5000/doc"
 VALID_STAAR_TESTS = ["reading_3", "math_3", "reading_4", "math_4", "writing_4", "reading_5", "math_5", "science_5",
                      "reading_6", "math_6", "reading_7", "math_7", "writing_7", "reading_8", "math_8", "science_8",
                      "socialstudies_8"]
@@ -52,12 +49,10 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
                                           'the provided template.')
                 return HttpResponseRedirect('upload')
 
-            s3_url = upload_data_to_bucket(trained_file, request.user.username)
-
             file_info = FileInfo()
 
             file_info.owner = request.user
-            file_info.file_path = s3_url
+            file_info.file_path = upload_data_to_bucket(trained_file, request.user.username)
             file_info.file_name = trained_file.name
             file_info.grade = grade
             file_info.subject = subject
