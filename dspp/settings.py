@@ -72,8 +72,11 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+USE_PROD_DB = os.getenv('USE_PROD_DB')
+
+if USE_PROD_DB == "True":
+    db_from_env = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -102,10 +105,19 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+DATE_FORMAT = 'b d, Y'
+SHORT_DATE_FORMAT = 'b d, Y'
+
+SITE_ID = 1
+
+"""
+S3 and Static Files
+- See https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/ for more information
+"""
+
 USE_S3 = os.getenv('USE_S3')
 
 if USE_S3 == "True":
-    # aws settings
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
@@ -114,12 +126,10 @@ if USE_S3 == "True":
     AWS_DEFAULT_ACL = None
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-    
-    # s3 static settings
+
     AWS_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
     STATICFILES_STORAGE = 'dspp.storage_backends.StaticStorage'
-
 else:
     STATIC_URL = '/staticfiles/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -128,8 +138,9 @@ else:
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-DATE_FORMAT = 'b d, Y'
-SHORT_DATE_FORMAT = 'b d, Y'
+"""
+Authentication and Allauth
+"""
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -140,7 +151,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -159,13 +169,19 @@ LOGIN_URL = "accounts/login/"
 mimetypes.add_type("text/css", ".css", True)
 
 LOGIN_REDIRECT_URL = '/file_info'
+""""""
+
+"""
+Email Server
+"""
 
 EMAIL_USE_TLS = True
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tamu.dspp@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+""""""
 
 LOGGING = {
     'version': 1,
