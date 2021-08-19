@@ -64,6 +64,14 @@ def upload_data_to_bucket(file, username):
 
 @login_required(login_url='/accounts/login/')
 def download_data_from_bucket(request, path):
+    """
+    Initiate AWS session and connect to S3 to download a CSV file from the specified path. Note: the login_required
+    decorator above is a safeguard to ensure only authenticated users can attempt to download files.
+
+    :param request:
+    :param path: of file to be downloaded from the S3 bucket
+    :return: CSV file download as HTTP response
+    """
     session = aws_session()
     s3_resource = session.resource('s3')
     obj = s3_resource.Object(os.getenv('AWS_STORAGE_BUCKET_NAME'), path)
