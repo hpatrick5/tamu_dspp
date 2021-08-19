@@ -25,12 +25,12 @@
         </tr>
         {% for x in files %}
         <tr>
-            <td>{{ x.original_file_name }}</td>
+            <td>{{ x.file_name }}</td>
             <td>{{ x.subject }}</td>
             <td>{{ x.grade }}</td>
             <td>{{ x.creation_date }}</td>
             <td>
-                <a class="c-button c-button_success submit_button" href="/download/{{ x.document_id }}" download>Download
+                <a class="c-button c-button_success submit_button" href="/download/{{ x.file_path }}" download>Download
                     File</a><br>
             </td>
         </tr>
