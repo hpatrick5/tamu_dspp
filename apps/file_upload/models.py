@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -13,8 +15,10 @@ class FileInfo(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="file_owner")
 
     creation_date = models.DateTimeField(auto_now_add=True)
+
     file_name = models.TextField()
     file_path = models.TextField()
+    file_id = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=False)
 
     grade = models.CharField(max_length=2)
     subject = models.CharField(max_length=25)

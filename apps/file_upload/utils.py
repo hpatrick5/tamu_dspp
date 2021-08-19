@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.http import HttpResponse
 
+from apps.file_upload.models import FileInfo
+
 logger = logging.getLogger(__name__)
 
 
@@ -63,15 +65,18 @@ def upload_data_to_bucket(file, username):
 
 
 @login_required(login_url='/accounts/login/')
-def download_data_from_bucket(request, path):
+def download_data_from_bucket(request, id):
     """
     Initiate AWS session and connect to S3 to download a CSV file from the specified path. Note: the login_required
     decorator above is a safeguard to ensure only authenticated users can attempt to download files.
 
     :param request:
-    :param path: of file to be downloaded from the S3 bucket
+    :param id: of file to be downloaded from the S3 bucket
     :return: CSV file download as HTTP response
     """
+    file_object = FileInfo.objects.filter(file_id=id)[0]
+    path = file_object.file_path
+
     session = aws_session()
     s3_resource = session.resource('s3')
     obj = s3_resource.Object(os.getenv('AWS_STORAGE_BUCKET_NAME'), path)
