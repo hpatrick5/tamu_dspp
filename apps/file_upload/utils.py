@@ -67,11 +67,12 @@ def upload_data_to_bucket(file, username):
 @login_required(login_url='/accounts/login/')
 def download_data_from_bucket(request, id):
     """
-    Initiate AWS session and connect to S3 to download a CSV file from the specified path. Note: the login_required
-    decorator above is a safeguard to ensure only authenticated users can attempt to download files.
+    Initiate AWS session and connect to S3 to download a CSV file from a path. The path (file_path) is found by
+    querying the FileInfo objects using the provided UUID (file_id). Note: the login_required decorator above is a
+    safeguard to ensure only authenticated users can attempt to download files.
 
     :param request:
-    :param id: of file to be downloaded from the S3 bucket
+    :param id: of file to be downloaded from the S3 bucket (file_id)
     :return: CSV file download as HTTP response
     """
     file_object = FileInfo.objects.filter(file_id=id)[0]
