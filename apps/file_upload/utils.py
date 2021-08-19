@@ -28,16 +28,22 @@ def aws_session():
 
 
 def get_s3_path(user):
+    """
+    Determines the path where the CSV file will be placed in the S3 bucket.
+
+    :param user: username of who is uploading the file
+    :return: folder path based on username and date
+    """
     date_now = datetime.now()
 
     day = date_now.day
     month = date_now.month
     year = date_now.year
 
-    pathstr = "uploads/" + str(user) + "/" + str(year) + "/" + str(month) + "/" + str(
+    path = "uploads/" + str(user) + "/" + str(year) + "/" + str(month) + "/" + str(
         day) + "/"
 
-    return pathstr
+    return path
 
 
 def upload_data_to_bucket(file, user):
