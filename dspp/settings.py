@@ -72,9 +72,9 @@ DATABASES = {
     }
 }
 
-USE_PROD_DB = os.getenv('USE_PROD_DB')
+USE_PROD_DB = (os.getenv('USE_PROD_DB') == 'True')
 
-if USE_PROD_DB == "True":
+if USE_PROD_DB:
     db_from_env = dj_database_url.config(conn_max_age=600)
     DATABASES['default'].update(db_from_env)
 
@@ -115,9 +115,9 @@ S3 and Static Files
 - See https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/ for more information
 """
 
-USE_S3 = os.getenv('USE_S3')
+USE_S3 = (os.getenv('USE_S3') == 'True')
 
-if USE_S3 == "True":
+if USE_S3:
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
@@ -133,10 +133,11 @@ if USE_S3 == "True":
 else:
     STATIC_URL = '/staticfiles/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 """
 Authentication and Allauth
