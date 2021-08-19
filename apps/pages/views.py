@@ -1,8 +1,11 @@
+import io
+import os
+
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.decorators import method_decorator
+from django.http import HttpResponse
 from django.views.generic import TemplateView
-from revproxy.views import ProxyView
+
+from apps.file_upload.utils import aws_session
 
 
 class HomePageView(TemplateView):
@@ -25,10 +28,21 @@ class ResultsExplainedView(TemplateView):
     template_name = "pages/results_explained.html"
 
 
-FILE_MANAGER_URL = "http://54.160.87.107:5000/doc"
+@login_required(login_url='/accounts/login/')
+def download_data_from_bucket(request, path):
+    bucket_name = os.getenv('BUCKET_NAME')
 
+    session = aws_session()
+    s3_resource = session.resource('s3')
+    obj = s3_resource.Object(bucket_name, path)
+    io_stream = io.BytesIO()
+    obj.download_fileobj(io_stream)
 
-@method_decorator(login_required(login_url='/accounts/login/'), name='dispatch')
-class TestProxyView(ProxyView, LoginRequiredMixin):
-    upstream = FILE_MANAGER_URL
+    io_stream.seek(0)
+    data = io_stream.read().decode('utf-8')
+
+    response = HttpResponse(data, content_type="text/csv")
+    response['Content-Disposition'] = "attachment;filename=" + path.split("/")[-1]
+    return response
+
 

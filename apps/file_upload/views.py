@@ -1,4 +1,5 @@
-import requests
+import os
+
 from apps.file_upload.forms import FileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -8,7 +9,8 @@ from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
-from .models import FileInfo, get_trained_file
+from .models import FileInfo
+from .utils import get_trained_file, upload_data_to_bucket
 
 
 FILE_MANAGER_URL = "http://54.160.87.107:5000/doc"
@@ -44,29 +46,19 @@ class UploadFileView(TemplateView, LoginRequiredMixin):
                 return HttpResponseRedirect('upload')
 
             try:
-                file = get_trained_file(file, subject_grade, request.user)
+                trained_file = get_trained_file(file, subject_grade, request.user)
             except KeyError:
                 messages.warning(request, 'Error: Please make sure that the headers in your uploaded CSV file match '
                                           'the provided template.')
                 return HttpResponseRedirect('upload')
 
-            trained_file = {'document': file.open()}
-            payload = {
-                'user_email': request.user.username.__str__,
-            }
-
-            r = requests.post(FILE_MANAGER_URL, files=trained_file, data=payload)
-            if r.status_code != 200:
-                messages.warning(request,
-                                 'Oops! Something went wrong with the file upload.' + str(r.status_code) + ' ' + str(
-                                     r.content))
-                return HttpResponseRedirect('upload')
+            s3_url = upload_data_to_bucket(trained_file, request.user.username)
 
             file_info = FileInfo()
 
             file_info.owner = request.user
-            file_info.document_id = r.json()['document_id']
-            file_info.original_file_name = file.name
+            file_info.file_path = s3_url
+            file_info.file_name = trained_file.name
             file_info.grade = grade
             file_info.subject = subject
 
