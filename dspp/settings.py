@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = (os.getenv('DEBUG') == 'True')
 
 ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com',
-                 '127.0.0.1', '421cb4a099ff4c0bab21603775566469.vfs.cloud9.us-west-2.amazonaws.com']
+                 '127.0.0.1', '421cb4a099ff4c0bab21603775566469.vfs.cloud9.us-west-2.amazonaws.com', 'tamudspp-env.eba-jfakzzpn.us-east-2.elasticbeanstalk.com']
 
 # Application definition
 INSTALLED_APPS = [
