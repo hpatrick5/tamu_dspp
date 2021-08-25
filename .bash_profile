@@ -1,8 +1,0 @@
-'SECRET_KEY'= '0x9%f5$w(79=-9k*=g_90!)p(rvo4wh)tn)0vrozsscbh5lj2b'
-'AWS_ACCESS_KEY_ID' = 'AKIA6D72ZVZWRDT75JFS'
-'AWS_SECRET_ACCESS_KEY' = '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'
-'DEBUG' = 'False'
-'AWS_STORAGE_BUCKET_NAME' = 'tamu-dspp-s3'
-'AWS_REGION_NAME' = 'us-east-2'
-'EMAIL_HOST_PASSWORD' = 'hwozyaxixjcahhjn'
-'USE_S3' = 'True'
