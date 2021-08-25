@@ -10,8 +10,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = (os.getenv('DEBUG') == 'True')
 
-ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com',
-                 '127.0.0.1', '421cb4a099ff4c0bab21603775566469.vfs.cloud9.us-west-2.amazonaws.com', 'tamudspp-env.eba-jfakzzpn.us-east-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -65,26 +64,12 @@ WSGI_APPLICATION = 'dspp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-USE_PROD_DB = (os.getenv('USE_PROD_DB') == 'True')
-
-if USE_PROD_DB:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
-        }
-    }
-else:
-    DATABASES = {
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
     }
+}
 
 
 # Password validation
