@@ -1,17 +1,17 @@
+import os
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 import dj_database_url
 import mimetypes
-import os
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv()
 
-SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = (os.getenv('DEBUG') == 'True')
 
-ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com',
-                 '127.0.0.1', '421cb4a099ff4c0bab21603775566469.vfs.cloud9.us-west-2.amazonaws.com', 'tamudspp-env.eba-jfakzzpn.us-east-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['ec2-18-236-175-161.us-west-2.compute.amazonaws.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -70,7 +70,7 @@ USE_PROD_DB = (os.getenv('USE_PROD_DB') == 'True')
 if USE_PROD_DB:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.mysql',
             'NAME': os.environ['RDS_DB_NAME'],
             'USER': os.environ['RDS_USERNAME'],
             'PASSWORD': os.environ['RDS_PASSWORD'],
@@ -121,8 +121,7 @@ SITE_ID = 1
 
 """
 S3 and Static Files
-- See https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/ for more information
-"""
+- See https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/ for more informatio"""
 
 USE_S3 = (os.getenv('USE_S3') == 'True')
 
