@@ -1,6 +1,4 @@
 import os
-SECRET_KEY = os.getenv('SECRET_KEY')
-
 import dj_database_url
 import mimetypes
 from dotenv import load_dotenv
@@ -9,9 +7,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv()
 
+SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = (os.getenv('DEBUG') == 'True')
 
-ALLOWED_HOSTS = ['ec2-18-236-175-161.us-west-2.compute.amazonaws.com']
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOST')]
 
 # Application definition
 INSTALLED_APPS = [
@@ -78,6 +77,11 @@ if USE_PROD_DB:
             'PORT': os.environ['RDS_PORT'],
         }
     }
+
+    USE_HEROKU = (os.getenv('USE_HEROKU') == 'True')
+    if USE_HEROKU:
+        db_from_env = dj_database_url.config(conn_max_age=600)
+        DATABASES['default'].update(db_from_env)
 else:
     DATABASES = {
         'default': {
@@ -85,7 +89,6 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
