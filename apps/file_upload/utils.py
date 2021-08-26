@@ -189,15 +189,17 @@ def get_trained_file(file, grade_subject, user):
     original_file['% to Next PL'] = percent_to_next_pl
     original_file['% to Previous PL'] = percent_to_previous_pl
 
+    original_file.index.name = "Numerical Identifier"
+
     use_heroku = (os.getenv('USE_HEROKU') == 'True')
 
     if use_heroku:
         s_buf = io.StringIO()
+        trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="wb", encoding="UTF-8", header=True, index=True)
     else:
         s_buf = io.BytesIO()
+        trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", encoding="UTF-8", header=True, index=True)
 
-    original_file.index.name = "Numerical Identifier"
-    trained_csv = original_file.to_csv(path_or_buf=s_buf, mode="w", encoding="UTF-8", header=True, index=True)
     s_buf.seek(0)
 
     date_now = datetime.now()
