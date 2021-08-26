@@ -4,14 +4,15 @@ django-anymail==7.2.1
 django-bootstrap4==2.2.0
 Pillow==8.2.0
 gunicorn==20.1.0
-pandas~=1.2.5
 sklearn
 django_heroku
 boto3
 django-storages
-psycopg2>=2.8,<2.9
+psycopg2-binary
 python-dotenv~=0.18.0
 requests~=2.25.1
 djangorestframework~=3.12.4
 dj_database_url
 flask
+pandas
+pymysql

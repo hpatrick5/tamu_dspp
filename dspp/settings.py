@@ -1,6 +1,6 @@
+import os
 import dj_database_url
 import mimetypes
-import os
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -10,7 +10,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = (os.getenv('DEBUG') == 'True')
 
-ALLOWED_HOSTS = ['sp21-606-school-district-data.herokuapp.com']
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOST')]
 
 # Application definition
 INSTALLED_APPS = [
@@ -64,13 +64,31 @@ WSGI_APPLICATION = 'dspp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
+USE_PROD_DB = (os.getenv('USE_PROD_DB') == 'True')
+
+if USE_PROD_DB:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
+
+    USE_HEROKU = (os.getenv('USE_HEROKU') == 'True')
+    if USE_HEROKU:
+        db_from_env = dj_database_url.config(conn_max_age=600)
+        DATABASES['default'].update(db_from_env)
+else:
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -106,8 +124,7 @@ SITE_ID = 1
 
 """
 S3 and Static Files
-- See https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/ for more information
-"""
+- See https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/ for more informatio"""
 
 USE_S3 = (os.getenv('USE_S3') == 'True')
 
